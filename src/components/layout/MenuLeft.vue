@@ -1,12 +1,13 @@
 <template>
   <v-navigation-drawer v-model="drawer" app floating color="primary">
-    <v-list-item class="px-4">
+    <v-list-item class="avatar">
       <v-list-item-avatar>
         <v-img src="@/assets/avatar-default.png"></v-img>
       </v-list-item-avatar>
 
       <v-list-item-title>{{ this.$store.state.user.name }}</v-list-item-title>
     </v-list-item>
+    <v-divider class="divider"></v-divider>
     <v-list dense>
       <router-link tag="div" to="/" exact>
         <v-list-item link>
@@ -34,9 +35,18 @@
 
 <script>
 export default {
-  name: "MenuLaft",
+  name: "MenuLeft",
   props: {
     drawer: Boolean
   }
 };
 </script>
+
+<style>
+.avatar {
+  margin: 5px 0px 5px 15px;
+}
+.divider {
+  margin: 0px 15px 0px 15px;
+}
+</style>
