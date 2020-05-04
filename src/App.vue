@@ -1,32 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app id="inspire">
+    <MenuLeft :drawer="drawer"></MenuLeft>
+    <MenuTop @drawerChange="drawer = $event"></MenuTop>
+    <v-content>
+      <v-container>
+        <v-fade-transition mode="out-in">
+          <router-view></router-view>
+        </v-fade-transition>
+      </v-container>
+    </v-content>
+    <Footer></Footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import MenuLeft from "./components/layout/MenuLeft";
+import MenuTop from "./components/layout/MenuTop";
+import Footer from "./components/layout/Footer";
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  name: "App",
+  components: { MenuLeft, MenuTop, Footer },
+  props: {
+    source: String
+  },
+  data: () => ({
+    drawer: true,
+    dark: false
+  })
+};
+</script>
