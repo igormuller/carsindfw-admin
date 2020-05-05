@@ -9,6 +9,7 @@ import Users from "../views/Admin/Users/Users";
 
 import About from "../views/Site/About";
 import Login from "../views/Site/Login/Login";
+import Register from "../views/Site/Login/Register";
 
 Vue.use(VueRouter);
 
@@ -46,10 +47,8 @@ const routes = [
     name: "About",
     component: About
   },
-  {
-    path: "/Login",
-    component: Login
-  }
+  { path: "/login", component: Login },
+  { path: "/register", component: Register }
 ];
 
 const router = new VueRouter({

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app id="inspire">
     <MenuLeft :drawer="drawer"></MenuLeft>
     <MenuTop @drawerChange="drawer = $event"></MenuTop>
     <v-content>
@@ -9,7 +9,7 @@
         </v-fade-transition>
       </v-container>
     </v-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
