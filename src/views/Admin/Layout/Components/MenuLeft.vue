@@ -9,23 +9,23 @@
     </v-list-item>
     <v-divider class="divider"></v-divider>
     <v-list dense>
-      <router-link tag="div" to="/" exact>
+      <router-link tag="div" to="/admin/dashboard">
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>home</v-icon>
+            <v-icon>dashboard</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </router-link>
-      <router-link tag="div" to="about">
+      <router-link tag="div" to="/admin/users">
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>mail_outline</v-icon>
+            <v-icon>person</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
+            <v-list-item-title>Users</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </router-link>
