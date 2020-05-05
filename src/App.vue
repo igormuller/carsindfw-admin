@@ -9,18 +9,16 @@
         </v-fade-transition>
       </v-container>
     </v-content>
-    <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import MenuLeft from "./components/layout/MenuLeft";
 import MenuTop from "./components/layout/MenuTop";
-import Footer from "./components/layout/Footer";
 
 export default {
   name: "App",
-  components: { MenuLeft, MenuTop, Footer },
+  components: { MenuLeft, MenuTop },
   props: {
     source: String
   },
