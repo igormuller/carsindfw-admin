@@ -35,6 +35,10 @@ export default {
     } else {
       this.$router.push("/login");
     }
+
+    this.$http
+      .get("/users/info")
+      .then(res => (this.$store.state.user = res.data));
   }
 };
 </script>
