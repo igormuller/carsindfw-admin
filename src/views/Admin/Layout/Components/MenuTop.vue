@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app class="menu-gradient-top">
     <v-app-bar-nav-icon @click.stop="changeDrawer()" />
-    <v-toolbar-title>CARSinDFW</v-toolbar-title>
+    <v-toolbar-title>{{ nameApp }}</v-toolbar-title>
   </v-app-bar>
 </template>
 
@@ -15,6 +15,15 @@ export default {
     changeDrawer() {
       this.drawer = !this.drawer;
       this.$emit("drawerChange", this.drawer);
+    }
+  },
+  computed: {
+    nameApp() {
+      let user = this.$store.state.user;
+      if (user.person_id !== null) {
+        return "CARSinDFW";
+      }
+      return user.dealer.name;
     }
   }
 };

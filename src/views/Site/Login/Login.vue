@@ -64,8 +64,8 @@ export default {
         .then(res => {
           this.$http.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.access_token;
-          localStorage.setItem("logged", true);
-          localStorage.setItem("carsindfw_key", res.data.access_token);
+          localStorage.setItem("carsindfw_admin_logged", true);
+          localStorage.setItem("carsindfw_admin_token", res.data.access_token);
           this.user = {};
           this.message = "";
           this.getUser(res.data.access_token);
@@ -78,7 +78,7 @@ export default {
     getUser(token) {
       this.$http
         .get("/users/info", { headers: { Authorization: "Bearer " + token } })
-        .then(res => (this.$store.user = res.data));
+        .then(res => (this.$store.state.user = res.data));
     }
   }
 };

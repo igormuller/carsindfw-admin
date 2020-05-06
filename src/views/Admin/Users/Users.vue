@@ -1,69 +1,44 @@
 <template>
-  <h1>Users</h1>
-  <!-- <div class="content">
-    <div class="md-layout">
-      <div class="md-layout-item">
-        <md-card>
-          <md-card-header>
-            <h4 class="title">Users Lists</h4>
-            <p class="category">Select one to edit</p>
-          </md-card-header>
-          <md-card-content>
-            <router-link to="/users/new">
-              <md-button class="md-raised md-primary" v-b-modal.new-user>
-                New User
-              </md-button>
-            </router-link>
-            <b-table hover :items="items" :fields="fields" :busy="isBusy">
-              <template v-slot:table-busy>
-                <div class="text-center text-info my-2">
-                  <b-spinner class="align-middle"></b-spinner>
-                  <strong>Loading...</strong>
-                </div>
-              </template>
-              <template v-slot:cell(verified)="data">
-                {{ data.item.verified !== "" ? "Yes" : "No" }}
-              </template>
-              <template v-slot:cell(actions)="data">
-                <router-link :to="`/users/${data.item.id}`">
-                  <i
-                    class="fas fa-pencil-alt"
-                    v-b-tooltip.hover
-                    title="Edit User"
-                  ></i>
-                </router-link>
-                <a href="#" @click="removeUser(data.item, data.index)">
-                  <i
-                    class="far fa-trash-alt"
-                    v-b-tooltip.hover
-                    title="Remove User"
-                  ></i>
-                </a>
-              </template>
-            </b-table>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-  </div> -->
+  <div>
+    <h1>Users</h1>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      :items-per-page="5"
+      class="elevation-1"
+      :loading="isBusy"
+    >
+      <template v-slot:item.actions="{ item }">
+        <v-icon small class="mr-2" @click="editItem(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon small @click="deleteItem(item)">
+          mdi-delete
+        </v-icon>
+      </template>
+      <template v-slot:item.verified="{ item }">
+        {{ item.email_verified_at !== null ? "Verified" : "Not Verified" }}
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      isBusy: false,
-      fields: [
-        "name",
-        { key: "email", label: "E-mail" },
-        "verified",
-        "actions"
+      headers: [
+        { text: "Name", value: "name" },
+        { text: "E-mail", value: "email" },
+        { text: "Verified", value: "verified" },
+        { text: "Actions", value: "actions", sortable: false }
       ],
-      items: []
+      items: [],
+      isBusy: false
     };
   },
   methods: {
-    removeUser(item, index) {
+    deleteItem(item) {
       this.$swal({
         text: `Confirm that you remove ${item.name}`,
         buttons: true,
@@ -73,22 +48,11 @@ export default {
           this.$http
             .delete(`/users/${item.id}`)
             .then(res => {
-              this.$notify({
-                message: res.data,
-                horizontalAlign: "center",
-                verticalAlign: "top",
-                type: "success"
-              });
-              this.items.splice(index, 1);
+              this.$toasted.global.defaultSuccess({ msg: res.data });
+              this.items.splice(this.items.indexOf(item), 1);
             })
             .catch(error => {
-              this.$notify({
-                message: error.response.data,
-                icon: "add_alert",
-                horizontalAlign: "center",
-                verticalAlign: "top",
-                type: "danger"
-              });
+              this.$toasted.global.defaultError({ msg: error.response.data });
             });
         }
       });

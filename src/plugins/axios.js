@@ -7,17 +7,17 @@ Vue.use({
       baseURL: `${process.env.VUE_APP_BASE_URL}/api/`
     });
 
-    // Vue.prototype.$http.interceptors.response.use(
-    //   res => {
-    //     return res;
-    //   },
-    //   error => {
-    //     if (error.response.status === 401) {
-    //       localStorage.clear();
-    //       window.location.href = "/login";
-    //     }
-    //     return Promise.reject(error);
-    //   }
-    // );
+    Vue.prototype.$http.interceptors.response.use(
+      res => {
+        return res;
+      },
+      error => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          window.location.href = "/login";
+        }
+        return Promise.reject(error);
+      }
+    );
   }
 });

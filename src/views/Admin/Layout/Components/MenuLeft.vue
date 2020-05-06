@@ -1,15 +1,17 @@
 <template>
   <v-navigation-drawer v-model="drawer" app floating class="menu-gradient-left">
-    <v-list-item class="avatar">
-      <v-list-item-avatar>
+    <v-list-item>
+      <v-list-item-avatar class="ml-5 mt-4">
         <v-img src="@/assets/avatar-default.png"></v-img>
       </v-list-item-avatar>
 
-      <v-list-item-title>{{ this.$store.state.user.name }}</v-list-item-title>
+      <v-list-item-title class="mt-2">
+        {{ this.$store.state.user.name }}
+      </v-list-item-title>
     </v-list-item>
-    <v-divider class="divider"></v-divider>
+    <v-divider class="ml-5 mr-5"></v-divider>
     <v-list dense>
-      <router-link tag="div" to="/admin/dashboard">
+      <router-link tag="div" to="/admin/dashboard" class="ml-5 mr-5 mt-2 mb-2">
         <v-list-item link>
           <v-list-item-action>
             <v-icon>dashboard</v-icon>
@@ -19,7 +21,7 @@
           </v-list-item-content>
         </v-list-item>
       </router-link>
-      <router-link tag="div" to="/admin/users">
+      <router-link tag="div" to="/admin/users" class="ml-5 mr-5 mt-2 mb-2">
         <v-list-item link>
           <v-list-item-action>
             <v-icon>person</v-icon>
@@ -32,7 +34,7 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-3">
-        <v-btn block>Logout</v-btn>
+        <v-btn block @click="logout()">Logout</v-btn>
       </div>
     </template>
   </v-navigation-drawer>
@@ -43,6 +45,13 @@ export default {
   name: "MenuLeft",
   props: {
     drawer: Boolean
+  },
+  methods: {
+    logout() {
+      this.$store.user = {};
+      localStorage.clear();
+      this.$router.push("/login");
+    }
   }
 };
 </script>
