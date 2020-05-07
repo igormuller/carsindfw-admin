@@ -4,9 +4,10 @@ import VueRouter from "vue-router";
 import AdminLayout from "../views/Admin/Layout/AdminLayout";
 import Dashboard from "../views/Admin/Dashboard/Dashboard";
 import Users from "../views/Admin/Users/Users";
-// import UsersNew from "../views/Admin/Users/New";
-// import UsersEdit from "../views/Admin/Users/Edit";
+import UsersNew from "../views/Admin/Users/New";
+import UsersEdit from "../views/Admin/Users/Edit";
 
+import Home from "../views/Site/Home";
 import About from "../views/Site/About";
 import Login from "../views/Site/Login/Login";
 import Register from "../views/Site/Login/Register";
@@ -28,25 +29,22 @@ const routes = [
         path: "users",
         name: "Users",
         component: Users
+      },
+      {
+        path: "users/new",
+        name: "New User",
+        component: UsersNew
+      },
+      {
+        path: "users/:id",
+        name: "User Edit",
+        component: UsersEdit,
+        props: true
       }
-      // {
-      //   path: "users/new",
-      //   name: "New User",
-      //   component: UsersNew
-      // },
-      // {
-      //   path: "users/:id",
-      //   name: "User Edit",
-      //   component: UsersEdit,
-      //   props: true
-      // }
     ]
   },
-  {
-    path: "/about",
-    name: "About",
-    component: About
-  },
+  { path: "/", component: Home },
+  { path: "/about", component: About },
   { path: "/login", component: Login },
   { path: "/register", component: Register }
 ];

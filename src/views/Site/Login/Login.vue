@@ -6,10 +6,12 @@
           <v-col cols="12" sm="8" md="6" lg="4">
             <v-card class="elevation-12">
               <v-toolbar color="primary">
-                <v-toolbar-title>Login form</v-toolbar-title>
+                <v-toolbar-title class="white--text">
+                  Login form
+                </v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <form @keydown.enter="sendLogin()">
                   <v-text-field
                     label="Login"
                     name="login"
@@ -24,17 +26,19 @@
                     type="password"
                     v-model="user.password"
                   />
-                </v-form>
+                </form>
               </v-card-text>
               <v-card-actions>
-                <span class="caption pl-4">
+                <!-- <span class="caption pl-4">
                   If you don't have login then
                   <router-link to="/register">
                     Register
                   </router-link>
-                </span>
+                </span> -->
                 <v-spacer />
-                <v-btn color="primary" @click="sendLogin()">Login</v-btn>
+                <v-btn color="primary" @click="sendLogin()" class="mb-3 mr-3">
+                  Login
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>

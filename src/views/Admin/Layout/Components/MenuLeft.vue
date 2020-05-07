@@ -1,16 +1,16 @@
 <template>
   <v-navigation-drawer v-model="drawer" app floating class="menu-gradient-left">
-    <v-list-item>
-      <v-list-item-avatar class="ml-5 mt-4">
-        <v-img src="@/assets/avatar-default.png"></v-img>
-      </v-list-item-avatar>
-
-      <v-list-item-title class="mt-2">
-        {{ this.$store.state.user.name }}
-      </v-list-item-title>
-    </v-list-item>
-    <v-divider class="ml-5 mr-5"></v-divider>
     <v-list dense>
+      <v-list-item link @click="openUserEdit()">
+        <v-list-item-avatar class="ma-3">
+          <v-img src="@/assets/avatar-default.png"></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-title class="mt-2">
+          <strong>{{ this.$store.state.user.name }}</strong>
+        </v-list-item-title>
+      </v-list-item>
+      <v-divider class="ml-5 mr-5"></v-divider>
       <router-link tag="div" to="/admin/dashboard" class="ml-5 mr-5 mt-2 mb-2">
         <v-list-item link>
           <v-list-item-action>
@@ -51,26 +51,27 @@ export default {
       this.$store.user = {};
       localStorage.clear();
       this.$router.push("/login");
+    },
+    openUserEdit() {
+      let user = this.$store.state.user;
+      this.$router.push(`/admin/users/${user.id}`);
     }
   }
 };
 </script>
 
-<style lang="scss">
-.avatar {
-  margin: 5px 0px 5px 15px;
-}
-.divider {
-  margin: 0px 15px 0px 15px;
-}
+<style lang="scss" scoped>
 .menu-gradient-left {
   background-image: linear-gradient(to bottom, #1d2671, #c33764 200%);
 }
+
 .router-link-active,
 .router-link-exact-active {
+  border-radius: 5px;
   background-color: #426eb9;
   cursor: pointer;
 }
+
 .v-navigation-drawer {
   .v-list-item .v-list-item__title {
     color: white !important;

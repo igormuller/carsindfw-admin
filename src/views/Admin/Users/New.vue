@@ -1,48 +1,47 @@
 <template>
-  <div class="content">
-    <div class="md-layout">
-      <div class="md-layout-item">
-        <md-card>
-          <md-card-header>
-            <h4 class="title">New User</h4>
-            <p class="category">.</p>
-          </md-card-header>
-          <md-card-content>
-            <form @keydown.enter="save()">
-              <md-field>
-                <label>Name</label>
-                <md-input v-model="user.name" type="text"></md-input>
-                <form-errors :errors="errors.name" />
-              </md-field>
-              <md-field>
-                <label>E-mail</label>
-                <md-input v-model="user.email" type="email"></md-input>
-                <form-errors :errors="errors.email" />
-              </md-field>
-              <md-field>
-                <label>Password</label>
-                <md-input v-model="user.password" type="password"></md-input>
-                <form-errors :errors="errors.password" />
-              </md-field>
-              <div class="md-layout-item md-size-100 text-right">
-                <md-button class="md-raised md-primary" @click="save()">
-                  Save
-                </md-button>
-              </div>
-            </form>
-          </md-card-content>
-        </md-card>
-      </div>
-    </div>
-  </div>
+  <v-row align="center" justify="center">
+    <v-col cols="12">
+      <v-card class="elevation-5" color="grey lighten-4" flat>
+        <v-card-title><h2>New User</h2></v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <form @keydown.enter="save()">
+            <v-text-field
+              label="Name"
+              v-model="user.name"
+              :error-messages="errors.name"
+            >
+            </v-text-field>
+            <v-text-field
+              label="E-mail"
+              v-model="user.email"
+              :error-messages="errors.email"
+              type="email"
+            >
+            </v-text-field>
+            <v-text-field
+              label="Password"
+              v-model="user.password"
+              :error-messages="errors.password"
+              type="password"
+            >
+            </v-text-field>
+          </form>
+        </v-card-text>
+        <v-card-acitons>
+          <v-row class="text-right">
+            <v-col>
+              <v-btn color="primary" @click="save()" class="mr-3">save</v-btn>
+            </v-col>
+          </v-row>
+        </v-card-acitons>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import FormErrors from "@/components/Forms/Errors.vue";
 export default {
-  components: {
-    FormErrors
-  },
   data() {
     return {
       user: {
@@ -58,13 +57,8 @@ export default {
     save() {
       this.$http
         .post("/users", this.user)
-        .then(res => this.$router.push("/users"))
-        .catch(error => this.showErrors(error.response.data.errors));
-    },
-    showErrors(validation) {
-      if (validation !== "undefined") {
-        this.errors = validation;
-      }
+        .then(() => this.$router.push("/admin/users"))
+        .catch(error => (this.errors = error.response.data.errors));
     }
   }
 };

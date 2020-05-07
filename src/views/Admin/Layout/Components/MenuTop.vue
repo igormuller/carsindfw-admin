@@ -1,7 +1,9 @@
 <template>
   <v-app-bar app class="menu-gradient-top">
     <v-app-bar-nav-icon @click.stop="changeDrawer()" />
-    <v-toolbar-title>{{ nameApp }}</v-toolbar-title>
+    <v-toolbar-title @click="openSite()" style="cursor:pointer">
+      {{ nameApp }}
+    </v-toolbar-title>
   </v-app-bar>
 </template>
 
@@ -15,6 +17,9 @@ export default {
     changeDrawer() {
       this.drawer = !this.drawer;
       this.$emit("drawerChange", this.drawer);
+    },
+    openSite() {
+      this.$router.push("/");
     }
   },
   computed: {
@@ -29,12 +34,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .menu-gradient-top {
   background-image: linear-gradient(to right, #1d2671, #c33764 200%);
 }
 .v-toolbar__content {
-  .v-btn__content {
+  .v-app-bar__nav-icon {
     color: white;
   }
   .v-toolbar__title {
