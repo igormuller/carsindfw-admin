@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" style="background-color:#F2F2F2">
     <v-app-bar app absolute height="110" color="#00205b">
       <div class="logo pt-2">
         <img width="400" src="@/assets/full_logo.png" alt="Logo Cars In DFW" />
@@ -60,15 +60,15 @@
                 readonly
                 size="14"
               ></v-rating>
-
               <div class="grey--text ml-4">4.5 (413)</div>
             </v-row>
-
             <div class="my-4 subtitle-1">
               $ 1,500.00
             </div>
-
-            <div>Dual-stage suppl. restraint system (SRS) certified to the advanced airbag requiremnets of FMVSS 208, S14.</div>
+            <div>
+              Dual-stage suppl. restraint system (SRS) certified to the advanced
+              airbag requiremnets of FMVSS 208, S14.
+            </div>
           </v-card-text>
 
           <v-card-actions>
@@ -78,8 +78,6 @@
           </v-card-actions>
         </v-card>
 
-
-        
         <v-card class="ml-5 my-12" max-width="374">
           <v-img
             height="250"
@@ -101,11 +99,9 @@
 
               <div class="grey--text ml-4">4.5 (413)</div>
             </v-row>
-
             <div class="my-4 subtitle-1">
               $ 800.00
             </div>
-
             <div>Driver Seat Only</div>
           </v-card-text>
 
