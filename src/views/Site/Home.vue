@@ -18,13 +18,13 @@
         <v-btn text color="white">
           News
         </v-btn>
-        <v-btn class="ml-5" color="red" link to="/admin">
+        <v-btn class="ml-5 white--text" color="#BF0D3E" link to="/admin">
           Login
         </v-btn>
       </div>
     </v-app-bar>
-    <v-container>
-      <v-content>
+    <v-content>
+      <v-container>
         <v-carousel
           cycle
           height="450"
@@ -38,10 +38,38 @@
           <v-carousel-item src="@/assets/carousel/carousel_005.png" />
           <v-carousel-item src="@/assets/carousel/carousel_006.png" />
         </v-carousel>
-      </v-content>
-    </v-container>
-    <v-container fluid>
-      <v-content>
+      </v-container>
+      <v-container fluid>
+        <v-card align="center">
+          <v-row class="ml-4">
+            <v-col cols="12" md="2">
+              <v-text-field label="Key Word"></v-text-field>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-select
+                v-model="value"
+                :items="teste"
+                attach
+                label="Acessories"
+                multiple
+              >
+                <template v-slot:selection="{ item, index }">
+                  <span v-if="index === 0">{{ item }}</span>
+                  <span v-if="index === 1" class="grey--text caption">
+                    (+{{ value.length - 1 }} others)
+                  </span>
+                </template>
+              </v-select>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-autocomplete
+                v-model="makes"
+                :items="models"
+                label="Model"
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
+        </v-card>
         <v-row>
           <v-col v-for="n in 10" xl="2" lg="3" md="4" sm="6" xs="12" :key="n">
             <v-card max-width="374" height="550">
@@ -68,8 +96,8 @@
                   $ 1,500.00
                 </div>
                 <div>
-                  Dual-stage suppl. restraint system (SRS) certified to the advanced
-                  airbag requiremnets of FMVSS 208, S14.
+                  Dual-stage suppl. restraint system (SRS) certified to the
+                  advanced airbag requiremnets of FMVSS 208, S14.
                 </div>
               </v-card-text>
 
@@ -85,13 +113,53 @@
             </v-card>
           </v-col>
         </v-row>
-      </v-content>
-    </v-container>
+      </v-container>
+    </v-content>
+    <v-footer color="#BF0D3E" class="white--text" height="200">
+      <v-row>
+        <v-col class="pl-12">
+          <h3>Company</h3>
+          <h5>About carsindfw.com</h5>
+          <h5>Terms of Services</h5>
+          <h5>Privacity Statement</h5>
+          <h5>Contact Us</h5>
+        </v-col>
+        <v-col class="pl-12">
+          <h3>Useful for you</h3>
+          <h5>How to sign up?</h5>
+          <h5>Personal</h5>
+          <h5>Dealers</h5>
+          <h5></h5>
+          <h5>Eveluate your car</h5>
+        </v-col>
+        <v-col class="pl-12">
+          <h3>Social</h3>
+          <h5>News DFW</h5>
+          <h5>Blog</h5>
+        </v-col>
+      </v-row>
+    </v-footer>
+    <v-footer color="#00205b" class="white--text">
+      <v-row>
+        <v-col align="end">
+          <span class="font-weight-medium">
+            &copy; 2020 Carsindfw, Inc., All Rights Reserved.
+          </span>
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    value: "",
+    makes: "",
+    teste: ["Ar", "Direção", "Vidro", "Freio", "Porta", "Espelho"],
+    models: ["BMW", "Astom", "Betley", "GM", "Mais"]
+  })
+};
 </script>
 
 <style></style>
