@@ -41,7 +41,7 @@
                 src="@/assets/whatsapp.png"
               />
             </a>
-            <a href="http://www.facebook.com/carsindfw" target="_blanck">
+            <a href="http://www.instagram.com/cars.indfw" target="_blanck">
               <v-img
                 class="mx-3"
                 height="32"
