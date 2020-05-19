@@ -7,8 +7,15 @@ import Users from "../views/Admin/Users/Users";
 import UsersNew from "../views/Admin/Users/New";
 import UsersEdit from "../views/Admin/Users/Edit";
 
+import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
-import About from "../views/Site/About";
+import SellYourCar from "../views/Site/SellYourCar";
+import Dealers from "../views/Site/Dealer/List";
+import Contact from "../views/Site/Contact";
+import News from "../views/Site/News";
+import CarDetail from "../views/Site/CarDetail";
+import PageNotFound from "@/components/PageNotFound";
+
 import Login from "../views/Site/Login/Login";
 import Register from "../views/Site/Login/Register";
 
@@ -43,10 +50,21 @@ const routes = [
       }
     ]
   },
-  { path: "/", component: Home },
-  { path: "/about", component: About },
+  {
+    path: "/",
+    component: Site,
+    children: [
+      { path: "/", component: Home },
+      { path: "/sell-your-car", component: SellYourCar },
+      { path: "/dealers", component: Dealers },
+      { path: "/contact", component: Contact },
+      { path: "/news", component: News },
+      { path: "/car-detail", component: CarDetail }
+    ]
+  },
   { path: "/login", component: Login },
-  { path: "/register", component: Register }
+  { path: "/register", component: Register },
+  { path: "*", component: PageNotFound }
 ];
 
 const router = new VueRouter({
