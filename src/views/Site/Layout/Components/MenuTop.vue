@@ -7,14 +7,18 @@
     />
     <v-container fluid>
       <v-row align="center">
-        <v-col sm="10" md="4" align="start">
+        <v-col md="4" align="start">
           <v-img
+            style="cursor:pointer"
             :src="require('@/assets/full_logo.png')"
             contain
-            max-width="350"
+            max-width="360"
+            min-width="10"
+            min-height="10"
+            @click="pageStart()"
           />
         </v-col>
-        <v-col sm="2" md="8" align="end">
+        <v-col md="8" align="end">
           <v-btn
             v-for="(link, n) in links"
             :key="n"
@@ -52,6 +56,9 @@ export default {
   methods: {
     changeNavigation() {
       this.$emit("changeNavigation", !this.drawer);
+    },
+    pageStart() {
+      this.$router.push("/");
     }
   }
 };
