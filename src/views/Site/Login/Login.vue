@@ -53,8 +53,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      user: { username: null, password: null },
-      message: ""
+      user: { username: null, password: null }
     };
   },
   methods: {
@@ -66,17 +65,19 @@ export default {
       axios
         .post(baseURL + "/oauth/token", this.user)
         .then(res => {
+          this.$toasted.global.defaultSuccess({ msg: "Login Success ..." });
           this.$http.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.access_token;
           localStorage.setItem("carsindfw_admin_logged", true);
           localStorage.setItem("carsindfw_admin_token", res.data.access_token);
           this.user = {};
-          this.message = "";
           this.getUser(res.data.access_token);
           this.$router.push("/admin/dashboard");
         })
         .catch(() => {
-          this.message = "Login or Password incorrectly!";
+          this.$toasted.global.defaultError({
+            msg: "Login or Password incorrectly!"
+          });
         });
     },
     getUser(token) {
