@@ -4,7 +4,7 @@
       <v-img
         src="@/assets/carousel/carousel_001.png"
         class="flex-container"
-        max-height="650"
+        max-height="500"
       >
         <div class="mx-8 mb-5 search">
           <v-row class="ml-5">
@@ -13,7 +13,7 @@
             </v-col>
             <v-col cols="12" md="2">
               <v-select
-                :items="['Direção', 'Vidro', 'Freio', 'Porta', 'Espelho']"
+                :items="['New', 'Used']"
                 label="Type"
                 :clearable="true"
               ></v-select>
@@ -36,8 +36,8 @@
             <v-col cols="12" md="2">
               <v-autocomplete
                 v-model="makes"
-                :items="models"
-                label="Model"
+                :items="brands"
+                label="Brand"
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
@@ -45,7 +45,7 @@
               <v-autocomplete
                 v-model="makes"
                 :items="models"
-                label="Brand"
+                label="Model"
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
@@ -128,7 +128,8 @@ export default {
     value: "",
     makes: "",
     categories: ["Ar", "Direção", "Vidro", "Freio", "Porta", "Espelho"],
-    models: ["BMW", "Astom", "Betley", "GM", "Mais"],
+    brands: ["BMW", "Astom", "Betley", "GM", "Mais"],
+    models: ["IX35", "Corolla", "F100", "Mais"],
     slides: [
       "Welcome to CARSinDFW",
       "Advertisement 01",
