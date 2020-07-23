@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app absolute height="110" color="#00205b">
     <v-app-bar-nav-icon
-      class="hidden-md-and-up"
+      class="hidden-lg-and-up"
       color="white"
       @click.stop="changeNavigation()"
     />
@@ -22,7 +22,7 @@
           <v-btn
             v-for="(link, n) in links"
             :key="n"
-            class="hidden-sm-and-down"
+            class="hidden-md-and-down"
             text
             color="white"
             :to="link.link"
@@ -30,7 +30,14 @@
             {{ link.text }}
           </v-btn>
           <v-btn
-            class="white--text hidden-sm-and-down"
+            class="white--text hidden-md-and-down ml-2 mr-2"
+            color="#BF0D3E"
+            to="/register"
+          >
+            Register
+          </v-btn>
+          <v-btn
+            class="white--text hidden-md-and-down"
             color="#BF0D3E"
             to="/admin"
           >

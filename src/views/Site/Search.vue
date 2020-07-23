@@ -8,21 +8,15 @@
       >
         <div class="mx-8 mb-5 search">
           <v-row class="ml-5">
-            <v-col cols="12" md="2" class="mt-6" style="color: #00205b">
-              <strong>Chose Your Next Car</strong>
-            </v-col>
+            <v-col cols="12" md="2" class="mt-6">Chose Your Next Car</v-col>
             <v-col cols="12" md="2">
-              <v-select
-                :items="['Direção', 'Vidro', 'Freio', 'Porta', 'Espelho']"
-                label="Type"
-                :clearable="true"
-              ></v-select>
+              <v-text-field label="Key Word"></v-text-field>
             </v-col>
             <v-col cols="12" md="2">
               <v-select
                 v-model="value"
-                :items="categories"
-                label="Category"
+                :items="teste"
+                label="Acessories"
                 multiple
               >
                 <template v-slot:selection="{ item, index }">
@@ -38,46 +32,14 @@
                 v-model="makes"
                 :items="models"
                 label="Model"
-                :clearable="true"
               ></v-autocomplete>
-            </v-col>
-            <v-col cols="12" md="2">
-              <v-autocomplete
-                v-model="makes"
-                :items="models"
-                label="Brand"
-                :clearable="true"
-              ></v-autocomplete>
-            </v-col>
-            <v-col>
-              <v-btn color="#bf0d3e" class="ml-4 mt-3">Search</v-btn>
             </v-col>
           </v-row>
         </div>
       </v-img>
     </v-card>
-    <br />
-    <v-card>
-      <v-carousel
-        cycle
-        height="200"
-        hide-delimiter-background
-        :show-arrows="false"
-      >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet color="indigo" height="100%">
-            <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">{{ slide }}</div>
-            </v-row>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
-    </v-card>
-    <div class="mt-10 flex-container">
-      <div class="title_cars">New Cars</div>
-    </div>
     <v-row>
-      <v-col v-for="n in 4" xl="2" lg="3" md="4" sm="6" xs="12" :key="n">
+      <v-col v-for="n in 10" xl="2" lg="3" md="4" sm="6" xs="12" :key="n">
         <v-card max-width="374" height="550">
           <v-img
             height="250"
@@ -127,20 +89,13 @@ export default {
   data: () => ({
     value: "",
     makes: "",
-    categories: ["Ar", "Direção", "Vidro", "Freio", "Porta", "Espelho"],
-    models: ["BMW", "Astom", "Betley", "GM", "Mais"],
-    slides: [
-      "Welcome to CARSinDFW",
-      "Advertisement 01",
-      "Advertisement 02",
-      "Advertisement 03",
-      "Advertisement 04"
-    ]
+    teste: ["Ar", "Direção", "Vidro", "Freio", "Porta", "Espelho"],
+    models: ["BMW", "Astom", "Betley", "GM", "Mais"]
   })
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .flex-container {
   display: flex;
   justify-content: center;
@@ -153,14 +108,5 @@ export default {
   border-top-color: #00205b;
   background-color: #f0eeee;
   opacity: 0.8;
-}
-
-.title_cars {
-  color: #bf0d3e;
-  font-family: Racing Sans One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 75px;
-  line-height: 94px;
 }
 </style>
