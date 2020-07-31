@@ -2,7 +2,7 @@
   <div>
     <v-card class="mt-3">
       <v-img
-        src="@/assets/carousel/carousel_001.png"
+        src="@/assets/gif_cars_in_dallas_at_night.gif"
         class="flex-container"
         max-height="500"
       >
@@ -50,7 +50,9 @@
               ></v-autocomplete>
             </v-col>
             <v-col>
-              <v-btn color="#bf0d3e" class="ml-4 mt-3">Search</v-btn>
+              <v-btn color="#bf0d3e" class="ml-4 mt-3 white--text">
+                Search
+              </v-btn>
             </v-col>
           </v-row>
         </div>

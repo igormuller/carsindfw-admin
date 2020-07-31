@@ -1,26 +1,32 @@
 <template>
   <div>
     <v-footer color="#BF0D3E" class="white--text" height="200">
-      <v-row>
-        <v-col cols="4" class="pl-12">
+      <v-row justify="center">
+        <v-col cols="2 sm-6" class="mr-5 hidden-md-and-down">
           <h3>Company</h3>
-          <h5>About carsindfw.com</h5>
-          <h5>Terms of Services</h5>
-          <h5>Privacity Statement</h5>
+          <h5>About CARSinDFW</h5>
+          <h5>Our Team</h5>
+          <h5>Advice for Buyers</h5>
           <h5>Contact Us</h5>
+          <h5>APP</h5>
         </v-col>
-        <v-col cols="4" class="pl-12">
-          <h3>Useful for you</h3>
-          <h5>How to sign up?</h5>
-          <h5>Personal</h5>
-          <h5>Dealers</h5>
-          <h5></h5>
-          <h5>Eveluate your car</h5>
+        <v-col cols="2" class="mr-5">
+          <h3>Terms</h3>
+          <h5>Terms of Use</h5>
+          <h5>Privacy</h5>
         </v-col>
-        <v-col cols="4" class="pl-12">
-          <h3>Social</h3>
-          <h5>News DFW</h5>
-          <h5>Blog</h5>
+        <v-col cols="2" class="mr-5 hidden-md-and-down">
+          <h3>For Dealers</h3>
+          <h5>Private Owner</h5>
+          <h5>Car Dealers</h5>
+        </v-col>
+        <v-col cols="2" class="mr-5 hidden-md-and-down">
+          <h3>Dallas</h3>
+          <h5>Dallas History</h5>
+          <h5>Dallas Events</h5>
+        </v-col>
+        <v-col cols="2 sm-6" class="mr-5">
+          <h3>Passionate abaut cars!</h3>
           <v-row class="d-flex">
             <a href="http://www.facebook.com/carsindfw" target="_blanck">
               <v-img
