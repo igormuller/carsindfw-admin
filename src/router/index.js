@@ -13,7 +13,7 @@ import SellYourCar from "../views/Site/SellYourCar";
 import Dealers from "../views/Site/Dealer/List";
 import Contact from "../views/Site/Contact";
 import News from "../views/Site/News";
-import CarDetail from "../views/Site/CarDetail";
+import CarDetail from "../views/Site/CarDetail/CarDetail";
 import PageNotFound from "@/components/PageNotFound";
 
 import Login from "../views/Site/Login/Login";

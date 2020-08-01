@@ -59,7 +59,7 @@
         </v-col>
       </v-row>
     </v-footer>
-    <v-footer color="#00205b" class="white--text">
+    <!-- <v-footer color="#00205b" class="white--text">
       <v-row>
         <v-col align="end">
           <span class="font-weight-medium">
@@ -67,7 +67,7 @@
           </span>
         </v-col>
       </v-row>
-    </v-footer>
+    </v-footer> -->
   </div>
 </template>
 

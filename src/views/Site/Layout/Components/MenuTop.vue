@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app absolute height="110" color="#00205b">
+  <v-app-bar app absolute height="80" color="#00205b">
     <v-app-bar-nav-icon
       class="hidden-lg-and-up"
       color="white"

@@ -1,23 +1,10 @@
 <template>
   <div>
     <v-card>
-      <v-carousel
-        cycle
-        height="150"
-        hide-delimiter-background
-        :show-arrows="false"
-      >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet color="indigo" height="100%">
-            <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">{{ slide }}</div>
-            </v-row>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
+      <BannerTop :slides="slides"></BannerTop>
     </v-card>
     <v-row>
-      <v-col cols="12" md="3" lg="2">
+      <v-col cols="12" md="3" xl="3">
         <v-card>
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
@@ -63,52 +50,13 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" md="6" lg="8">
-        <v-sheet class="mx-auto" elevation="5" max-width="1250">
-          <v-slide-group v-model="model" class="px-5" show-arrows>
-            <v-slide-item
-              v-for="n in cards"
-              :key="n"
-              v-slot:default="{ active, toggle }"
-            >
-              <v-card
-                :color="active ? 'primary' : 'default'"
-                class="ma-2"
-                height="100"
-                width="100"
-                @click="toggle"
-              >
-                <v-img
-                  class="mt-2 ml-2"
-                  height="85"
-                  width="85"
-                  :src="n.src"
-                ></v-img>
-              </v-card>
-            </v-slide-item>
-          </v-slide-group>
-          <v-expand-transition>
-            <v-sheet
-              color="grey lighten-4"
-              max-height="500"
-              min-height="100"
-              tile
-            >
-              <v-img
-                max-height="500"
-                min-height="100"
-                contain
-                :src="model === null ? cards[0].src : cards[model].src"
-              ></v-img>
-            </v-sheet>
-          </v-expand-transition>
-        </v-sheet>
+      <v-col cols="12" md="7" xl="7">
+        <Galery :images="cards"></Galery>
         <v-card class="mt-3">
-          <v-card-title color="#00205b">About this Car</v-card-title>
-          <v-card-text>Teste</v-card-text>
+          <AboutCar></AboutCar>
         </v-card>
       </v-col>
-      <v-col cols="12" md="3" lg="2">
+      <v-col cols="12" md="2" xl="2">
         <v-card class="mb-3">
           <v-card-text>
             <p><v-icon class="mb-1" color="red">star_rate</v-icon> Save</p>
@@ -136,16 +84,18 @@
 </template>
 
 <script>
+import BannerTop from "@/components/BannerTop";
+import Galery from "@/components/Galery";
+import AboutCar from "./Components/AboutCar";
+
 export default {
+  components: { Galery, BannerTop, AboutCar },
   data: () => ({
     model: null,
     index: null,
     slides: [
-      "Welcome to CARSinDFW",
-      "Advertisement 01",
-      "Advertisement 02",
-      "Advertisement 03",
-      "Advertisement 04"
+      { src: require("@/assets/car-wash.png") },
+      { src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }
     ],
     cards: [
       {
@@ -197,9 +147,3 @@ export default {
   })
 };
 </script>
-
-<style scoped>
-.blueimp-gallery-controls {
-  background-color: rgb(170, 170, 170);
-}
-</style>
