@@ -27,28 +27,11 @@
             </v-btn>
           </v-card-actions>
         </v-card>
-        <v-row>
-          <v-col>
-            <v-card>
-              <div class="d-flex align-center justify-start">
-                <v-img
-                  class="ma-2 ml-2"
-                  height="100"
-                  width="100"
-                  contain
-                  src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
-                ></v-img>
-                <v-btn text class="ml-n4">All cars</v-btn>
-              </div>
-              <div class="pl-2">
-                <p class="my-n1">Endereço</p>
-                <p class="my-n1">City</p>
-                <p class="my-n1">Phone</p>
-                <p class="my-n1">Contact</p>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
+        <v-card class="mt-3">
+          <v-card-text>
+            <AboutDealer></AboutDealer>
+          </v-card-text>
+        </v-card>
       </v-col>
       <v-col cols="12" md="7" xl="7">
         <Galery :images="cards"></Galery>
@@ -87,9 +70,10 @@
 import BannerTop from "@/components/BannerTop";
 import Galery from "@/components/Galery";
 import AboutCar from "./Components/AboutCar";
+import AboutDealer from "./Components/AboutDealer";
 
 export default {
-  components: { Galery, BannerTop, AboutCar },
+  components: { Galery, BannerTop, AboutCar, AboutDealer },
   data: () => ({
     model: null,
     index: null,
