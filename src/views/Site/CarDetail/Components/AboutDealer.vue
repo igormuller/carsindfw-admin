@@ -13,13 +13,13 @@
     <v-row>
       <v-col cols="6">
         <v-img
-        width="550"
-        contain
-        src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
-      ></v-img>
+          width="550"
+          contain
+          src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
+        ></v-img>
       </v-col>
       <v-col cols="6" class="d-flex align-center">
-          <v-btn text>All cars</v-btn>
+        <v-btn text>All cars</v-btn>
       </v-col>
     </v-row>
     <div>
@@ -37,6 +37,23 @@
       </v-col>
       <v-col cols="4">
         <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        Maps
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <h2 style="color:#bf0d3e">Dealers Review</h2>
+        <div class="mt-2">
+          <v-rating value=5 readonly color="#00205b" dense></v-rating>
+          <v-rating value=4 readonly color="#00205b" dense></v-rating>
+          <v-rating value=3 readonly color="#00205b" dense></v-rating>
+          <v-rating value=2 readonly color="#00205b" dense></v-rating>
+          <v-rating value=1 readonly color="#00205b" dense></v-rating>
+        </div>
       </v-col>
     </v-row>
   </div>

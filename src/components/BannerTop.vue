@@ -15,7 +15,7 @@
 export default {
   name: "BannerTop",
   props: {
-    slides: Object,
+    slides: Array,
     height: Number
   },
   data: () => ({})

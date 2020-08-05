@@ -28,7 +28,7 @@
           max-height="500"
           min-height="100"
           contain
-          :src="model === null ? images[0].src : images[selected].src"
+          :src="selected === null ? images[0].src : images[selected].src"
         ></v-img>
       </v-sheet>
     </v-expand-transition>
@@ -39,7 +39,7 @@
 export default {
   name: "Galery",
   props: {
-    images: Object
+    images: Array
   },
   data: () => ({
     selected: 0
