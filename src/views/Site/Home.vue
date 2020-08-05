@@ -13,12 +13,13 @@
             </v-col>
             <v-col cols="12" md="2">
               <v-select
+                v-model="type"
                 :items="['New', 'Used']"
                 label="Type"
                 :clearable="true"
               ></v-select>
             </v-col>
-            <v-col cols="12" md="2">
+            <!-- <v-col cols="12" md="2">
               <v-select
                 v-model="value"
                 :items="categories"
@@ -32,25 +33,38 @@
                   </span>
                 </template>
               </v-select>
-            </v-col>
+            </v-col> -->
             <v-col cols="12" md="2">
               <v-autocomplete
-                v-model="makes"
-                :items="brands"
+                v-model="make"
+                :items="makes"
+                item-text="name"
+                item-value="id"
                 label="Brand"
                 :clearable="true"
+                required
               ></v-autocomplete>
             </v-col>
             <v-col cols="12" md="2">
               <v-autocomplete
-                v-model="makes"
+                v-model="model"
                 :items="models"
+                item-text="name"
+                item-value="id"
                 label="Model"
                 :clearable="true"
-              ></v-autocomplete>
+              >
+                <template v-slot:no-data>
+                  <v-list-item>
+                    <v-list-item-title>
+                      Select a make first
+                    </v-list-item-title>
+                  </v-list-item>
+                </template>
+              </v-autocomplete>
             </v-col>
             <v-col>
-              <v-btn color="#bf0d3e" class="ml-4 mt-3 white--text">
+              <v-btn color="#bf0d3e" class="ml-4 mt-3 white--text" :to="`search?type=${type}&make=${make}&model=${model}`">
                 Search
               </v-btn>
             </v-col>
@@ -98,11 +112,11 @@
 <script>
 export default {
   data: () => ({
-    value: "",
-    makes: "",
-    categories: ["Ar", "Direção", "Vidro", "Freio", "Porta", "Espelho"],
-    brands: ["BMW", "Astom", "Betley", "GM", "Mais"],
-    models: ["IX35", "Corolla", "F100", "Mais"],
+    type: "",
+    make: "",
+    model: "",
+    makes: [],
+    models: [],
     slides: [
       "Welcome to CARSinDFW",
       "Advertisement 01",
@@ -110,7 +124,20 @@ export default {
       "Advertisement 03",
       "Advertisement 04"
     ]
-  })
+  }),
+  watch: {
+    make: function(val) {
+      let params = {
+        make: val
+      };
+      this.$http
+        .get("/model-by-make", { params })
+        .then(res => (this.models = res.data));
+    }
+  },
+  created() {
+    this.$http.get("/all-makes").then(res => (this.makes = res.data));
+  }
 };
 </script>
 

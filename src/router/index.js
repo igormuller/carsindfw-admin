@@ -14,6 +14,7 @@ import Dealers from "../views/Site/Dealer/List";
 import Contact from "../views/Site/Contact";
 import News from "../views/Site/News";
 import CarDetail from "../views/Site/CarDetail/CarDetail";
+import CarSearch from "../views/Site/CarSearch/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
 
 import Login from "../views/Site/Login/Login";
@@ -59,7 +60,8 @@ const routes = [
       { path: "/dealers", component: Dealers },
       { path: "/contact", component: Contact },
       { path: "/news", component: News },
-      { path: "/car-detail", component: CarDetail }
+      { path: "/car-detail", component: CarDetail },
+      { path: "/search", component: CarSearch },
     ]
   },
   { path: "/login", component: Login },
