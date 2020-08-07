@@ -61,7 +61,7 @@ const routes = [
       { path: "/contact", component: Contact },
       { path: "/news", component: News },
       { path: "/car-detail", component: CarDetail },
-      { path: "/search", component: CarSearch },
+      { path: "/search", component: CarSearch }
     ]
   },
   { path: "/login", component: Login },

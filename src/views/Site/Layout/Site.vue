@@ -11,7 +11,7 @@
     </v-navigation-drawer>
     <MenuTop @changeNavigation="drawer = $event"></MenuTop>
     <v-content>
-      <v-container fluid>
+      <v-container>
         <router-view></router-view>
       </v-container>
     </v-content>

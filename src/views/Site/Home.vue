@@ -64,7 +64,11 @@
               </v-autocomplete>
             </v-col>
             <v-col>
-              <v-btn color="#bf0d3e" class="ml-4 mt-3 white--text" :to="`search?type=${type}&make=${make}&model=${model}`">
+              <v-btn
+                color="#bf0d3e"
+                class="ml-4 mt-3 white--text"
+                :to="`search?type=${type}&make=${make}&model=${model}`"
+              >
                 Search
               </v-btn>
             </v-col>
