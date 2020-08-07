@@ -71,26 +71,36 @@
 <script>
 export default {
   name: "Search",
-  props: ['dataSearch'],
+  props: ["dataSearch"],
   data: () => ({
     makes: [],
-    make: null,
-    models: [],
-    model: null,
+    models: []
   }),
-  watch: {
-    dataSearch: function(val) {
-      console.log(this.dataSearch)
+  methods: {
+    searchModelsByMake(make) {
       let params = {
-        make: val
+        make
       };
       this.$http
         .get("/model-by-make", { params })
         .then(res => (this.models = res.data));
     }
   },
-  created() {
-    this.$http.get("/all-makes").then(res => (this.makes = res.data));
+  // watch: {
+  //   dataSearch: function(val) {
+  //     let params = {
+  //       make: val
+  //     };
+  //     this.$http
+  //       .get("/model-by-make", { params })
+  //       .then(res => (this.models = res.data));
+  //   }
+  // },
+  async created() {
+    await this.$http.get("/all-makes").then(res => (this.makes = res.data));
+    if (this.dataSearch.make !== "undefined") {
+      this.searchModelsByMake(this.dataSearch.make);
+    }
   }
 };
 </script>

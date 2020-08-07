@@ -57,9 +57,9 @@ export default {
     dataSearch: {}
   }),
   created() {
-    this.dataSearch.type = this.$route.query.type
-    this.dataSearch.make = this.$route.query.make
-    this.dataSearch.model = this.$route.query.model
+    this.dataSearch.type = this.$route.query.type;
+    this.dataSearch.make = parseInt(this.$route.query.make);
+    this.dataSearch.model = parseInt(this.$route.query.model);
     console.log(this.dataSearch);
   }
 };
