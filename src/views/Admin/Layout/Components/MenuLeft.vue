@@ -11,23 +11,19 @@
         </v-list-item-title>
       </v-list-item>
       <v-divider class="ml-5 mr-5"></v-divider>
-      <router-link tag="div" to="/admin/dashboard" class="ml-5 mr-5 mt-2 mb-2">
+      <router-link
+        v-for="(item, key) in menu"
+        :key="key"
+        tag="div"
+        :to="`/admin/${item.link}`"
+        class="ml-5 mr-5 mt-2 mb-2"
+      >
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>dashboard</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </router-link>
-      <router-link tag="div" to="/admin/users" class="ml-5 mr-5 mt-2 mb-2">
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>person</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Users</v-list-item-title>
+            <v-list-item-title>{{ item.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </router-link>
@@ -46,6 +42,13 @@ export default {
   props: {
     drawer: Boolean
   },
+  data: () => ({
+    menu: [
+      { link: "dashboard", name: "Dashboard", icon: "dashboard" },
+      { link: "users", name: "Users", icon: "person" },
+      { link: "advertisements", name: "Advertisements", icon: "ballot" }
+    ]
+  }),
   methods: {
     logout() {
       this.$store.user = {};

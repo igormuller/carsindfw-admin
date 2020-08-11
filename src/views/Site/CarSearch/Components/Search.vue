@@ -13,7 +13,7 @@
         v-model="dataSearch.type"
         outlined
         dense
-        :items="['New', 'Used']"
+        :items="type"
         label="New/Used"
         clearable
         background-color="white"
@@ -69,10 +69,12 @@
 </template>
 
 <script>
+import { CAR_TYPE } from "@/constants/variables.js";
 export default {
   name: "Search",
   props: ["dataSearch"],
   data: () => ({
+    type: CAR_TYPE,
     makes: [],
     models: []
   }),

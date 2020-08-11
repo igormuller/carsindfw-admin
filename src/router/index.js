@@ -6,6 +6,9 @@ import Dashboard from "../views/Admin/Dashboard/Dashboard";
 import Users from "../views/Admin/Users/Users";
 import UsersNew from "../views/Admin/Users/New";
 import UsersEdit from "../views/Admin/Users/Edit";
+import Advertisements from "../views/Admin/Advertisements/Advertisements";
+import AdvertisementsNew from "../views/Admin/Advertisements/New";
+import AdvertisementsEdit from "../views/Admin/Advertisements/Edit";
 
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
@@ -28,27 +31,13 @@ const routes = [
     component: AdminLayout,
     redirect: "/admin/dashboard",
     children: [
-      {
-        path: "dashboard",
-        name: "Dashboard",
-        component: Dashboard
-      },
-      {
-        path: "users",
-        name: "Users",
-        component: Users
-      },
-      {
-        path: "users/new",
-        name: "New User",
-        component: UsersNew
-      },
-      {
-        path: "users/:id",
-        name: "User Edit",
-        component: UsersEdit,
-        props: true
-      }
+      { path: "dashboard", component: Dashboard },
+      { path: "users", component: Users },
+      { path: "users/new", component: UsersNew },
+      { path: "users/:id", component: UsersEdit, props: true },
+      { path: "advertisements", component: Advertisements },
+      { path: "advertisements/new", component: AdvertisementsNew },
+      { path: "advertisements/:id", component: AdvertisementsEdit, props: true }
     ]
   },
   {
