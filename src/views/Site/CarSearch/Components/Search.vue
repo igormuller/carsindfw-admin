@@ -9,7 +9,7 @@
         required
         background-color="white"
       ></v-text-field>
-      <v-autocomplete
+      <v-select
         v-model="dataSearch.type"
         outlined
         dense
@@ -17,7 +17,7 @@
         label="New/Used"
         clearable
         background-color="white"
-      ></v-autocomplete>
+      ></v-select>
       <v-autocomplete
         v-model="dataSearch.make"
         outlined
