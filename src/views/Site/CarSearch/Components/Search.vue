@@ -92,11 +92,8 @@ export default {
   }),
   methods: {
     searchModelsByMake(make) {
-      let params = {
-        make
-      };
       this.$http
-        .get("/model-by-make", { params })
+        .get(`/model-by-make?make=${make}`)
         .then(res => (this.models = res.data));
       this.dataSearch.model = "";
     }
@@ -107,11 +104,8 @@ export default {
     this.dataSearch.model = this.searchStart.model;
     await this.$http.get("/all-makes").then(res => (this.makes = res.data));
     if (this.searchStart.make !== "undefined") {
-      let params = {
-        make: this.searchStart.make
-      };
       await this.$http
-        .get("/model-by-make", { params })
+        .get(`/model-by-make?make=${this.searchStart.make}`)
         .then(res => (this.models = res.data));
     }
   }

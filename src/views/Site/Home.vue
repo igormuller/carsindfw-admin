@@ -134,11 +134,8 @@ export default {
   }),
   watch: {
     make: function(val) {
-      let params = {
-        make: val
-      };
       this.$http
-        .get("/model-by-make", { params })
+        .get(`/model-by-make?make=${val}`)
         .then(res => (this.models = res.data));
       this.model = "";
     }
