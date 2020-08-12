@@ -20,7 +20,7 @@
     </v-card>
     <v-row>
       <v-col cols="3">
-        <Search :dataSearch="dataSearch"></Search>
+        <Search :searchStart="search"></Search>
       </v-col>
       <v-col>
         <div class="mt-3" style="color:#00205b">
@@ -54,13 +54,13 @@ export default {
   components: { BannerTop, Result, Search },
   data: () => ({
     slides: [{ src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }],
-    dataSearch: {}
+    search: {}
   }),
   created() {
-    this.dataSearch.type = this.$route.query.type;
-    this.dataSearch.make = parseInt(this.$route.query.make);
-    this.dataSearch.model = parseInt(this.$route.query.model);
-    console.log(this.dataSearch);
+    this.search.type = this.$route.query.type;
+    this.search.make = parseInt(this.$route.query.make);
+    this.search.model = parseInt(this.$route.query.model);
+    console.log(this.search);
   }
 };
 </script>

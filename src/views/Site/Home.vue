@@ -14,7 +14,7 @@
             <v-col cols="12" md="2">
               <v-select
                 v-model="type"
-                :items="['New', 'Used']"
+                :items="types"
                 label="Type"
                 :clearable="true"
               ></v-select>
@@ -114,11 +114,14 @@
 </template>
 
 <script>
+import { CAR_TYPE } from "@/constants/variables.js";
+
 export default {
   data: () => ({
     type: "",
     make: "",
     model: "",
+    types: CAR_TYPE,
     makes: [],
     models: [],
     slides: [
@@ -137,6 +140,7 @@ export default {
       this.$http
         .get("/model-by-make", { params })
         .then(res => (this.models = res.data));
+      this.model = "";
     }
   },
   created() {
