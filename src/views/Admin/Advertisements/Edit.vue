@@ -1,17 +1,17 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12">
-      <v-card class="elevation-5" flat>
+      <v-card class="elevation-5" flat :loading="loading">
         <v-card-title><h2>Edit Advertisement</h2></v-card-title>
         <v-divider></v-divider>
-        <v-card-text>
+        <v-card-text v-if="!loading">
           {{ advertisement }}
           <form @keydown.enter="save()">
             <v-row>
               <v-col cols="12" sm="4">
                 <v-select
                   v-model="advertisement.type"
-                  :items="type"
+                  :items="car_type"
                   label="New/Used"
                   clearable
                   :error-messages="errors.type"
@@ -21,6 +21,8 @@
                 <v-autocomplete
                   v-model="advertisement.make_id"
                   :items="makes"
+                  :loading="loadingMakes"
+                  :search-input.sync="search"
                   item-text="name"
                   item-value="id"
                   label="Brand"
@@ -134,16 +136,20 @@
 
 <script>
 import { CAR_TYPE, FUEL_TYPE } from "@/constants/variables.js";
+
 export default {
   props: ["id"],
   data() {
     return {
-      type: CAR_TYPE,
+      loading: true,
+      loadingMakes: false,
+      car_type: CAR_TYPE,
       fuel_type: FUEL_TYPE,
       makes: [],
       models: [],
       advertisement: {},
-      errors: {}
+      errors: {},
+      search: null
     };
   },
   methods: {
@@ -160,15 +166,29 @@ export default {
       this.advertisement.model_id = null;
     }
   },
+  watch: {
+    async search(val) {
+      this.loadingMakes = !this.loadingMakes;
+      if (val.length >= 3) {
+        await this.$http
+          .get(`/search-makes?make=${val}`)
+          .then(res => (this.makes = res.data));
+      }
+      this.loadingMakes = !this.loadingMakes;
+    }
+  },
   async created() {
-    await this.$http.get("/all-makes").then(res => (this.makes = res.data));
     await this.$http
       .get(`/advertisements/${this.id}`)
       .then(res => (this.advertisement = res.data))
       .catch(() => this.$router.push("/404"));
     await this.$http
+      .get(`/search-makes?make=${this.advertisement.make_id}`)
+      .then(res => (this.makes = res.data));
+    await this.$http
       .get(`/model-by-make?make=${this.advertisement.make_id}`)
       .then(res => (this.models = res.data));
+    this.loading = !this.loading;
   }
 };
 </script>

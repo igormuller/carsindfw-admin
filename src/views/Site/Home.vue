@@ -14,7 +14,7 @@
             <v-col cols="12" md="2">
               <v-select
                 v-model="type"
-                :items="types"
+                :items="car_type"
                 label="Type"
                 :clearable="true"
               ></v-select>
@@ -121,7 +121,7 @@ export default {
     type: "",
     make: "",
     model: "",
-    types: CAR_TYPE,
+    car_type: CAR_TYPE,
     makes: [],
     models: [],
     slides: [

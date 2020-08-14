@@ -1,67 +1,94 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12">
+      {{files}}
       <v-card class="elevation-5" color="grey lighten-4" flat>
-        <v-card-title><h2>New User</h2></v-card-title>
+        <v-card-title><h2>New Advertisement</h2></v-card-title>
         <v-divider></v-divider>
         <v-card-text>
           <form @keydown.enter="save()">
-            <v-text-field
-              label="Name"
-              v-model="user.name"
-              :error-messages="errors.name"
+            <v-file-input small-chips multiple label="Upload photos" v-model="files"></v-file-input>
+            <vue-dropzone
+              :useCustomSlot=true
+              :options="dropzoneOptions"
+              @vdropzone-complete="afterComplete"
             >
-            </v-text-field>
-            <v-text-field
-              label="E-mail"
-              v-model="user.email"
-              :error-messages="errors.email"
-              type="email"
-            >
-            </v-text-field>
-            <v-text-field
-              label="Password"
-              v-model="user.password"
-              :error-messages="errors.password"
-              type="password"
-            >
-            </v-text-field>
+              <div class="dropzone-custom-content">
+                <h3 class="dropzone-custom-title">Drag and drop to upload content!</h3>
+                <div class="subtitle">...or click to select a file from your computer</div>
+              </div>
+            </vue-dropzone>
           </form>
         </v-card-text>
-        <v-card-acitons>
+        <v-card-actions>
           <v-row class="text-right">
             <v-col>
               <v-btn color="primary" @click="save()" class="mr-3">save</v-btn>
             </v-col>
           </v-row>
-        </v-card-acitons>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
+
 export default {
+  components: {
+    vueDropzone: vue2Dropzone
+  },
   data() {
     return {
-      user: {
-        name: null,
-        email: null,
-        password: null,
-        profile: null
+      files: [],
+      dropzoneOptions: {
+        url: "https://httpbin.org/post",
+        thumbnailWidth: 200,
+        thumbnailHeight: 200,
+        addRemoveLinks: true,
+        acceptedFiles: ".jpg, .jpeg, .png",
       },
-      errors: {}
+      images: []
     };
   },
   methods: {
+    afterComplete(item) {
+      this.images.push(item)
+    },
     save() {
+      let formData = new FormData();
+      
+      this.images.map((item,key) => formData.append('files['+key+']',item))
+
       this.$http
-        .post("/users", this.user)
-        .then(() => this.$router.push("/admin/users"))
-        .catch(error => (this.errors = error.response.data.errors));
+        .post("/advertisements", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }})
+        .then((res) => console.log(res))
+        .catch(error => console.log(error));
     }
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+.dropzone-custom-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.dropzone-custom-title {
+  margin-top: 20px;
+  color: #00205b;
+}
+
+.subtitle {
+  color: #bf0d3e;
+}
+</style>
