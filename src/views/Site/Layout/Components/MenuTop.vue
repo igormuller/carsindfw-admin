@@ -32,17 +32,27 @@
           <v-btn
             class="white--text hidden-md-and-down ml-2 mr-2"
             color="#BF0D3E"
-            to="/register"
-          >
-            Register
-          </v-btn>
-          <v-btn
-            class="white--text hidden-md-and-down"
-            color="#BF0D3E"
             to="/admin"
+            v-if="logged"
           >
-            Login
+            Admin
           </v-btn>
+          <span v-else>
+            <v-btn
+              class="white--text hidden-md-and-down ml-2 mr-2"
+              color="#BF0D3E"
+              to="/register"
+            >
+              Register
+            </v-btn>
+            <v-btn
+              class="white--text hidden-md-and-down"
+              color="#BF0D3E"
+              to="/login"
+            >
+              Login
+            </v-btn>
+          </span>
         </v-col>
       </v-row>
     </v-container>
@@ -53,6 +63,7 @@
 export default {
   data: () => ({
     drawer: false,
+    logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
       { text: "Sell Your Car", link: "sell-your-car" },
       { text: "Dealers list", link: "dealers" },

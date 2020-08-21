@@ -26,7 +26,7 @@
           <h5>Dallas Events</h5>
         </v-col>
         <v-col cols="2 sm-6" class="mr-5">
-          <h3>Passionate abaut cars!</h3>
+          <h3>Passionate about cars!</h3>
           <v-row class="d-flex">
             <a href="http://www.facebook.com/carsindfw" target="_blanck">
               <v-img

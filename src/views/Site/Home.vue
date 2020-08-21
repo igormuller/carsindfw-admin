@@ -19,21 +19,6 @@
                 :clearable="true"
               ></v-select>
             </v-col>
-            <!-- <v-col cols="12" md="2">
-              <v-select
-                v-model="value"
-                :items="categories"
-                label="Category"
-                multiple
-              >
-                <template v-slot:selection="{ item, index }">
-                  <span v-if="index === 0">{{ item }}</span>
-                  <span v-if="index === 1" class="grey--text caption">
-                    (+{{ value.length - 1 }} others)
-                  </span>
-                </template>
-              </v-select>
-            </v-col> -->
             <v-col cols="12" md="2">
               <v-autocomplete
                 v-model="make"
@@ -63,11 +48,31 @@
                 </template>
               </v-autocomplete>
             </v-col>
+            <v-col cols="12" md="2">
+              <v-autocomplete
+                v-model="category"
+                :items="categories"
+                item-text="name"
+                item-value="id"
+                label="Category"
+                :clearable="true"
+              >
+                <template v-slot:no-data>
+                  <v-list-item>
+                    <v-list-item-title>
+                      Select a model first
+                    </v-list-item-title>
+                  </v-list-item>
+                </template>
+              </v-autocomplete>
+            </v-col>
             <v-col>
               <v-btn
                 color="#bf0d3e"
                 class="ml-4 mt-3 white--text"
-                :to="`search?type=${type}&make=${make}&model=${model}`"
+                :to="
+                  `search?type=${type}&make=${make}&model=${model}&category=${category}`
+                "
               >
                 Search
               </v-btn>
@@ -121,9 +126,11 @@ export default {
     type: "",
     make: "",
     model: "",
+    category: "",
     car_type: CAR_TYPE,
     makes: [],
     models: [],
+    categories: [],
     slides: [
       "Welcome to CARSinDFW",
       "Advertisement 01",
@@ -138,6 +145,12 @@ export default {
         .get(`/model-by-make?make=${val}`)
         .then(res => (this.models = res.data));
       this.model = "";
+    },
+    model: function(val) {
+      this.$http
+        .get(`/category-by-model?model=${val}`)
+        .then(res => (this.categories = res.data));
+      this.category = "";
     }
   },
   created() {

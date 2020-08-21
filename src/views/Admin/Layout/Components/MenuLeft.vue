@@ -53,7 +53,7 @@ export default {
     logout() {
       this.$store.user = {};
       localStorage.clear();
-      this.$router.push("/login");
+      this.$router.push("/");
     },
     openUserEdit() {
       let user = this.$store.state.user;

@@ -60,6 +60,7 @@ export default {
     this.search.type = this.$route.query.type;
     this.search.make = parseInt(this.$route.query.make);
     this.search.model = parseInt(this.$route.query.model);
+    this.search.category = this.$route.query.category;
     console.log(this.search);
   }
 };

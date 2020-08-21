@@ -2,7 +2,11 @@
   <v-app-bar app class="menu-gradient-top">
     <v-app-bar-nav-icon @click.stop="changeDrawer()" />
     <v-toolbar-title @click="openSite()" style="cursor:pointer">
-      {{ nameApp }}
+      {{
+        this.$store.state.user.company.type === "dealer"
+          ? this.$store.state.user.company.name
+          : "CARSinDFW"
+      }}
     </v-toolbar-title>
   </v-app-bar>
 </template>
@@ -20,15 +24,6 @@ export default {
     },
     openSite() {
       this.$router.push("/");
-    }
-  },
-  computed: {
-    nameApp() {
-      let user = this.$store.state.user;
-      if (user.person_id !== null) {
-        return "CARSinDFW";
-      }
-      return user.dealer.name;
     }
   }
 };
