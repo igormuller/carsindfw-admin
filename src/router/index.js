@@ -49,7 +49,7 @@ const routes = [
       { path: "/dealers", component: Dealers },
       { path: "/contact", component: Contact },
       { path: "/news", component: News },
-      { path: "/car-detail", component: CarDetail },
+      { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch }
     ]
   },

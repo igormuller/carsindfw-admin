@@ -1,264 +1,275 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12">
-      <v-card class="elevation-5" flat :loading="loading">
-        <v-card-title><h2>New Advertisement</h2></v-card-title>
-        <v-divider></v-divider>
-        <v-card-text v-if="!loading">
-          <form @keydown.enter="save()">
-            <v-row>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.type"
-                  :items="car_type"
-                  label="New/Used"
-                  clearable
-                  :error-messages="errors.type"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <v-autocomplete
-                  v-model="advertisement.car_make_id"
-                  :items="makes"
-                  item-text="name"
-                  item-value="id"
-                  label="Brand"
-                  clearable
-                  :error-messages="errors.car_make_id"
-                  @change="searchModelsByMake(advertisement.car_make_id)"
-                ></v-autocomplete>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <v-autocomplete
-                  v-model="advertisement.car_model_id"
-                  :items="models"
-                  item-text="name"
-                  item-value="id"
-                  label="Model"
-                  clearable
-                  :error-messages="errors.car_model_id"
-                  @change="searchYears()"
-                >
-                  <template v-slot:no-data>
-                    <v-list-item>
-                      <v-list-item-title>
-                        Select a make first
-                      </v-list-item-title>
-                    </v-list-item>
-                  </template>
-                </v-autocomplete>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.year"
-                  :items="years"
-                  label="Year"
-                  :error-messages="errors.year"
-                  @change="searchTrim()"
-                ></v-select>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="5">
-                <v-select
-                  v-model="advertisement.trim"
-                  :items="trims"
-                  item-text="trim"
-                  item-value="id"
-                  label="Trim"
-                  clearable
-                  :error-messages="errors.trim"
-                  @change="selectTrim(advertisement.trim)"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.body_type"
-                  :items="body_types"
-                  label="Body Type"
-                  clearable
-                  :error-messages="errors.body_type"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.transmission"
-                  :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-                  label="Transmission Speed"
-                  clearable
-                  :error-messages="errors.transmission"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <v-select
-                  v-model="advertisement.transmission_type"
-                  :items="transmission_types"
-                  label="Transmission Type"
-                  clearable
-                  :error-messages="errors.transmission_type"
-                ></v-select>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="3">
-                <v-text-field
-                  v-model="advertisement.engine"
-                  label="Engine"
-                  required
-                  readonly
-                  :error-messages="errors.engine"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.drive_type"
-                  :items="drive_type"
-                  label="Drive Type"
-                  clearable
-                  :error-messages="errors.drive_type"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.fuel_type"
-                  :items="fuel_type"
-                  label="Fuel Type"
-                  clearable
-                  :error-messages="errors.fuel_type"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="1">
-                <v-text-field
-                  v-model="advertisement.seats"
-                  label="Seats"
-                  required
-                  max="15"
-                  min="2"
-                  type="number"
-                  :error-messages="errors.seats"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="1">
-                <v-text-field
-                  v-model="advertisement.doors"
-                  label="Doors"
-                  required
-                  max="15"
-                  min="2"
-                  type="number"
-                  :error-messages="errors.doors"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.color_ext"
-                  :items="colors"
-                  label="Exterior Color"
-                  clearable
-                  :error-messages="errors.color_ext"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="2">
-                <v-select
-                  v-model="advertisement.color_int"
-                  :items="colors"
-                  label="Interior Color"
-                  clearable
-                  :error-messages="errors.color_int"
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <v-text-field
-                  v-model="advertisement.vin_number"
-                  label="VIN Number"
-                  required
-                  :error-messages="errors.vin_number"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="3">
-                <v-text-field
-                  v-model="advertisement.miles"
-                  label="Miles"
-                  required
-                  type="number"
-                  :error-messages="errors.miles"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="8">
-                <v-combobox
-                  v-model="features"
-                  chips
-                  clearable
-                  label="Features"
-                  multiple
-                >
-                  <template v-slot:selection="{ attrs, item }">
-                    <v-chip
-                      v-bind="attrs"
-                      close
-                      @click:close="removeFeature(item)"
+      <v-stepper v-model="e1">
+        <v-stepper-header>
+          <v-stepper-step :complete="e1 > 1" step="1">
+            Select Your Trim
+          </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 2" step="2">
+            More Details
+          </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step step="3">
+            Photos by Car
+          </v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <v-card class="mb-12">
+              <v-row>
+                <v-col cols="12" sm="5">
+                  <v-col>
+                    <v-autocomplete
+                      v-model="advertisement.car_make_id"
+                      :items="makes"
+                      item-text="name"
+                      item-value="id"
+                      label="Brand"
+                      clearable
+                      :error-messages="errors.car_make_id"
+                      @change="searchModelsByMake(advertisement.car_make_id)"
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col>
+                    <v-autocomplete
+                      v-model="advertisement.car_model_id"
+                      :items="models"
+                      item-text="name"
+                      item-value="id"
+                      label="Model"
+                      clearable
+                      :error-messages="errors.car_model_id"
+                      @change="searchYears()"
                     >
-                      <strong>{{ item }}</strong>
-                      &nbsp;
-                    </v-chip>
-                  </template>
-                </v-combobox>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="3">
-                <v-text-field
-                  v-model="advertisement.value"
-                  label="Value"
-                  required
-                  type="number"
-                  prefix="$"
-                  :error-messages="errors.value"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-textarea
-                  v-model="advertisement.description"
-                  label="Description"
-                  :error-messages="errors.description"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <vue-dropzone
-                  id="dropzone"
-                  :useCustomSlot="true"
-                  :options="dropzoneOptions"
-                  @vdropzone-complete="afterComplete"
-                >
-                  <div class="dropzone-custom-content">
-                    <h3 class="dropzone-custom-title">
-                      Drag and drop to upload content!
-                    </h3>
-                    <div class="subtitle">
-                      ...or click to select a file from your computer
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-title>
+                            Select a make first
+                          </v-list-item-title>
+                        </v-list-item>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+                  <v-col>
+                    <v-select
+                      v-model="advertisement.year"
+                      :items="years"
+                      label="Year"
+                      :error-messages="errors.year"
+                      @change="searchTrim()"
+                    ></v-select>
+                  </v-col>
+                  <v-col>
+                    <v-select
+                      v-model="advertisement.car_model_description_id"
+                      :items="trims"
+                      item-text="trim"
+                      item-value="id"
+                      label="Trim"
+                      clearable
+                      :error-messages="errors.car_model_description_id"
+                      @change="selectTrim()"
+                    ></v-select>
+                  </v-col>
+                </v-col>
+                <v-divider vertical inset class="mb-6"></v-divider>
+                <v-col cols="12" sm="6" v-if="trim">
+                  <v-simple-table height="300">
+                    <template v-slot:default>
+                      <tbody>
+                        <tr>
+                          <td>Body Type</td>
+                          <td>
+                            {{ textByVariables(body_types, trim.body_type) }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Seats</td>
+                          <td>{{ trim.seats }}</td>
+                        </tr>
+                        <tr>
+                          <td>Transmission</td>
+                          <td>
+                            {{ trim.transmission }} -
+                            {{
+                              textByVariables(
+                                transmission_types,
+                                trim.transmission_type
+                              )
+                            }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Drive Type</td>
+                          <td>{{ trim.drive_type }}</td>
+                        </tr>
+                        <tr>
+                          <td>Fuel Type</td>
+                          <td>
+                            {{ textByVariables(fuel_type, trim.fuel_type) }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Engine</td>
+                          <td>
+                            {{ trim.engine_size }} -
+                            {{ trim.cylinder }}
+                            {{ trim.cylinder_type }} - {{ trim.horsepower }}Hp
+                          </td>
+                        </tr>
+                      </tbody>
+                    </template>
+                  </v-simple-table>
+                </v-col>
+              </v-row>
+            </v-card>
+            <v-btn color="primary" @click="e1 = 2" :disabled="trim === null">
+              Next
+            </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="2">
+            <v-card class="mb-12">
+              <v-row>
+                <v-col cols="12" sm="2">
+                  <v-select
+                    v-model="advertisement.type"
+                    :items="car_type"
+                    label="New/Used"
+                    clearable
+                    :error-messages="errors.type"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <v-text-field
+                    v-model="advertisement.doors"
+                    label="Doors"
+                    required
+                    max="15"
+                    min="2"
+                    type="number"
+                    :error-messages="errors.doors"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <v-select
+                    v-model="advertisement.color_ext"
+                    :items="colors"
+                    label="Exterior Color"
+                    clearable
+                    :error-messages="errors.color_ext"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <v-select
+                    v-model="advertisement.color_int"
+                    :items="colors"
+                    label="Interior Color"
+                    clearable
+                    :error-messages="errors.color_int"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <v-text-field
+                    v-model="advertisement.miles"
+                    label="Miles"
+                    required
+                    type="number"
+                    :error-messages="errors.miles"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="3">
+                  <v-text-field
+                    v-model="advertisement.vin_number"
+                    label="VIN Number"
+                    required
+                    :error-messages="errors.vin_number"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <v-text-field
+                    v-model="advertisement.value"
+                    label="Value"
+                    required
+                    type="number"
+                    prefix="$"
+                    :error-messages="errors.value"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-combobox
+                    v-model="advertisement.features"
+                    chips
+                    label="Features"
+                    multiple
+                    hide-selected
+                    hint="Inform feature and press tab or enter"
+                  >
+                    <template v-slot:selection="{ attrs, item }">
+                      <v-chip
+                        v-bind="attrs"
+                        close
+                        @click:close="removeFeature(item)"
+                      >
+                        <strong>{{ item }}</strong>
+                        &nbsp;
+                      </v-chip>
+                    </template>
+                  </v-combobox>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-textarea
+                    v-model="advertisement.description"
+                    label="Description"
+                    :error-messages="errors.description"
+                    rows="3"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+            </v-card>
+            <v-btn color="primary" @click="save()">
+              Save Details & Next
+            </v-btn>
+            <v-btn text @click="e1 = 1">Preview</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="3">
+            <v-card class="mb-12">
+              <v-row>
+                <v-col>
+                  <vue-dropzone
+                    id="dropzone"
+                    :useCustomSlot="true"
+                    :options="dropzoneOptions"
+                    @vdropzone-complete="afterComplete"
+                  >
+                    <div class="dropzone-custom-content">
+                      <h3 class="dropzone-custom-title">
+                        Drag and drop to upload content!
+                      </h3>
+                      <div class="subtitle">
+                        ...or click to select a file from your computer
+                      </div>
                     </div>
-                  </div>
-                </vue-dropzone>
-              </v-col>
-            </v-row>
-          </form>
-        </v-card-text>
-        <v-card-actions>
-          <v-row class="text-right">
-            <v-col>
-              <v-btn color="primary" @click="save()" class="mr-3">save</v-btn>
-            </v-col>
-          </v-row>
-        </v-card-actions>
-      </v-card>
+                  </vue-dropzone>
+                </v-col>
+              </v-row>
+            </v-card>
+            <v-btn color="primary" @click="saveGallery()">
+              Continue
+            </v-btn>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
     </v-col>
   </v-row>
 </template>
@@ -282,9 +293,11 @@ export default {
   data() {
     return {
       loading: true,
+      advertisement_id: null,
       advertisement: {
         car_make_id: "",
         car_model_id: "",
+        car_model_description_id: null,
         type: "",
         year: "",
         trim: "",
@@ -304,20 +317,20 @@ export default {
         value: "",
         description: ""
       },
+      e1: 1,
       car_type: CAR_TYPE,
       fuel_type: FUEL_TYPE,
       body_types: BODY_TYPE,
       transmission_types: TRANSMISSION_TYPE,
       colors: COLOR,
       drive_type: DRIVE_TYPE,
-      features: [],
       years: [],
       trims: [],
       makes: [],
       models: [],
       errors: {},
       files: [],
-      trim: {},
+      trim: null,
       dropzoneOptions: {
         url: "https://httpbin.org/post",
         thumbnailWidth: 200,
@@ -338,7 +351,7 @@ export default {
         .then(res => (this.models = res.data));
       this.advertisement.car_model_id = "";
       this.advertisement.year = "";
-      this.advertisement.trim = "";
+      this.advertisement.car_model_description_id = "";
       this.advertisement.body_type = "";
     },
     searchYears() {
@@ -346,7 +359,7 @@ export default {
         .get(`/years-by-model?model=${this.advertisement.car_model_id}`)
         .then(res => (this.years = res.data));
       this.advertisement.year = "";
-      this.advertisement.trim = "";
+      this.advertisement.car_model_description_id = "";
       this.advertisement.body_type = "";
     },
     searchTrim() {
@@ -357,8 +370,11 @@ export default {
         )
         .then(res => (this.trims = res.data));
     },
-    async selectTrim(id) {
-      let trim = await this.trims.filter(item => item.id === id);
+    async selectTrim() {
+      let trim = await this.trims.filter(
+        item => item.id === this.advertisement.car_model_description_id
+      );
+      this.advertisement.trim = trim[0].trim;
       this.advertisement.body_type = trim[0].body_type;
       this.advertisement.seats = trim[0].seats;
       this.advertisement.drive_type = trim[0].drive_type;
@@ -371,17 +387,39 @@ export default {
       return true;
     },
     removeFeature(item) {
-      this.features.splice(this.features.indexOf(item), 1);
+      this.advertisement.features.splice(
+        this.advertisement.features.indexOf(item),
+        1
+      );
     },
     save() {
-      // let formData = new FormData();
-      // this.images.map((item, key) =>
-      //   formData.append("files[" + key + "]", item)
-      // );
       this.$http
         .post("/advertisements", this.advertisement)
-        .then(() => this.$router.push("/admin/advertisements"))
+        .then(res => {
+          this.e1 = 3;
+          this.advertisement_id = res.data.id;
+        })
         .catch(error => (this.errors = error.response.data.errors));
+    },
+    saveGallery() {
+      let formData = new FormData();
+      formData.append("advertisement_id", this.advertisement_id);
+      this.images.map((item, key) =>
+        formData.append("files[" + key + "]", item)
+      );
+
+      this.$http
+        .post("/gallery", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(() => this.$router.push("/admin/advertisements"));
+    },
+    textByVariables(values, filter) {
+      let value = values.filter(item => item.value === filter);
+      console.log(value);
+      return value[0].text;
     }
   },
   async created() {
