@@ -418,7 +418,6 @@ export default {
     },
     textByVariables(values, filter) {
       let value = values.filter(item => item.value === filter);
-      console.log(value);
       return value[0].text;
     }
   },
