@@ -112,11 +112,7 @@
         xs="12"
       >
         <v-card :to="`car-detail/${car.id}`" width="500" class="pr-2">
-          <v-img
-            src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2020/202003/20200317/bmw-535i-3.0-m-sport-24v-gasolina-4p-automatico-wmimagem19012339042.jpg?s=fill&w=1920&h=1440&q=75"
-            height="200"
-          >
-          </v-img>
+          <v-img :src="car.photo" height="200"></v-img>
           <v-card-text>
             <p>{{ car.make_name }}, {{ car.model_name }}, {{ car.trim }}</p>
             <strong>FROM {{ car.company_data.name }}</strong>

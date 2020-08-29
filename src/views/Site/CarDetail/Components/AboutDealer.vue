@@ -48,11 +48,11 @@
       <v-col>
         <h2 style="color:#bf0d3e">Dealers Review</h2>
         <div class="mt-2">
-          <v-rating value=5 readonly color="#00205b" dense></v-rating>
-          <v-rating value=4 readonly color="#00205b" dense></v-rating>
-          <v-rating value=3 readonly color="#00205b" dense></v-rating>
-          <v-rating value=2 readonly color="#00205b" dense></v-rating>
-          <v-rating value=1 readonly color="#00205b" dense></v-rating>
+          <v-rating :value="5" readonly color="#00205b" dense></v-rating>
+          <v-rating :value="4" readonly color="#00205b" dense></v-rating>
+          <v-rating :value="3" readonly color="#00205b" dense></v-rating>
+          <v-rating :value="2" readonly color="#00205b" dense></v-rating>
+          <v-rating :value="1" readonly color="#00205b" dense></v-rating>
         </div>
       </v-col>
     </v-row>

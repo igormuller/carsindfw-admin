@@ -65,10 +65,10 @@ export default {
     drawer: false,
     logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
-      { text: "Sell Your Car", link: "sell-your-car" },
-      { text: "Dealers list", link: "dealers" },
-      { text: "Contact us", link: "contact" },
-      { text: "News", link: "news" }
+      { text: "Sell Your Car", link: "/sell-your-car" },
+      { text: "Dealers list", link: "/dealers" },
+      { text: "Contact us", link: "/contact" },
+      { text: "News", link: "/news" }
     ]
   }),
   methods: {

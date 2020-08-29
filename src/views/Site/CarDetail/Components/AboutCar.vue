@@ -4,24 +4,30 @@
     <v-card-text>
       <v-row class="ml-5">
         <v-col>
-          Engine
+          <p><strong>Engine</strong></p>
+          <p>{{ carDetail.engine }}</p>
         </v-col>
         <v-col>
-          MPG Fuel Type
+          <p><strong>MPG Fuel Type</strong></p>
+          <p>{{ carDetail.fuel_type_front }}</p>
         </v-col>
         <v-col>
-          Transmission
+          <p><strong>Transmission</strong></p>
+          <p>{{ carDetail.transmission_front }}</p>
         </v-col>
       </v-row>
       <v-row class="ml-5">
         <v-col>
-          Seats
+          <p><strong>Seats</strong></p>
+          <p>{{ carDetail.seats }}</p>
         </v-col>
         <v-col>
-          Exterior Color
+          <p><strong>Exterior Color</strong></p>
+          <p>{{ carDetail.color_ext }}</p>
         </v-col>
         <v-col>
-          Drivetrain
+          <p><strong>Drivetrain</strong></p>
+          <p>{{ carDetail.drive_type }}</p>
         </v-col>
       </v-row>
     </v-card-text>
@@ -31,6 +37,7 @@
 <script>
 export default {
   name: "AboutCar",
+  props: ["carDetail"],
   data: () => ({})
 };
 </script>

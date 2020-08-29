@@ -34,9 +34,9 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="7" xl="7">
-        <Galery :images="cards"></Galery>
+        <Galery :images="advertisement.gallery_url" v-if="advertisement.gallery_url"></Galery>
         <v-card class="mt-3">
-          <AboutCar></AboutCar>
+          <AboutCar :carDetail="advertisement"></AboutCar>
         </v-card>
       </v-col>
       <v-col cols="12" md="2" xl="2">
@@ -74,60 +74,16 @@ import AboutDealer from "./Components/AboutDealer";
 
 export default {
   components: { Galery, BannerTop, AboutCar, AboutDealer },
+  props: ["id"],
   data: () => ({
-    model: null,
-    index: null,
+    advertisement: {},
     slides: [
       { src: require("@/assets/car-wash.png") },
       { src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }
     ],
-    cards: [
-      {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
-        flex: 2
-      },
-      {
-        title: "Favorite road trips",
-        src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
-        flex: 2
-      },
-      {
-        title: "Best airlines",
-        src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
-        flex: 2
-      },
-      {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
-        flex: 2
-      },
-      {
-        title: "Favorite road trips",
-        src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
-        flex: 2
-      },
-      {
-        title: "Best airlines",
-        src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
-        flex: 2
-      },
-      {
-        title: "Pre-fab homes",
-        src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
-        flex: 2
-      },
-      {
-        title: "Favorite road trips",
-        src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
-        flex: 2
-      },
-      {
-        title: "Best airlines",
-        src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
-        flex: 2
-      }
-    ]
-  })
+  }),
+  created() {
+    this.$http.get(`/car-detail/${this.id}`).then(res => (this.advertisement = res.data));
+  }
 };
 </script>
