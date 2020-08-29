@@ -34,7 +34,10 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="7" xl="7">
-        <Galery :images="advertisement.gallery_url" v-if="advertisement.gallery_url"></Galery>
+        <Galery
+          :images="advertisement.gallery_url"
+          v-if="advertisement.gallery_url"
+        ></Galery>
         <v-card class="mt-3">
           <AboutCar :carDetail="advertisement"></AboutCar>
         </v-card>
@@ -80,10 +83,12 @@ export default {
     slides: [
       { src: require("@/assets/car-wash.png") },
       { src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }
-    ],
+    ]
   }),
   created() {
-    this.$http.get(`/car-detail/${this.id}`).then(res => (this.advertisement = res.data));
+    this.$http
+      .get(`/car-detail/${this.id}`)
+      .then(res => (this.advertisement = res.data));
   }
 };
 </script>
