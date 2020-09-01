@@ -35,8 +35,8 @@
       </v-col>
       <v-col cols="12" md="7" xl="7">
         <Galery
-          :images="advertisement.gallery_url"
-          v-if="advertisement.gallery_url"
+          :images="advertisement.gallery"
+          v-if="advertisement.gallery"
         ></Galery>
         <v-card class="mt-3">
           <AboutCar :carDetail="advertisement"></AboutCar>

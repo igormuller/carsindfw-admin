@@ -17,7 +17,7 @@
             class="mt-2 ml-2"
             height="85"
             width="85"
-            :src="image.src"
+            :src="image.url"
           ></v-img>
         </v-card>
       </v-slide-item>
@@ -28,7 +28,7 @@
           max-height="500"
           min-height="100"
           contain
-          :src="selected === null ? images[0].src : images[selected].src"
+          :src="selected === null ? images[0].url : images[selected].url"
         ></v-img>
       </v-sheet>
     </v-expand-transition>

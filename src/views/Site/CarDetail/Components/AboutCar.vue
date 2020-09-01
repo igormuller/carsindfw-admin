@@ -2,6 +2,10 @@
   <div>
     <v-card-title style="color:#00205b"><h2>About this Car</h2></v-card-title>
     <v-card-text>
+      <strong>
+        {{ carDetail.make_name }} - {{ carDetail.model_name }} -
+        {{ carDetail.trim }}
+      </strong>
       <v-row class="ml-5">
         <v-col>
           <p><strong>Engine</strong></p>

@@ -1,13 +1,13 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12">
-      <v-stepper v-model="e1">
+      <v-stepper v-model="step">
         <v-stepper-header>
-          <v-stepper-step :complete="e1 > 1" step="1">
+          <v-stepper-step :complete="step > 1" step="1">
             Select Your Trim
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 2" step="2">
+          <v-stepper-step :complete="step > 2" step="2">
             More Details
           </v-stepper-step>
           <v-divider></v-divider>
@@ -18,7 +18,8 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <v-card class="mb-12">
+            <Loading :loading="loading"></Loading>
+            <v-card class="mb-12" v-if="!loading">
               <v-row>
                 <v-col cols="12" sm="5">
                   <v-col>
@@ -126,13 +127,14 @@
                 </v-col>
               </v-row>
             </v-card>
-            <v-btn color="primary" @click="e1 = 2" :disabled="trim === null">
+            <v-btn color="primary" @click="step = 2" :disabled="trim === null">
               Next
             </v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            <v-card class="mb-12">
+            <Loading :loading="loading"></Loading>
+            <v-card class="mb-12" v-if="!loading">
               <v-row>
                 <v-col cols="12" sm="2">
                   <v-select
@@ -239,11 +241,12 @@
             <v-btn color="primary" @click="save()">
               Save Details & Next
             </v-btn>
-            <v-btn text @click="e1 = 1">Preview</v-btn>
+            <v-btn text @click="step = 1">Preview</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <v-card class="mb-12">
+            <Loading :loading="loading"></Loading>
+            <v-card class="mb-12" v-if="!loading">
               <v-row>
                 <v-col>
                   <vue-dropzone
@@ -277,6 +280,7 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import Loading from "@/components/Loading";
 import {
   CAR_TYPE,
   FUEL_TYPE,
@@ -288,7 +292,8 @@ import {
 
 export default {
   components: {
-    vueDropzone: vue2Dropzone
+    vueDropzone: vue2Dropzone,
+    Loading
   },
   data() {
     return {
@@ -317,7 +322,7 @@ export default {
         value: "",
         description: ""
       },
-      e1: 1,
+      step: 1,
       car_type: CAR_TYPE,
       fuel_type: FUEL_TYPE,
       body_types: BODY_TYPE,
@@ -342,6 +347,9 @@ export default {
     };
   },
   methods: {
+    changeLoading() {
+      this.loading = !this.loading;
+    },
     afterComplete(item) {
       this.images.push(item);
     },
@@ -353,6 +361,7 @@ export default {
       this.advertisement.year = "";
       this.advertisement.car_model_description_id = "";
       this.advertisement.body_type = "";
+      this.trim = null;
     },
     searchYears() {
       this.$http
@@ -361,6 +370,7 @@ export default {
       this.advertisement.year = "";
       this.advertisement.car_model_description_id = "";
       this.advertisement.body_type = "";
+      this.trim = null;
     },
     searchTrim() {
       let advertisement = this.advertisement;
@@ -369,6 +379,7 @@ export default {
           `/search-trim?make=${advertisement.car_make_id}&model=${advertisement.car_model_id}&year=${advertisement.year}`
         )
         .then(res => (this.trims = res.data));
+      this.trim = null;
     },
     async selectTrim() {
       let trim = await this.trims.filter(
@@ -392,29 +403,33 @@ export default {
         1
       );
     },
-    save() {
-      this.$http
+    async save() {
+      this.changeLoading();
+      await this.$http
         .post("/advertisements", this.advertisement)
         .then(res => {
-          this.e1 = 3;
+          this.step = 3;
           this.advertisement_id = res.data.id;
         })
         .catch(error => (this.errors = error.response.data.errors));
+      this.changeLoading();
     },
-    saveGallery() {
+    async saveGallery() {
+      this.changeLoading();
       let formData = new FormData();
       formData.append("advertisement_id", this.advertisement_id);
       this.images.map((item, key) =>
         formData.append("files[" + key + "]", item)
       );
 
-      this.$http
+      await this.$http
         .post("/gallery", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }
         })
         .then(() => this.$router.push("/admin/advertisements"));
+      this.changeLoading();
     },
     textByVariables(values, filter) {
       let value = values.filter(item => item.value === filter);
@@ -423,7 +438,7 @@ export default {
   },
   async created() {
     await this.$http.get("/all-makes").then(res => (this.makes = res.data));
-    this.loading = !this.loading;
+    this.changeLoading();
   }
 };
 </script>
