@@ -2,7 +2,7 @@
   <div>
     <v-row align="center" justify="center">
       <v-col cols="12">
-        {{ advertisement.make_name }}
+        <h2>Edit Advertisement</h2>
       </v-col>
     </v-row>
     <v-row align="center" justify="center">
@@ -223,10 +223,51 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Gallery</v-expansion-panel-header>
             <v-expansion-panel-content>
-              gallery
+              <v-row>
+                <v-col
+                  v-for="gallery in advertisement.gallery"
+                  :key="gallery.id"
+                  cols="6"
+                  md="3"
+                  sm="4"
+                >
+                  <v-card flat tile class="d-flex">
+                    <v-img
+                      :src="gallery.url"
+                      aspect-ratio="2"
+                      class="grey lighten-2"
+                    >
+                      <template v-slot:default>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="start"
+                          justify="end"
+                        >
+                          <v-btn
+                            color="primary"
+                            fab
+                            small
+                            @click="removePicture(gallery)"
+                          >
+                            <v-icon small color="warning">
+                              mdi-window-close
+                            </v-icon>
+                          </v-btn>
+                        </v-row>
+                      </template>
+                    </v-img>
+                  </v-card>
+                </v-col>
+              </v-row>
+              <v-btn color="primary" small>Add More Pictures</v-btn>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
+      </v-col>
+    </v-row>
+    <v-row v-if="!loading">
+      <v-col>
+        <v-btn large color="success" @click="save()">Save</v-btn>
       </v-col>
     </v-row>
   </div>
@@ -313,6 +354,28 @@ export default {
 
       return true;
     },
+    removePicture(item) {
+      this.$swal({
+        text: `Confirm that you remove Picture`,
+        icon: "warning",
+        showCancelButton: true
+      }).then(data => {
+        if (data.value) {
+          this.$http
+            .delete(`/gallery/${item.id}`)
+            .then(res => {
+              this.$toasted.global.defaultSuccess({ msg: res.data });
+              this.advertisement.gallery.splice(
+                this.advertisement.gallery.indexOf(item),
+                1
+              );
+            })
+            .catch(error => {
+              this.$toasted.global.defaultError({ msg: error.response.data });
+            });
+        }
+      });
+    },
     removeFeature(item) {
       this.advertisement.features.splice(
         this.advertisement.features.indexOf(item),
@@ -322,6 +385,14 @@ export default {
     textByVariables(values, filter) {
       let value = values.filter(item => item.value === filter);
       return value[0].text;
+    },
+    async save() {
+      this.loading = !this.loading;
+      await this.$http
+        .put(`/advertisements/${this.id}`, this.advertisement)
+        .then(() => this.$router.push("/admin/advertisements"))
+        .catch(error => (this.errors = error.response.data.errors));
+      this.loading = !this.loading;
     }
   },
   async created() {

@@ -65,7 +65,7 @@ export default {
       }).then(data => {
         if (data.value) {
           this.$http
-            .delete(`/users/${item.id}`)
+            .delete(`/advertisements/${item.id}`)
             .then(res => {
               this.$toasted.global.defaultSuccess({ msg: res.data });
               this.items.splice(this.items.indexOf(item), 1);
