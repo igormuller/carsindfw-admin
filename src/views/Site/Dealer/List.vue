@@ -5,5 +5,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      dealers: []
+    };
+  },
+  created() {
+    this.$http.get("/dealers");
+  }
+};
 </script>

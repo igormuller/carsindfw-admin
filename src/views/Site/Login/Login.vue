@@ -29,12 +29,12 @@
                 </form>
               </v-card-text>
               <v-card-actions>
-                <!-- <span class="caption pl-4">
+                <span class="caption pl-4">
                   If you don't have login then
                   <router-link to="/register">
                     Register
                   </router-link>
-                </span> -->
+                </span>
                 <v-spacer />
                 <v-btn color="primary" @click="sendLogin()" class="mb-3 mr-3">
                   Login

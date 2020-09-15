@@ -21,7 +21,7 @@ import CarSearch from "../views/Site/CarSearch/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
 
 import Login from "../views/Site/Login/Login";
-import Register from "../views/Site/Login/Register";
+import Register from "../views/Site/Register/Register";
 
 Vue.use(VueRouter);
 
@@ -50,11 +50,11 @@ const routes = [
       { path: "/contact", component: Contact },
       { path: "/news", component: News },
       { path: "/car-detail/:id", component: CarDetail, props: true },
-      { path: "/search", component: CarSearch }
+      { path: "/search", component: CarSearch },
+      { path: "/register", component: Register }
     ]
   },
   { path: "/login", component: Login },
-  { path: "/register", component: Register },
   { path: "*", component: PageNotFound }
 ];
 
