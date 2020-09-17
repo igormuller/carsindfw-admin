@@ -15,7 +15,7 @@ export default {
   components: { DealerForm, PersonForm },
   data() {
     return {
-      type: "person"
+      type: "dealer"
     };
   }
 };

@@ -27,11 +27,12 @@ export default {
   data: () => ({
     drawer: false,
     links: [
-      { text: "Sell Your Car", link: "sell-your-car" },
-      { text: "Dealers list", link: "dealers" },
-      { text: "Contact us", link: "contact" },
-      { text: "News", link: "news" },
-      { text: "Login", link: "admin" }
+      { text: "Sell Your Car", link: "/sell-your-car" },
+      { text: "Dealers list", link: "/dealers" },
+      { text: "Contact us", link: "/contact" },
+      { text: "News", link: "/news" },
+      { text: "Register", link: "/register" },
+      { text: "Login", link: "/login" }
     ]
   })
 };
