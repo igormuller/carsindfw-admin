@@ -82,6 +82,9 @@
         ></v-text-field>
       </div>
     </v-card-text>
+    <v-card-actions>
+      <v-btn block color='primary' @click="$emit('clickSearch', dataSearch)">Search</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 

@@ -20,7 +20,7 @@
     </v-card>
     <v-row>
       <v-col cols="3">
-        <Search :searchStart="search"></Search>
+        <Search @clickSearch="searchNow($event)" :searchStart="search"></Search>
       </v-col>
       <v-col>
         <div class="mt-3" style="color:#00205b">
@@ -30,16 +30,26 @@
           <v-col cols="4" class="mb-n5">
             <v-select
               dense
-              :items="['New', 'Used']"
+              v-model="order_by"
+              :items="itemsOrderBy"
               label="Order By"
-              clearable
+              outlined
+              background-color="white"
+            ></v-select>
+          </v-col>
+          <v-col cols="2" class="mb-n5">
+            <v-select
+              dense
+              v-model="paginate"
+              :items="['10', '15','20','25','35','50']"
+              label="Cars/Page"
               outlined
               background-color="white"
             ></v-select>
           </v-col>
         </v-row>
         <hr />
-        <Result></Result>
+        <Result :advertisements="advertisements"></Result>
       </v-col>
     </v-row>
   </div>
@@ -54,13 +64,38 @@ export default {
   components: { BannerTop, Result, Search },
   data: () => ({
     slides: [{ src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }],
-    search: {}
+    search: {
+      type: "",
+      make: "",
+      model: "",
+      category: "",
+      year_start: "",
+      year_end: "",
+    },
+    advertisements: {},
+    order_by: "last_created_at",
+    itemsOrderBy: [
+      { value: "last_created_at", text: "Lasted" },
+      { value: "max_value", text: "More Expensive" },
+      { value: "min_value", text: "Cheaper" },
+    ],
+    paginate: "25"
   }),
   created() {
     this.search.type = this.$route.query.type;
     this.search.make = parseInt(this.$route.query.make);
     this.search.model = parseInt(this.$route.query.model);
     this.search.category = this.$route.query.category;
+    this.searchNow(this.search);
+  },
+  methods: {
+    searchNow(dataSearch) {
+      console.log(dataSearch);
+      this.$http
+        // .get(`/search`, teste)
+        .get(`/search`, {params: {dataSearch, order: this.order_by, paginate: this.paginate}})
+        .then(res => (this.advertisements = res.data));
+    }
   }
 };
 </script>
