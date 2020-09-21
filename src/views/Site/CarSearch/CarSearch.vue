@@ -20,7 +20,10 @@
     </v-card>
     <v-row>
       <v-col cols="3">
-        <Search @clickSearch="searchNow($event)" :searchStart="search"></Search>
+        <Search
+          @clickSearch="searchNow($event, (page = 1))"
+          :searchStart="search"
+        ></Search>
       </v-col>
       <v-col>
         <div class="mt-3" style="color:#00205b">
@@ -41,7 +44,7 @@
             <v-select
               dense
               v-model="paginate"
-              :items="['10', '15','20','25','35','50']"
+              :items="[10, 15, 20, 25, 35, 50]"
               label="Cars/Page"
               outlined
               background-color="white"
@@ -50,6 +53,14 @@
         </v-row>
         <hr />
         <Result :advertisements="advertisements"></Result>
+        <v-row class="text-center">
+          <v-pagination
+            v-model="page"
+            :length="advertisements.last_page"
+            next-icon="mdi-menu-right"
+            prev-icon="mdi-menu-left"
+          ></v-pagination>
+        </v-row>
       </v-col>
     </v-row>
   </div>
@@ -70,16 +81,17 @@ export default {
       model: "",
       category: "",
       year_start: "",
-      year_end: "",
+      year_end: ""
     },
     advertisements: {},
     order_by: "last_created_at",
+    page: 1,
+    paginate: 15,
     itemsOrderBy: [
       { value: "last_created_at", text: "Lasted" },
       { value: "max_value", text: "More Expensive" },
-      { value: "min_value", text: "Cheaper" },
-    ],
-    paginate: "25"
+      { value: "min_value", text: "Cheaper" }
+    ]
   }),
   created() {
     this.search.type = this.$route.query.type;
@@ -92,9 +104,28 @@ export default {
     searchNow(dataSearch) {
       console.log(dataSearch);
       this.$http
-        // .get(`/search`, teste)
-        .get(`/search`, {params: {dataSearch, order: this.order_by, paginate: this.paginate}})
+        .get(`/search`, {
+          params: {
+            dataSearch,
+            order: this.order_by,
+            paginate: this.paginate,
+            page: this.page
+          }
+        })
         .then(res => (this.advertisements = res.data));
+    }
+  },
+  watch: {
+    page() {
+      this.searchNow(this.search);
+    },
+    order_by() {
+      this.page = 1;
+      this.searchNow(this.search);
+    },
+    paginate() {
+      this.page = 1;
+      this.searchNow(this.search);
     }
   }
 };

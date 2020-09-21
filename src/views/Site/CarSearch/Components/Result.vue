@@ -1,8 +1,21 @@
 <template>
   <div>
     <v-row>
-      <v-col v-for="advertisement in advertisements.data" xl="2" lg="3" md="4" sm="6" xs="12" :key="advertisement.id">
-        <v-card max-width="374" height="400">
+      <v-col
+        v-for="advertisement in advertisements.data"
+        :key="advertisement.id"
+        xl="2"
+        lg="3"
+        md="4"
+        sm="6"
+        xs="12"
+      >
+        <v-card
+          max-width="374"
+          height="400"
+          @click="carDetail(advertisement)"
+          hover
+        >
           <v-img
             max-height="170"
             contain
@@ -22,10 +35,10 @@
               <div class="grey--text ml-4">4.5 (413)</div>
             </v-row>
             <div class="my-1 subtitle-1">
-              <strong>$ {{advertisement.value}}</strong>
+              <strong>$ {{ advertisement.value }}</strong>
             </div>
             <div>
-              {{advertisement.description}}
+              {{ advertisement.description }}
             </div>
           </v-card-text>
           <!-- <v-card-actions>
@@ -36,14 +49,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row class="text-center">
-      <v-pagination
-        v-model="page"
-        :length="12"
-        next-icon="mdi-menu-right"
-        prev-icon="mdi-menu-left"
-      ></v-pagination>
-    </v-row>
   </div>
 </template>
 
@@ -51,11 +56,10 @@
 export default {
   name: "Result",
   props: ["advertisements"],
-  data: () => ({
-    page: 3
-  }),
-  created() {
-    console.log("result", this.advertisements);
+  methods: {
+    carDetail(advertisement) {
+      this.$router.push(`/car-detail/${advertisement.id}`);
+    }
   }
 };
 </script>
