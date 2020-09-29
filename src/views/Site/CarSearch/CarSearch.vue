@@ -19,7 +19,7 @@
       </v-sheet>
     </v-card>
     <v-row>
-      <v-col cols="3">
+      <v-col cols="12" md="3">
         <Search
           @clickSearch="searchNow($event, (page = 1))"
           :searchStart="search"
@@ -27,10 +27,10 @@
       </v-col>
       <v-col>
         <div class="mt-3" style="color:#00205b">
-          25 cars finded!!!
+          {{ advertisements.total }} cars finded!!!
         </div>
         <v-row>
-          <v-col cols="4" class="mb-n5">
+          <v-col cols="12" md="4" class="mb-n5">
             <v-select
               dense
               v-model="order_by"
@@ -40,7 +40,7 @@
               background-color="white"
             ></v-select>
           </v-col>
-          <v-col cols="2" class="mb-n5">
+          <v-col cols="12" md="2" class="mb-n5">
             <v-select
               dense
               v-model="paginate"
@@ -98,11 +98,11 @@ export default {
     this.search.make = parseInt(this.$route.query.make);
     this.search.model = parseInt(this.$route.query.model);
     this.search.category = this.$route.query.category;
-    this.searchNow(this.search);
+    this.searchNow(this.$route.query);
   },
   methods: {
     searchNow(dataSearch) {
-      console.log(dataSearch);
+      this.search = { ...dataSearch };
       this.$http
         .get(`/search`, {
           params: {
