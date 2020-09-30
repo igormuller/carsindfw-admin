@@ -12,7 +12,7 @@ export default {
     };
   },
   created() {
-    this.$http.get("/dealers");
+    // this.$http.get("/dealers");
   }
 };
 </script>

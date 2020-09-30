@@ -65,8 +65,9 @@ export default {
     drawer: false,
     logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
+      { text: "Car for Sale", link: "/car-for-sale" },
       { text: "Sell Your Car", link: "/sell-your-car" },
-      { text: "Dealers list", link: "/dealers" },
+      { text: "Dealership", link: "/dealers" },
       { text: "Contact us", link: "/contact" },
       { text: "News", link: "/news" }
     ]

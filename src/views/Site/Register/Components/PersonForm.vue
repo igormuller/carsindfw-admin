@@ -21,28 +21,32 @@
                   </h2>
                 </div>
                 <br />
-                <div class="mb-5 d-flex flex-row align-center justify-center">
-                  <v-card
-                    @click="selectPlan(2)"
-                    link
-                    class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
-                    height="200px"
-                    width="200px"
-                  >
-                    <div class="days-person">30 days</div>
-                    <div class="mt-5 days-person">$19,90</div>
-                  </v-card>
-                  <v-card
-                    @click="selectPlan(3)"
-                    link
-                    class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
-                    height="200px"
-                    width="200px"
-                  >
-                    <div class="days-person">60 days</div>
-                    <div class="mt-5 days-person">$24,90</div>
-                  </v-card>
-                </div>
+                <v-row>
+                  <v-col cols="12" md="6" align="center">
+                    <v-card
+                      @click="selectPlan(2)"
+                      link
+                      class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
+                      height="200px"
+                      width="200px"
+                    >
+                      <div class="days-person">30 days</div>
+                      <div class="mt-5 days-person">$19,90</div>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="12" md="6" align="center">
+                    <v-card
+                      @click="selectPlan(3)"
+                      link
+                      class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
+                      height="200px"
+                      width="200px"
+                    >
+                      <div class="days-person">60 days</div>
+                      <div class="mt-5 days-person">$24,90</div>
+                    </v-card>
+                  </v-col>
+                </v-row>
                 <div class="mt-12 mb-5 d-flex flex-row justify-center">
                   <v-card class="elevation-8 pa-10" color="grey lighten-2">
                     <h2 align="center" class="color-carsindfw">
