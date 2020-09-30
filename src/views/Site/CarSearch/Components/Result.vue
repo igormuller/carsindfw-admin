@@ -19,7 +19,7 @@
           <v-img
             max-height="170"
             contain
-            src="https://image.webmotors.com.br/_fotos/anunciousados/gigante/2020/202003/20200317/bmw-535i-3.0-m-sport-24v-gasolina-4p-automatico-wmimagem19012339042.jpg?s=fill&w=1920&h=1440&q=75"
+            :src="advertisement.photo"
           ></v-img>
           <v-card-title>{{ advertisement.trim }}</v-card-title>
           <v-card-text>
