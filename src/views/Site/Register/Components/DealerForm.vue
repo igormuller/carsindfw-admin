@@ -183,9 +183,16 @@
                     />
                   </v-col>
                 </v-row>
-
-                <v-btn color="primary" @click="sendRegister()">Register</v-btn>
-                <v-btn text @click="step = 1">Change Plan</v-btn>
+                <v-row justify="end" class="mr-2">
+                  <v-btn text @click="step = 1">Change Plan</v-btn>
+                  <v-btn
+                    color="#00205b"
+                    class="white--text"
+                    @click="sendRegister()"
+                  >
+                    Register
+                  </v-btn>
+                </v-row>
               </v-stepper-content>
 
               <v-stepper-content step="3">
@@ -196,7 +203,8 @@
           </v-stepper>
         </v-col>
       </v-row>
-      <v-row class="mt-5">
+
+      <v-row class="mt-12">
         <v-col class="d-flex flex-row justify-center">
           <div>
             <h2 class="color-carsindfw">
