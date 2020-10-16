@@ -36,7 +36,11 @@
             </v-btn>
           </div>
         </div>
-        <div v-else class="pa-12 d-flex flex-column align-center justify-center" style="color:#00205b">
+        <div
+          v-else
+          class="pa-12 d-flex flex-column align-center justify-center"
+          style="color:#00205b"
+        >
           <h2>Thank you for contact us!!</h2>
         </div>
       </v-card>
@@ -68,12 +72,12 @@ export default {
   }),
   methods: {
     async sendContact() {
-      this.loading= true;
+      this.loading = true;
       await this.$http
         .post("/contact-us", this.contact)
         .then(() => (this.send = true))
         .catch(error => (this.errors = error.response.data.errors));
-      this.loading= false;
+      this.loading = false;
     }
   }
 };
