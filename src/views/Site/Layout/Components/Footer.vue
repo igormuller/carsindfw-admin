@@ -26,7 +26,12 @@
           <h5>Dallas Events</h5>
         </v-col>
         <v-col cols="2 sm-6" class="mr-5">
-          <h3>Passionate about cars!</h3>
+          <v-img
+            :src="require('@/assets/full_logo.png')"
+            min-width="150"
+            max-width="200"
+          ></v-img>
+          <h3 style="font-family: Racing Sans One;">Passionate about cars!</h3>
           <v-row class="d-flex">
             <a href="http://www.facebook.com/carsindfw" target="_blanck">
               <v-img

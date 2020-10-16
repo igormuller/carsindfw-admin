@@ -65,11 +65,11 @@ export default {
     drawer: false,
     logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
-      { text: "Car for Sale", link: "/car-for-sale" },
+      { text: "Car for Sale", link: "/search" },
       { text: "Sell Your Car", link: "/sell-your-car" },
       { text: "Dealership", link: "/dealers" },
-      { text: "Contact us", link: "/contact" },
-      { text: "News", link: "/news" }
+      { text: "Contact us", link: "/contact" }
+      // { text: "News", link: "/news" }
     ]
   }),
   methods: {
