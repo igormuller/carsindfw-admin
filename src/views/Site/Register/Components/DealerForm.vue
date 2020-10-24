@@ -272,8 +272,8 @@ export default {
       }
     },
     zipCodeFind(data) {
-      this.errors.zipcode = ""
-      this.zipcode_message = `${data.city.name}/${data.city.state.initials}`
+      this.errors.zipcode = "";
+      this.zipcode_message = `${data.city.name}/${data.city.state.initials}`;
     }
   }
 };
