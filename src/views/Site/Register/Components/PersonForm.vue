@@ -104,6 +104,8 @@
                       label="Zip"
                       v-model="person.zipcode"
                       v-mask="'#####'"
+                      :messages="zipcode_message"
+                      @change="searchZipcode(person.zipcode)"
                       :error-messages="errors.zipcode"
                     />
                   </v-col>
@@ -200,6 +202,18 @@ export default {
     selectPlan(plan) {
       this.person.plan_type_id = plan;
       this.step = 2;
+    },
+    searchZipcode(zipcode) {
+      if (zipcode.length === 5) {
+        this.$http
+          .get(`/search-zipcode/${zipcode}`)
+          .then(res => this.zipCodeFind(res.data))
+          .catch(error => (this.errors = error.response.data.errors));
+      }
+    },
+    zipCodeFind(data) {
+      this.errors.zipcode = "";
+      this.zipcode_message = `${data.city.name}/${data.city.state.initials}`;
     }
   }
 };

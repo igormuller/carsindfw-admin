@@ -138,6 +138,8 @@
                       v-model="dealer.zipcode"
                       v-mask="'#####'"
                       :error-messages="errors.zipcode"
+                      :messages="zipcode_message"
+                      @change="searchZipcode(dealer.zipcode)"
                     />
                   </v-col>
                 </v-row>
@@ -246,6 +248,7 @@ export default {
         plan_type_id: "",
         type: "dealer"
       },
+      zipcode_message: "",
       errors: {}
     };
   },
@@ -259,6 +262,18 @@ export default {
     selectPlan(plan) {
       this.dealer.plan_type_id = plan;
       this.step = 2;
+    },
+    searchZipcode(zipcode) {
+      if (zipcode.length === 5) {
+        this.$http
+          .get(`/search-zipcode/${zipcode}`)
+          .then(res => this.zipCodeFind(res.data))
+          .catch(error => (this.errors = error.response.data.errors));
+      }
+    },
+    zipCodeFind(data) {
+      this.errors.zipcode = ""
+      this.zipcode_message = `${data.city.name}/${data.city.state.initials}`
     }
   }
 };
