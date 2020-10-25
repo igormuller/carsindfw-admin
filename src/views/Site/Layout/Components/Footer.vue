@@ -4,11 +4,33 @@
       <v-row justify="center">
         <v-col cols="2 sm-6" class="mr-5 hidden-md-and-down">
           <h3>Company</h3>
-          <h5>About CARSinDFW</h5>
-          <h5>Our Team</h5>
-          <h5>Advice for Buyers</h5>
-          <h5>Contact Us</h5>
-          <h5>APP</h5>
+          <v-btn text x-small to="/about" class="font-weight-black white--text">
+            About CARSinDFW
+          </v-btn>
+          <v-btn
+            text
+            x-small
+            to="/sell-your-car"
+            class="font-weight-black white--text"
+          >
+            Advice for Buyers
+          </v-btn>
+          <v-btn
+            text
+            x-small
+            to="/contact"
+            class="font-weight-black white--text"
+          >
+            Contact Us
+          </v-btn>
+          <v-btn
+            text
+            x-small
+            to="/fraud-awareness"
+            class="font-weight-black white--text"
+          >
+            Fraud Awareness
+          </v-btn>
         </v-col>
         <v-col cols="2" class="mr-5">
           <h3>Terms</h3>
@@ -17,17 +39,37 @@
         </v-col>
         <v-col cols="2" class="mr-5 hidden-md-and-down">
           <h3>For Dealers</h3>
-          <h5>Private Owner</h5>
-          <h5>Car Dealers</h5>
+          <v-btn
+            text
+            x-small
+            to="/dealers"
+            class="font-weight-black white--text"
+          >
+            Car Dealers
+          </v-btn>
         </v-col>
         <v-col cols="2" class="mr-5 hidden-md-and-down">
           <h3>Dallas</h3>
-          <h5>Dallas History</h5>
-          <h5>Dallas Events</h5>
+          <v-btn
+            text
+            x-small
+            to="/dallas-history"
+            class="font-weight-black white--text"
+          >
+            Dallas History
+          </v-btn>
+          <v-btn
+            text
+            x-small
+            to="/dallas-events"
+            class="font-weight-black white--text"
+          >
+            Dallas Events
+          </v-btn>
         </v-col>
         <v-col cols="2 sm-6" class="mr-5">
           <v-img
-            :src="require('@/assets/full_logo.png')"
+            src="@/assets/full_logo.png"
             min-width="150"
             max-width="200"
           ></v-img>

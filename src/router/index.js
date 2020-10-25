@@ -16,6 +16,10 @@ import SellYourCar from "../views/Site/SellYourCar";
 import Dealers from "../views/Site/Dealer/List";
 import Contact from "../views/Site/Contact";
 import News from "../views/Site/News";
+import About from "../views/Site/About";
+import DallasHistory from "../views/Site/DallasHistory";
+import DallasEvents from "../views/Site/DallasEvents";
+import FraudAwareness from "../views/Site/FraudAwareness";
 import CarDetail from "../views/Site/CarDetail/CarDetail";
 import CarSearch from "../views/Site/CarSearch/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
@@ -48,7 +52,11 @@ const routes = [
       { path: "/sell-your-car", component: SellYourCar },
       { path: "/dealers", component: Dealers },
       { path: "/contact", component: Contact },
+      { path: "/dallas-history", component: DallasHistory },
+      { path: "/dallas-events", component: DallasEvents },
+      { path: "/fraud-awareness", component: FraudAwareness },
       { path: "/news", component: News },
+      { path: "/about", component: About },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },
       { path: "/register", component: Register }
