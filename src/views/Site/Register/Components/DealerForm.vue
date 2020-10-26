@@ -13,7 +13,7 @@
         >
           <h3>
             Join us and became a dealer!<br />Request an account filling<br />
-            below or send us an email to<br />tiago.carsindfw@gmail.com
+            below or send us an email to<br />contato@carsindfw.com
           </h3>
         </v-col>
       </v-row>
