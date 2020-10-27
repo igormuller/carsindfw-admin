@@ -12,7 +12,12 @@
         </v-col>
         <v-col cols="12" sm="6">
           <v-expand-transition>
-            <v-sheet color="grey lighten-4" max-height="500" min-height="100" tile>
+            <v-sheet
+              color="grey lighten-4"
+              max-height="500"
+              min-height="100"
+              tile
+            >
               <v-img
                 max-height="500"
                 min-height="100"
@@ -56,8 +61,8 @@ export default {
     dealer: null,
     selected: null,
     images: [
-      {url: "https://picsum.photos/id/11/500/300"},
-      {url: "https://picsum.photos/510/300?random"},
+      { url: "https://picsum.photos/id/11/500/300" },
+      { url: "https://picsum.photos/510/300?random" }
     ]
   }),
   created() {
