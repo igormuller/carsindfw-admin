@@ -8,7 +8,12 @@
           <h3>City: {{ dealer.address.city.name }}</h3>
           <h3>Phone: {{ dealer.phone }}</h3>
           <v-spacer></v-spacer>
-          maps
+          <gmap-map
+            :center="center"
+            :zoom="12"
+            style="width:100%;  height: 400px;"
+          >
+          </gmap-map>
         </v-col>
         <v-col cols="12" sm="6">
           <v-expand-transition>
@@ -55,11 +60,25 @@ export default {
   data: () => ({
     dealer: null,
     selected: null,
+    center: {},
     images: [
       {url: "https://picsum.photos/id/11/500/300"},
       {url: "https://picsum.photos/510/300?random"},
     ]
   }),
+  methods: {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      });
+    }
+  },
+  mounted() {
+    this.geolocate();
+  },
   created() {
     this.$http
       .get(`/dealer/${this.dealer_id}`)
