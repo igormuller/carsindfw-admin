@@ -2,7 +2,7 @@
   <div>
     <v-card class="mt-3">
       <v-img
-        src="@/assets/gif_cars_in_dallas_at_night.gif"
+        src="@/assets/site/gif_cars_in_dallas_at_night.gif"
         class="flex-container"
         max-height="500"
       >

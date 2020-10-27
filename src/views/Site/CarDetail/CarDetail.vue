@@ -81,7 +81,7 @@ export default {
   data: () => ({
     advertisement: {},
     slides: [
-      { src: require("@/assets/car-wash.png") },
+      { src: require("@/assets/site/car-wash.png") },
       { src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }
     ]
   }),

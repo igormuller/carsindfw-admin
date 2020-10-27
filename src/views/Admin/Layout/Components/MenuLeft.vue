@@ -3,7 +3,7 @@
     <v-list dense>
       <v-list-item link @click="openUserEdit()">
         <v-list-item-avatar class="ma-3">
-          <v-img src="@/assets/avatar-default.png"></v-img>
+          <v-img src="@/assets/avatars/avatar-default.png"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-title class="mt-2">

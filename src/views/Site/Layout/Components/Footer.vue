@@ -69,7 +69,7 @@
         </v-col>
         <v-col cols="2 sm-6" class="mr-5">
           <v-img
-            src="@/assets/full_logo.png"
+            src="@/assets/site/full_logo.png"
             min-width="150"
             max-width="200"
           ></v-img>
@@ -80,7 +80,7 @@
                 class="mx-3"
                 height="32"
                 width="32"
-                src="@/assets/facebook.png"
+                src="@/assets/site/facebook.png"
               />
             </a>
             <a
@@ -91,7 +91,7 @@
                 class="mx-3"
                 height="32"
                 width="32"
-                src="@/assets/whatsapp.png"
+                src="@/assets/site/whatsapp.png"
               />
             </a>
             <a href="http://www.instagram.com/cars.indfw" target="_blanck">
@@ -99,7 +99,7 @@
                 class="mx-3"
                 height="32"
                 width="32"
-                src="@/assets/instagram.png"
+                src="@/assets/site/instagram.png"
               />
             </a>
           </v-row>

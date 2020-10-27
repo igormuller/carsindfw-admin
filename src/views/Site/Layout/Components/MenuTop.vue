@@ -10,7 +10,7 @@
         <v-col md="4" align="start">
           <v-img
             style="cursor:pointer"
-            :src="require('@/assets/full_logo.png')"
+            src="@/assets/site/full_logo.png"
             contain
             max-width="360"
             min-width="10"

@@ -3,7 +3,7 @@
     <v-card-text class="px-8">
       <v-row>
         <v-col cols="3">
-          <v-img src="@/assets/network-people.png" contain></v-img>
+          <v-img src="@/assets/site/network-people.png" contain></v-img>
         </v-col>
         <v-col
           cols="9"

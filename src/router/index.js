@@ -14,6 +14,8 @@ import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
 import SellYourCar from "../views/Site/SellYourCar";
 import Dealers from "../views/Site/Dealer/List";
+import DealersCity from "../views/Site/Dealer/DealersCity";
+import Dealer from "../views/Site/Dealer/Dealer";
 import Contact from "../views/Site/Contact";
 import News from "../views/Site/News";
 import About from "../views/Site/About";
@@ -51,6 +53,8 @@ const routes = [
       { path: "/", component: Home },
       { path: "/sell-your-car", component: SellYourCar },
       { path: "/dealers", component: Dealers },
+      { path: "/dealers/:city_id", component: DealersCity, props: true },
+      { path: "/dealer/:dealer_id", component: Dealer, props: true },
       { path: "/contact", component: Contact },
       { path: "/dallas-history", component: DallasHistory },
       { path: "/dallas-events", component: DallasEvents },

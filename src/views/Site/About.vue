@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-img
-      src="@/assets/gif_cars_in_dallas_at_night.gif"
+      src="@/assets/site/gif_cars_in_dallas_at_night.gif"
       max-height="450"
       contain
     ></v-img>

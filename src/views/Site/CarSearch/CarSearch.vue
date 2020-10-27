@@ -12,7 +12,7 @@
               class="mx-2"
               height="100"
               width="100"
-              src="@/assets/test-logo.png"
+              src="@/assets/site/test-logo.png"
             ></v-img>
           </v-slide-item>
         </v-slide-group>
