@@ -7,9 +7,15 @@ import "./plugins/axios";
 import "./plugins/toasted";
 import VueSweetalert2 from "vue-sweetalert2";
 import VueMask from "v-mask";
+import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(VueMask);
 Vue.use(VueSweetalert2);
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyAimraeRdmEH0NntawJL22wBNSUgnhoPiA"
+  }
+});
 
 Vue.config.productionTip = false;
 
