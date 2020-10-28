@@ -13,7 +13,7 @@ Vue.use(VueMask);
 Vue.use(VueSweetalert2);
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyAimraeRdmEH0NntawJL22wBNSUgnhoPiA",
+    key: "AIzaSyAimraeRdmEH0NntawJL22wBNSUgnhoPiA"
   }
 });
 
