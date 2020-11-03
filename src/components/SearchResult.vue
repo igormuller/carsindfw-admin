@@ -1,5 +1,33 @@
 <template>
   <div>
+    <div class="mt-3" style="color:#00205b">
+      {{ advertisements.total }} cars finded!!!
+    </div>
+    <v-row>
+      <v-col cols="12" md="4" class="mb-n5">
+        <v-select
+          dense
+          v-model="order_by"
+          :items="itemsOrderBy"
+          label="Order By"
+          @change="$emit('clickOrderBy', order_by), page = 1"
+          outlined
+          background-color="white"
+        ></v-select>
+      </v-col>
+      <v-col cols="12" md="2" class="mb-n5">
+        <v-select
+          dense
+          v-model="paginate"
+          :items="[10, 15, 20, 25, 35, 50]"
+          label="Cars/Page"
+          @change="$emit('clickPaginate', paginate), page = 1"
+          outlined
+          background-color="white"
+        ></v-select>
+      </v-col>
+    </v-row>
+    <hr />
     <v-row>
       <v-col
         v-for="advertisement in advertisements.data"
@@ -45,6 +73,15 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row class="text-center">
+      <v-pagination
+        @input="$emit('clickPage', page)"
+        v-model="page"
+        :length="advertisements.last_page"
+        next-icon="mdi-menu-right"
+        prev-icon="mdi-menu-left"
+      ></v-pagination>
+    </v-row>
   </div>
 </template>
 
@@ -52,6 +89,16 @@
 export default {
   name: "Result",
   props: ["advertisements"],
+  data: () => ({
+    order_by: "last_created_at",
+    page: 1,
+    paginate: 15,
+    itemsOrderBy: [
+      { value: "last_created_at", text: "Lasted" },
+      { value: "max_value", text: "More Expensive" },
+      { value: "min_value", text: "Cheaper" }
+    ]
+  }),
   methods: {
     carDetail(advertisement) {
       this.$router.push(`/car-detail/${advertisement.id}`);

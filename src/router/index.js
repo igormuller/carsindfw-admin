@@ -13,9 +13,9 @@ import AdvertisementsEdit from "../views/Admin/Advertisements/Edit";
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
 import SellYourCar from "../views/Site/SellYourCar";
-import Dealers from "../views/Site/Dealer/List";
+import DealersList from "../views/Site/Dealer/DealersList";
 import DealersCity from "../views/Site/Dealer/DealersCity";
-import Dealer from "../views/Site/Dealer/Dealer";
+import DealerDetail from "../views/Site/Dealer/DealerDetail";
 import Contact from "../views/Site/Contact";
 import News from "../views/Site/News";
 import About from "../views/Site/About";
@@ -23,7 +23,7 @@ import DallasHistory from "../views/Site/DallasHistory";
 import DallasEvents from "../views/Site/DallasEvents";
 import FraudAwareness from "../views/Site/FraudAwareness";
 import CarDetail from "../views/Site/CarDetail/CarDetail";
-import CarSearch from "../views/Site/CarSearch/CarSearch";
+import CarSearch from "../views/Site/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
 
 import Login from "../views/Site/Login/Login";
@@ -52,9 +52,9 @@ const routes = [
     children: [
       { path: "/", component: Home },
       { path: "/sell-your-car", component: SellYourCar },
-      { path: "/dealers", component: Dealers },
+      { path: "/dealers", component: DealersList },
       { path: "/dealers/:city_id", component: DealersCity, props: true },
-      { path: "/dealer/:dealer_id", component: Dealer, props: true },
+      { path: "/dealer/:dealer_id", component: DealerDetail, props: true },
       { path: "/contact", component: Contact },
       { path: "/dallas-history", component: DallasHistory },
       { path: "/dallas-events", component: DallasEvents },
