@@ -27,20 +27,19 @@
       <v-row>
         <v-col cols="12" sm="3">
           <SearchCars
-            @clickSearch="searchNow($event, (page = 1))"
+            @clickSearch="(page = 1), searchNow($event)"
             :searchStart="search"
           ></SearchCars>
         </v-col>
         <v-col cols="12" sm="9">
           <SearchResult
             :advertisements="advertisements"
-            @clickPage="page = $event, searchNow(search)"
-            @clickOrderBy="order_by = $event, page = 1, searchNow(search)"
-            @clickPaginate="paginate = $event, page = 1, searchNow(search)"
+            @clickPage="(page = $event), searchNow(search)"
+            @clickOrderBy="(order_by = $event), (page = 1), searchNow(search)"
+            @clickPaginate="(paginate = $event), (page = 1), searchNow(search)"
           ></SearchResult>
         </v-col>
       </v-row>
-      
     </v-card>
   </div>
 </template>

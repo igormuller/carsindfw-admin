@@ -10,7 +10,7 @@
           v-model="order_by"
           :items="itemsOrderBy"
           label="Order By"
-          @change="$emit('clickOrderBy', order_by), page = 1"
+          @change="$emit('clickOrderBy', order_by), (page = 1)"
           outlined
           background-color="white"
         ></v-select>
@@ -21,7 +21,7 @@
           v-model="paginate"
           :items="[10, 15, 20, 25, 35, 50]"
           label="Cars/Page"
-          @change="$emit('clickPaginate', paginate), page = 1"
+          @change="$emit('clickPaginate', paginate), (page = 1)"
           outlined
           background-color="white"
         ></v-select>

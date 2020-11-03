@@ -21,16 +21,16 @@
     <v-row>
       <v-col cols="12" md="3">
         <SearchCars
-          @clickSearch="page = 1, searchNow($event)"
+          @clickSearch="(page = 1), searchNow($event)"
           :searchStart="search"
         ></SearchCars>
       </v-col>
       <v-col>
         <SearchResult
           :advertisements="advertisements"
-          @clickPage="page = $event, searchNow(search)"
-          @clickOrderBy="order_by = $event, page = 1, searchNow(search)"
-          @clickPaginate="paginate = $event, page = 1, searchNow(search)"
+          @clickPage="(page = $event), searchNow(search)"
+          @clickOrderBy="(order_by = $event), (page = 1), searchNow(search)"
+          @clickPaginate="(paginate = $event), (page = 1), searchNow(search)"
         ></SearchResult>
       </v-col>
     </v-row>
@@ -57,7 +57,7 @@ export default {
     advertisements: {},
     order_by: "last_created_at",
     page: 1,
-    paginate: 15,
+    paginate: 15
   }),
   created() {
     this.search.type = this.$route.query.type;
