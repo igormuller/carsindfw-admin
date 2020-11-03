@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!-- <div class="d-flex align-center">
-      <v-img
-        class="mr-3 mt-n2"
-        height="150"
-        width="150"
-        contain
-        src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
-      ></v-img>
-      <v-btn text class="ml-n4">All cars</v-btn>
-    </div> -->
     <v-row>
       <v-col cols="6">
         <v-img
@@ -18,15 +8,20 @@
           src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
         ></v-img>
       </v-col>
-      <v-col cols="6" class="d-flex align-center">
-        <v-btn text>All cars</v-btn>
+      <v-col cols="6" align-self="center">
+        <v-btn text :to="`/dealer/${company.id}`">All cars</v-btn>
       </v-col>
     </v-row>
     <div>
-      <p class="my-n1">Endereço</p>
-      <p class="my-n1">City</p>
-      <p class="my-n1">Phone</p>
-      <p class="my-n1">Contact</p>
+      <h2>{{ company.name }}</h2>
+      <p class="my-n1">Street: {{ company.address.street }}</p>
+      <p class="my-n1">
+        City: {{ company.address.city.name }} -
+        {{ company.address.state.initials }}
+      </p>
+      <p class="my-n1">Phone: {{ company.phone }}</p>
+      <p class="my-n1">E-mail: {{ company.email }}</p>
+      <p class="my-n1">Site: {{ company.site }}</p>
     </div>
     <v-row>
       <v-col cols="4">
@@ -41,7 +36,20 @@
     </v-row>
     <v-row>
       <v-col>
-        Maps
+        <gmap-map
+          :center="center"
+          :zoom="zoom"
+          :options="{
+            zoomControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            rotateControl: false,
+            fullscreenControl: false
+          }"
+          style="width:100%;  height: 200px;"
+        >
+        </gmap-map>
       </v-col>
     </v-row>
     <v-row>
@@ -62,6 +70,18 @@
 <script>
 export default {
   name: "AboutDealer",
-  data: () => ({})
+  props: ["company"],
+  data: () => ({
+    center: { lat: 31.9685988, lng: -99.9018131 },
+    zoom: 6
+  }),
+  created() {
+    this.$http
+      .get(`/lat-lng-maps?address_id=${this.company.address.id}`)
+      .then(res => {
+        this.center = res.data.center;
+        this.zoom = res.data.zoom;
+      });
+  }
 };
 </script>

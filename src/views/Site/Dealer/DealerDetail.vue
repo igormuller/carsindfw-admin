@@ -12,6 +12,9 @@
               <gmap-map
                 :center="center"
                 :zoom="zoom"
+                :options="{
+                  zoomControl: false
+                }"
                 style="width:100%;  height: 350px;"
               >
               </gmap-map>

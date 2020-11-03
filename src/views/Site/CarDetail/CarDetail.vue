@@ -12,31 +12,19 @@
             height="200px"
             width="300px"
           >
-            <v-card-title text="card.title">Teste</v-card-title>
+            <v-card-title text="card.title">Anúncio</v-card-title>
           </v-img>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-bookmark</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>mdi-share-variant</v-icon>
-            </v-btn>
-          </v-card-actions>
         </v-card>
         <v-card class="mt-3">
-          <v-card-text>
-            <AboutDealer></AboutDealer>
+          <v-card-text v-if="advertisement.company_data">
+            <AboutDealer :company="advertisement.company_data"></AboutDealer>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col cols="12" md="7" xl="7">
         <Galery
-          :images="advertisement.gallery"
           v-if="advertisement.gallery"
+          :images="advertisement.gallery"
         ></Galery>
         <v-card class="mt-3">
           <AboutCar :carDetail="advertisement"></AboutCar>

@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="mx-auto" elevation="5" max-width="1250">
+  <v-sheet class="mx-auto" elevation="5" max-width="1250" v-if="images.length > 0">
     <v-slide-group v-model="selected" class="px-5" show-arrows>
       <v-slide-item
         v-for="(image, key) in images"

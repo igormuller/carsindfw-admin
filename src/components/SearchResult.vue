@@ -40,11 +40,11 @@
       >
         <v-card
           max-width="374"
-          height="400"
+          height="100%"
           @click="carDetail(advertisement)"
           hover
         >
-          <v-img max-height="170" contain :src="advertisement.photo"></v-img>
+          <v-img max-height="170" contain :src="setPhoto(advertisement)"></v-img>
           <v-card-title>{{ advertisement.trim }}</v-card-title>
           <v-card-text>
             <v-row class="mx-0">
@@ -102,6 +102,12 @@ export default {
   methods: {
     carDetail(advertisement) {
       this.$router.push(`/car-detail/${advertisement.id}`);
+    },
+    setPhoto(advertisement) {
+      if (advertisement.photo) {
+        return advertisement.photo;
+      }
+      return require("@/assets/site/default_car.jpg");
     }
   }
 };
