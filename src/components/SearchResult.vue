@@ -44,7 +44,11 @@
           @click="carDetail(advertisement)"
           hover
         >
-          <v-img max-height="170" contain :src="setPhoto(advertisement)"></v-img>
+          <v-img
+            max-height="170"
+            contain
+            :src="setPhoto(advertisement)"
+          ></v-img>
           <v-card-title>{{ advertisement.trim }}</v-card-title>
           <v-card-text>
             <v-row class="mx-0">

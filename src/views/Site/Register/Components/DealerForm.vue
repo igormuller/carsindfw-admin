@@ -43,7 +43,7 @@
                       height="200px"
                       width="200px"
                     >
-                      <h3 class="mt-3 color-carsindfw">INVENTARY SIZE</h3>
+                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
                       <div class="mt-3 number-advertisement">0-20</div>
                       <div class="mt-10 price-advertisement">$99</div>
                       <div class="mt-10 price-per-car">$4,95/car</div>
@@ -58,7 +58,7 @@
                       height="200px"
                       width="200px"
                     >
-                      <h3 class="mt-3 color-carsindfw">INVENTARY SIZE</h3>
+                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
                       <div class="mt-3 number-advertisement">0-50</div>
                       <div class="mt-10 price-advertisement">$199</div>
                       <div class="mt-10 price-per-car">$3,98/car</div>
@@ -73,7 +73,7 @@
                       height="200px"
                       width="200px"
                     >
-                      <h3 class="mt-3 color-carsindfw">INVENTARY SIZE</h3>
+                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
                       <div class="mt-3 number-advertisement">0-100</div>
                       <div class="mt-10 price-advertisement">$299</div>
                       <div class="mt-10 price-per-car">$2,99/car</div>
@@ -88,7 +88,7 @@
                       height="200px"
                       width="200px"
                     >
-                      <h3 class="mt-3 color-carsindfw">INVENTARY SIZE</h3>
+                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
                       <div class="mt-3 number-advertisement">0-200</div>
                       <div class="mt-10 price-advertisement">$399</div>
                       <div class="mt-10 price-per-car">$1,99/car</div>

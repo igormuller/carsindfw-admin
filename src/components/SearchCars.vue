@@ -18,7 +18,7 @@
         :items="makes"
         item-text="name"
         item-value="id"
-        label="All Brand"
+        label="Make"
         @change="searchModelsByMake(dataSearch.make)"
         clearable
         background-color="white"
@@ -30,7 +30,7 @@
         :items="models"
         item-text="name"
         item-value="id"
-        label="All Model"
+        label="Model"
         @change="searchCategoriesByModel(dataSearch.model)"
         clearable
         background-color="white"
@@ -48,7 +48,7 @@
         :items="categories"
         item-text="name"
         item-value="id"
-        label="All Category"
+        label="Category"
         outlined
         dense
         background-color="white"

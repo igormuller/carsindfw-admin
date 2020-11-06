@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer color="#BF0D3E" class="white--text" height="200">
+    <v-footer color="#c0323e" class="white--text" height="200">
       <v-row justify="center">
         <v-col cols="2 sm-6" class="mr-5 hidden-md-and-down">
           <h3>Company</h3>
