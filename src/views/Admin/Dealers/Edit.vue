@@ -131,10 +131,7 @@
                     @change="testeImage($event)"
                   ></v-file-input>
                   <v-avatar>
-                    <img
-                      :src="logo"
-                      alt="John"
-                    >
+                    <img :src="logo" alt="John" />
                   </v-avatar>
                 </v-col>
               </v-row>
@@ -158,7 +155,7 @@ export default {
   props: ["id"],
   data() {
     return {
-      logo:"",
+      logo: "",
       dealer: {},
       states: [],
       cities: [],

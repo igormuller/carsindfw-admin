@@ -55,7 +55,7 @@ const routes = [
       { path: "dealers", component: Dealers },
       { path: "dealers/new", component: DealersNew },
       { path: "dealers/:id", component: DealersEdit, props: true },
-      { path: "*", component: PageNotFoundAdmin },
+      { path: "*", component: PageNotFoundAdmin }
     ]
   },
   {
@@ -75,11 +75,11 @@ const routes = [
       { path: "/about", component: About },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },
-      { path: "/register", component: Register },
-      { path: "*", component: PageNotFound },
+      { path: "/register", component: Register }
     ]
   },
-  { path: "/login", component: Login }
+  { path: "/login", component: Login },
+  { path: "*", component: PageNotFound }
 ];
 
 const router = new VueRouter({
