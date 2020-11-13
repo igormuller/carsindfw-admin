@@ -28,7 +28,7 @@
                       :items="makes"
                       item-text="name"
                       item-value="id"
-                      label="Brand"
+                      label="Make"
                       clearable
                       :error-messages="errors.car_make_id"
                       @change="searchModelsByMake(advertisement.car_make_id)"

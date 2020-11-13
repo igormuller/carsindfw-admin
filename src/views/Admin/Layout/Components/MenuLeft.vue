@@ -46,7 +46,8 @@ export default {
     menu: [
       { link: "dashboard", name: "Dashboard", icon: "dashboard" },
       { link: "users", name: "Users", icon: "person" },
-      { link: "advertisements", name: "Advertisements", icon: "ballot" }
+      { link: "advertisements", name: "Advertisements", icon: "ballot" },
+      { link: "dealers", name: "Dealers", icon: "ballot" }
     ]
   }),
   methods: {

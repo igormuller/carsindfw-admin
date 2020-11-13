@@ -76,7 +76,8 @@ export default {
   created() {
     this.$http
       .get(`/car-detail/${this.id}`)
-      .then(res => (this.advertisement = res.data));
+      .then(res => (this.advertisement = res.data))
+      .catch(() => this.$router.push("/404"));
   }
 };
 </script>

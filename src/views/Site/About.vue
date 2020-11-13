@@ -35,10 +35,7 @@
       </v-col>
       <v-col class="text-center">
         <v-avatar size="125">
-          <v-img
-            src="@/assets/avatars/avatar-default.png"
-            alt="Lilian Müller"
-          ></v-img>
+          <v-img src="@/assets/avatars/lilian.png" alt="Lilian Müller"></v-img>
         </v-avatar>
         <p style="color: #00205b" class="font-weight-bold mt-2">
           Lilian Müller
@@ -63,10 +60,7 @@
     <v-row>
       <v-col class="text-center">
         <v-avatar size="125">
-          <v-img
-            src="@/assets/avatars/avatar-default.png"
-            alt="Gisele Martins"
-          ></v-img>
+          <v-img src="@/assets/avatars/gisele.jpg" alt="Gisele Martins"></v-img>
         </v-avatar>
         <p style="color: #00205b" class="font-weight-bold mt-2">
           Gisele Martins

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <v-row v-if="company.type === 'dealer'">
       <v-col cols="6">
         <v-img
           width="550"
@@ -14,16 +14,21 @@
     </v-row>
     <div>
       <h2>{{ company.name }}</h2>
-      <p class="my-n1">Street: {{ company.address.street }}</p>
-      <p class="my-n1">
+      <span>Street: {{ company.address.street }}</span>
+      <br />
+      <span>
         City: {{ company.address.city.name }} -
         {{ company.address.state.initials }}
-      </p>
-      <p class="my-n1">Phone: {{ company.phone }}</p>
-      <p class="my-n1">E-mail: {{ company.email }}</p>
-      <p class="my-n1">Site: {{ company.site }}</p>
+      </span>
+      <br />
+      <span>Phone: {{ company.phone }}</span>
+      <br />
+      <span>E-mail: {{ company.email }}</span>
+      <br />
+      <span>Site: {{ company.site }}</span>
+      <br />
     </div>
-    <v-row>
+    <v-row v-if="company.type === 'dealer'">
       <v-col cols="4">
         <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
       </v-col>
@@ -34,7 +39,7 @@
         <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="company.type === 'dealer'">
       <v-col>
         <gmap-map
           :center="center"
@@ -52,7 +57,7 @@
         </gmap-map>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="company.type === 'dealer'">
       <v-col>
         <h2 style="color:#bf0d3e">Dealers Review</h2>
         <div class="mt-2">

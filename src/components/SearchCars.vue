@@ -52,7 +52,7 @@
         outlined
         dense
         background-color="white"
-        :clearable="true"
+        clearable
       >
         <template v-slot:no-data>
           <v-list-item>

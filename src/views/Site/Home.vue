@@ -16,7 +16,7 @@
                 v-model="type"
                 :items="car_type"
                 label="Type"
-                :clearable="true"
+                clearable
               ></v-select>
             </v-col>
             <v-col cols="12" md="2">
@@ -25,8 +25,8 @@
                 :items="makes"
                 item-text="name"
                 item-value="id"
-                label="Brand"
-                :clearable="true"
+                label="Make"
+                clearable
                 required
               ></v-autocomplete>
             </v-col>
@@ -37,7 +37,7 @@
                 item-text="name"
                 item-value="id"
                 label="Model"
-                :clearable="true"
+                clearable
               >
                 <template v-slot:no-data>
                   <v-list-item>
@@ -55,7 +55,7 @@
                 item-text="name"
                 item-value="id"
                 label="Category"
-                :clearable="true"
+                clearable
               >
                 <template v-slot:no-data>
                   <v-list-item>

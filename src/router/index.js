@@ -9,6 +9,10 @@ import UsersEdit from "../views/Admin/Users/Edit";
 import Advertisements from "../views/Admin/Advertisements/Advertisements";
 import AdvertisementsNew from "../views/Admin/Advertisements/New";
 import AdvertisementsEdit from "../views/Admin/Advertisements/Edit";
+import Dealers from "../views/Admin/Dealers/Dealers";
+import DealersNew from "../views/Admin/Dealers/New";
+import DealersEdit from "../views/Admin/Dealers/Edit";
+import PageNotFoundAdmin from "@/components/PageNotFoundAdmin";
 
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
@@ -43,7 +47,15 @@ const routes = [
       { path: "users/:id", component: UsersEdit, props: true },
       { path: "advertisements", component: Advertisements },
       { path: "advertisements/new", component: AdvertisementsNew },
-      { path: "advertisements/:id", component: AdvertisementsEdit, props: true }
+      {
+        path: "advertisements/:id",
+        component: AdvertisementsEdit,
+        props: true
+      },
+      { path: "dealers", component: Dealers },
+      { path: "dealers/new", component: DealersNew },
+      { path: "dealers/:id", component: DealersEdit, props: true },
+      { path: "*", component: PageNotFoundAdmin },
     ]
   },
   {
@@ -63,11 +75,11 @@ const routes = [
       { path: "/about", component: About },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },
-      { path: "/register", component: Register }
+      { path: "/register", component: Register },
+      { path: "*", component: PageNotFound },
     ]
   },
-  { path: "/login", component: Login },
-  { path: "*", component: PageNotFound }
+  { path: "/login", component: Login }
 ];
 
 const router = new VueRouter({

@@ -20,7 +20,7 @@
                       :items="makes"
                       item-text="name"
                       item-value="id"
-                      label="Brand"
+                      label="Make"
                       clearable
                       :error-messages="errors.car_make_id"
                       @change="searchModelsByMake(advertisement.car_make_id)"
@@ -399,7 +399,7 @@ export default {
     await this.$http
       .get(`/advertisements/${this.id}`)
       .then(res => (this.advertisement = res.data))
-      .catch(() => this.$router.push("/404"));
+      .catch(() => this.$router.push("/admin/404"));
     await this.$http.get("/all-makes").then(res => (this.makes = res.data));
     await this.$http
       .get(`/model-by-make?make=${this.advertisement.car_make_id}`)
