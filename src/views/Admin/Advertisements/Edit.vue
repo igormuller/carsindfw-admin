@@ -130,10 +130,8 @@
                   <v-text-field
                     v-model="advertisement.doors"
                     label="Doors"
-                    required
-                    max="15"
-                    min="2"
                     type="number"
+                    v-mask="'#'"
                     :error-messages="errors.doors"
                   ></v-text-field>
                 </v-col>
@@ -159,8 +157,8 @@
                   <v-text-field
                     v-model="advertisement.miles"
                     label="Miles"
-                    required
                     type="number"
+                    v-mask="'#######'"
                     :error-messages="errors.miles"
                   ></v-text-field>
                 </v-col>
@@ -170,7 +168,7 @@
                   <v-text-field
                     v-model="advertisement.vin_number"
                     label="VIN Number"
-                    required
+                    v-mask="'NNN NNNNNN NNNNNNNN'"
                     :error-messages="errors.vin_number"
                   ></v-text-field>
                 </v-col>
@@ -178,8 +176,7 @@
                   <v-text-field
                     v-model="advertisement.value"
                     label="Value"
-                    required
-                    type="number"
+                    v-mask="currencyMask"
                     prefix="$"
                     :error-messages="errors.value"
                   ></v-text-field>
@@ -282,6 +279,7 @@ import {
   COLOR,
   DRIVE_TYPE
 } from "@/constants/variables.js";
+import createNumberMask from "text-mask-addons/dist/createNumberMask";
 import Loading from "@/components/Loading";
 
 export default {
@@ -289,6 +287,12 @@ export default {
   props: ["id"],
   data() {
     return {
+      currencyMask: createNumberMask({
+        prefix: false,
+        allowDecimal: true,
+        includeThousandsSeparator: true,
+        integerLimit: 8
+      }),
       loading: true,
       car_type: CAR_TYPE,
       fuel_type: FUEL_TYPE,

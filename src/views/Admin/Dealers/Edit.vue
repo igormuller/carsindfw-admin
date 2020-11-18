@@ -128,9 +128,10 @@
                     accept="image/png, image/jpeg"
                     prepend-icon="mdi-camera"
                     label="Your Logo"
-                    @change="testeImage($event)"
+                    @change="avatar($event)"
                   ></v-file-input>
-                  <v-avatar>
+                  <v-avatar width="200" height="200">
+                    <!-- <v-img :src="logo" alt="John"></v-img> -->
                     <img :src="logo" alt="John" />
                   </v-avatar>
                 </v-col>
@@ -138,25 +139,31 @@
             </v-container>
           </form>
         </v-card-text>
-        <v-card-acitons>
+        <v-card-actions>
           <v-row class="text-right">
             <v-col>
               <v-btn color="primary" @click="save()" class="mr-3">save</v-btn>
             </v-col>
           </v-row>
-        </v-card-acitons>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["id"],
   data() {
     return {
       logo: "",
-      dealer: {},
+      dealer: {
+        address: {
+          zipcode: ""
+        }
+      },
       states: [],
       cities: [],
       isBusy: false,
@@ -174,12 +181,17 @@ export default {
       this.dealer.address.city_id = null;
       this.$http.get(`/cities/${item}`).then(res => (this.cities = res.data));
     },
-    testeImage(item) {
-      this.logo = item.name;
-      console.log(item);
+    avatar(item) {
+      let formData = new FormData();
+      formData.append("file", item);
+      axios
+        .post("https://httpbin.org/post", formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => (this.logo = res.data.files.file));
     }
   },
-  async mounted() {
+  async created() {
     this.isBusy = !this.isBusy;
     await this.$http
       .get(`/dealers/${this.id}`)

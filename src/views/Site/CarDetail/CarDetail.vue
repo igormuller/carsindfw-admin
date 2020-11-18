@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card v-if="advertisement.company_data">
       <BannerTop :slides="slides"></BannerTop>
     </v-card>
     <v-row>
@@ -51,6 +51,7 @@
               label="Phone"
               dense
               v-model="interest.phone"
+              v-mask="'###-###-####'"
               :error-messages="errors.phone"
             ></v-text-field>
             <v-text-field

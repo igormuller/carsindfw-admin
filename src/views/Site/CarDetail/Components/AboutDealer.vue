@@ -57,7 +57,7 @@
         </gmap-map>
       </v-col>
     </v-row>
-    <v-row v-if="company.type === 'dealer'">
+    <!-- <v-row v-if="company.type === 'dealer'">
       <v-col>
         <h2 style="color:#bf0d3e">Dealers Review</h2>
         <div class="mt-2">
@@ -68,7 +68,7 @@
           <v-rating :value="1" readonly color="#00205b" dense></v-rating>
         </div>
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 
