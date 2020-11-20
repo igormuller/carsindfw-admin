@@ -130,10 +130,49 @@
                     label="Your Logo"
                     @change="avatar($event)"
                   ></v-file-input>
-                  <v-avatar width="200" height="200">
-                    <!-- <v-img :src="logo" alt="John"></v-img> -->
-                    <img :src="logo" alt="John" />
-                  </v-avatar>
+                  <v-img
+                    :src="logo"
+                    alt="Logo"
+                    height="150"
+                    contain
+                    v-if="loadingLogo || logo"
+                  >
+                    <template v-slot:default v-if="loadingLogo">
+                      <v-row
+                        class="fill-height ma-0"
+                        align="center"
+                        justify="center"
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="primary"
+                        ></v-progress-circular>
+                      </v-row>
+                    </template>
+                  </v-img>
+                </v-col>
+                <v-col cols="12" md="9">
+                  <v-file-input
+                    chips
+                    multiple
+                    small-chips
+                    truncate-length="11"
+                    accept="image/png, image/jpeg"
+                    prepend-icon="mdi-camera"
+                    label="Your Pictures"
+                    @change="loadImages($event)"
+                    @click:clear="clearImages()"
+                  ></v-file-input>
+                  <v-row>
+                    <v-col
+                      v-for="(image, key) in images"
+                      :key="key"
+                      class="d-flex child-flex"
+                      cols="4"
+                    >
+                      <v-img :src="image" height="175" contain></v-img>
+                    </v-col>
+                  </v-row>
                 </v-col>
               </v-row>
             </v-container>
@@ -158,12 +197,16 @@ export default {
   props: ["id"],
   data() {
     return {
-      logo: "",
       dealer: {
         address: {
           zipcode: ""
-        }
+        },
+        profile_path: "",
+        images: []
       },
+      logo: "",
+      loadingLogo: false,
+      images: [],
       states: [],
       cities: [],
       isBusy: false,
@@ -182,13 +225,30 @@ export default {
       this.$http.get(`/cities/${item}`).then(res => (this.cities = res.data));
     },
     avatar(item) {
+      this.loadingLogo = !this.loadingLogo;
+      this.dealer.profile_path = item;
+      this.getPreviewImage(item).then(res => (this.logo = res.data.files.file));
+      this.loadingLogo = !this.loadingLogo;
+    },
+    loadImages(items) {
+      this.images = [];
+      this.dealer.images = items;
+
+      items.map(item => {
+        this.getPreviewImage(item).then(res =>
+          this.images.push(res.data.files.file)
+        );
+      });
+    },
+    clearImages() {
+      this.images = [];
+    },
+    getPreviewImage(image) {
       let formData = new FormData();
-      formData.append("file", item);
-      axios
-        .post("https://httpbin.org/post", formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        })
-        .then(res => (this.logo = res.data.files.file));
+      formData.append("file", image);
+      return axios.post("https://httpbin.org/post", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
     }
   },
   async created() {
