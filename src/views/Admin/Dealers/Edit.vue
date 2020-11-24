@@ -74,7 +74,7 @@
                   <v-text-field
                     label="Zipcode"
                     v-model="dealer.address.zipcode"
-                    :error-messages="errors.zipcode"
+                    :error-messages="errors['address.zipcode']"
                   >
                   </v-text-field>
                 </v-col>
@@ -82,7 +82,7 @@
                   <v-text-field
                     label="Street"
                     v-model="dealer.address.street"
-                    :error-messages="errors.street"
+                    :error-messages="errors['address.street']"
                   >
                   </v-text-field>
                 </v-col>
@@ -90,15 +90,15 @@
                   <v-text-field
                     label="Number"
                     v-model="dealer.address.number"
-                    :error-messages="errors.number"
+                    :error-messages="errors['address.number']"
                   >
                   </v-text-field>
                 </v-col>
                 <v-col cols="12" md="2">
                   <v-text-field
                     label="Neighborhood"
-                    v-model="dealer.neighborhood"
-                    :error-messages="errors.neighborhood"
+                    v-model="dealer.address.neighborhood"
+                    :error-messages="errors['address.neighborhood']"
                   >
                   </v-text-field>
                 </v-col>
@@ -110,6 +110,7 @@
                     item-value="id"
                     label="State"
                     @change="cityByState($event)"
+                    :error-messages="errors['address.state_id']"
                   ></v-select>
                 </v-col>
                 <v-col cols="12" md="2">
@@ -119,6 +120,7 @@
                     item-text="name"
                     item-value="id"
                     label="City"
+                    :error-messages="errors['address.city_id']"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -131,11 +133,11 @@
                     @change="avatar($event)"
                   ></v-file-input>
                   <v-img
-                    :src="logo"
+                    :src="dealer.profile_url"
                     alt="Logo"
                     height="150"
                     contain
-                    v-if="loadingLogo || logo"
+                    v-if="loadingLogo || dealer.profile_path"
                   >
                     <template v-slot:default v-if="loadingLogo">
                       <v-row
@@ -217,7 +219,7 @@ export default {
     save() {
       this.$http
         .put(`/dealers/${this.id}`, this.dealer)
-        .then(() => this.$router.push("/admin/dealers"))
+        // .then(() => this.$router.push("/admin/dealers"))
         .catch(error => (this.errors = error.response.data.errors));
     },
     cityByState(item) {
@@ -226,12 +228,16 @@ export default {
     },
     avatar(item) {
       this.loadingLogo = !this.loadingLogo;
-      this.dealer.profile_path = item;
-      this.getPreviewImage(item).then(res => (this.logo = res.data.files.file));
+      // this.dealer.profile_path = item;
+      this.getPreviewImage(item).then(res => {
+        this.dealer.profile_path = res.data.files.file;
+        this.dealer.profile_url = res.data.files.file;
+      });
       this.loadingLogo = !this.loadingLogo;
     },
     loadImages(items) {
-      this.images = [];
+      this.clearImages();
+      console.log(items);
       this.dealer.images = items;
 
       items.map(item => {
