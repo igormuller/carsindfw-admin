@@ -228,32 +228,27 @@
                   md="3"
                   sm="4"
                 >
-                  <v-card flat tile class="d-flex">
-                    <v-img
-                      :src="gallery.url"
-                      aspect-ratio="2"
-                      class="grey lighten-2"
-                    >
-                      <template v-slot:default>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="start"
-                          justify="end"
-                        >
-                          <v-btn
-                            color="primary"
-                            fab
-                            small
-                            @click="removePicture(gallery)"
-                          >
-                            <v-icon small color="warning">
-                              mdi-window-close
-                            </v-icon>
-                          </v-btn>
-                        </v-row>
-                      </template>
-                    </v-img>
-                  </v-card>
+                  <v-hover>
+                    <template v-slot:default="{ hover }">
+                      <v-img
+                        :src="gallery.url"
+                        aspect-ratio="2"
+                        class="grey lighten-2"
+                      >
+                        <v-fade-transition>
+                          <v-overlay v-if="hover" absolute color="#036358">
+                            <v-btn
+                              rounded
+                              color="primary"
+                              @click="removePicture(gallery)"
+                            >
+                              Remove
+                            </v-btn>
+                          </v-overlay>
+                        </v-fade-transition>
+                      </v-img>
+                    </template>
+                  </v-hover>
                 </v-col>
               </v-row>
               <v-btn color="primary" small>Add More Pictures</v-btn>

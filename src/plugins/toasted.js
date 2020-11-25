@@ -2,8 +2,9 @@ import Vue from "vue";
 import Toasted from "vue-toasted";
 
 Vue.use(Toasted, {
-  // iconPack: "fontawesome",
-  duration: 5000
+  duration: 5000,
+  theme: "bubble",
+  position: "top-center"
 });
 
 Vue.toasted.register(

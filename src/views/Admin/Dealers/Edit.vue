@@ -1,11 +1,38 @@
 <template>
   <v-row align="center" justify="center">
     <v-col>
-      <v-card elevation="5" :loading="isBusy">
+      <v-card elevation="5" :loading="isBusy" :disabled="isBusy">
         <v-card-title><h2>Edit Dealer</h2></v-card-title>
         <v-card-text>
-          <form @keydown.enter="save()">
-            <v-container>
+          <v-row>
+            <v-col cols="12" md="3">
+              <v-hover>
+                <template v-slot:default="{ hover }">
+                  <v-img
+                    :src="setLogoDealer"
+                    alt="Logo"
+                    height="200"
+                    width="200"
+                    contain
+                    @click="uploadAvatar"
+                  >
+                    <v-fade-transition>
+                      <v-overlay v-if="hover" absolute color="#036358">
+                        <v-btn rounded color="primary">Choose Your Logo</v-btn>
+                      </v-overlay>
+                    </v-fade-transition>
+                  </v-img>
+                </template>
+              </v-hover>
+              <input
+                ref="uploaderAvatar"
+                class="d-none"
+                type="file"
+                accept="image/*"
+                @change="loadAvatar"
+              />
+            </v-col>
+            <v-col cols="12" md="9">
               <v-row>
                 <v-col cols="12" md="4">
                   <v-text-field
@@ -69,116 +96,123 @@
                   </v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="12" md="1">
-                  <v-text-field
-                    label="Zipcode"
-                    v-model="dealer.address.zipcode"
-                    :error-messages="errors['address.zipcode']"
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="12" md="3">
-                  <v-text-field
-                    label="Street"
-                    v-model="dealer.address.street"
-                    :error-messages="errors['address.street']"
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="12" md="1">
-                  <v-text-field
-                    label="Number"
-                    v-model="dealer.address.number"
-                    :error-messages="errors['address.number']"
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-text-field
-                    label="Neighborhood"
-                    v-model="dealer.address.neighborhood"
-                    :error-messages="errors['address.neighborhood']"
-                  >
-                  </v-text-field>
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="dealer.address.state_id"
-                    :items="states"
-                    item-text="name"
-                    item-value="id"
-                    label="State"
-                    @change="cityByState($event)"
-                    :error-messages="errors['address.state_id']"
-                  ></v-select>
-                </v-col>
-                <v-col cols="12" md="2">
-                  <v-select
-                    v-model="dealer.address.city_id"
-                    :items="cities"
-                    item-text="name"
-                    item-value="id"
-                    label="City"
-                    :error-messages="errors['address.city_id']"
-                  ></v-select>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" md="3">
-                  <v-file-input
-                    accept="image/png, image/jpeg"
-                    prepend-icon="mdi-camera"
-                    label="Your Logo"
-                    @change="avatar($event)"
-                  ></v-file-input>
-                  <v-img
-                    :src="dealer.profile_url"
-                    alt="Logo"
-                    height="150"
-                    contain
-                    v-if="loadingLogo || dealer.profile_path"
-                  >
-                    <template v-slot:default v-if="loadingLogo">
-                      <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="1">
+              <v-text-field
+                label="Zipcode"
+                v-model="dealer.address.zipcode"
+                v-mask="'#####'"
+                :error-messages="errors['address.zipcode']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-text-field
+                label="Street"
+                v-model="dealer.address.street"
+                :error-messages="errors['address.street']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="1">
+              <v-text-field
+                label="Number"
+                v-model="dealer.address.number"
+                :error-messages="errors['address.number']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-text-field
+                label="Neighborhood"
+                v-model="dealer.address.neighborhood"
+                :error-messages="errors['address.neighborhood']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-select
+                v-model="dealer.address.state_id"
+                :items="states"
+                item-text="name"
+                item-value="id"
+                label="State"
+                @change="cityByState($event)"
+                :error-messages="errors['address.state_id']"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-select
+                :loading="loadingCities"
+                v-model="dealer.address.city_id"
+                :items="cities"
+                item-text="name"
+                item-value="id"
+                label="City"
+                :error-messages="errors['address.city_id']"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>Gallery</v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-row>
+                      <v-col
+                        v-for="(image, key) in images"
+                        :key="key"
+                        cols="6"
+                        md="3"
+                        sm="4"
                       >
-                        <v-progress-circular
-                          indeterminate
-                          color="primary"
-                        ></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                </v-col>
-                <v-col cols="12" md="9">
-                  <v-file-input
-                    chips
-                    multiple
-                    small-chips
-                    truncate-length="11"
-                    accept="image/png, image/jpeg"
-                    prepend-icon="mdi-camera"
-                    label="Your Pictures"
-                    @change="loadImages($event)"
-                    @click:clear="clearImages()"
-                  ></v-file-input>
-                  <v-row>
-                    <v-col
-                      v-for="(image, key) in images"
-                      :key="key"
-                      class="d-flex child-flex"
-                      cols="4"
-                    >
-                      <v-img :src="image" height="175" contain></v-img>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-container>
-          </form>
+                        <v-hover>
+                          <template v-slot:default="{ hover }">
+                            <v-img
+                              :src="image"
+                              alt="Logo"
+                              aspect-ratio="2"
+                              class="grey lighten-2 ma-2"
+                            >
+                              <v-fade-transition>
+                                <v-overlay
+                                  v-if="hover"
+                                  absolute
+                                  color="#036358"
+                                >
+                                  <v-btn
+                                    rounded
+                                    color="primary"
+                                    @click="removeImage(key)"
+                                  >
+                                    Remove
+                                  </v-btn>
+                                </v-overlay>
+                              </v-fade-transition>
+                            </v-img>
+                          </template>
+                        </v-hover>
+                      </v-col>
+                    </v-row>
+                    <v-btn class="ma-2 primary" @click="uploadImages">
+                      <v-icon class="mr-2">mdi-plus</v-icon> Images
+                    </v-btn>
+                    <input
+                      ref="uploaderImages"
+                      class="d-none"
+                      multiple
+                      type="file"
+                      accept="image/*"
+                      @change="loadImages"
+                    />
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-card-actions>
           <v-row class="text-right">
@@ -207,47 +241,64 @@ export default {
         images: []
       },
       logo: "",
-      loadingLogo: false,
       images: [],
       states: [],
       cities: [],
       isBusy: false,
+      loadingCities: false,
       errors: {}
     };
   },
   methods: {
+    uploadAvatar() {
+      this.$refs.uploaderAvatar.click();
+    },
+    uploadImages() {
+      this.$refs.uploaderImages.click();
+    },
+    removeImage(item) {
+      this.images.splice(item, 1);
+      console.log(item);
+    },
     save() {
+      this.isBusy = true;
       this.$http
         .put(`/dealers/${this.id}`, this.dealer)
-        // .then(() => this.$router.push("/admin/dealers"))
-        .catch(error => (this.errors = error.response.data.errors));
+        .then(() => {
+          this.isBusy = false;
+          this.$toasted.global.defaultSuccess({ msg: "Dealer Saved!!!" });
+        })
+        .catch(error => {
+          this.isBusy = false;
+          this.errors = error.response.data.errors;
+          this.$toasted.global.defaultError({
+            msg: error.response.data.message
+          });
+        });
     },
     cityByState(item) {
+      this.loadingCities = true;
       this.dealer.address.city_id = null;
-      this.$http.get(`/cities/${item}`).then(res => (this.cities = res.data));
+      this.cities = [];
+      this.$http.get(`/cities/${item}`).then(res => {
+        this.cities = res.data;
+        this.loadingCities = false;
+      });
     },
-    avatar(item) {
-      this.loadingLogo = !this.loadingLogo;
-      // this.dealer.profile_path = item;
-      this.getPreviewImage(item).then(res => {
+    loadAvatar(item) {
+      this.getPreviewImage(item.target.files[0]).then(res => {
         this.dealer.profile_path = res.data.files.file;
         this.dealer.profile_url = res.data.files.file;
       });
-      this.loadingLogo = !this.loadingLogo;
     },
     loadImages(items) {
-      this.clearImages();
-      console.log(items);
-      this.dealer.images = items;
+      this.dealer.images = [...items.target.files];
 
-      items.map(item => {
+      [...items.target.files].map(item => {
         this.getPreviewImage(item).then(res =>
           this.images.push(res.data.files.file)
         );
       });
-    },
-    clearImages() {
-      this.images = [];
     },
     getPreviewImage(image) {
       let formData = new FormData();
@@ -257,17 +308,29 @@ export default {
       });
     }
   },
+  computed: {
+    setLogoDealer() {
+      if (this.dealer.profile_url) {
+        return this.dealer.profile_url;
+      }
+      return require("@/assets/site/dealer-logo-default.png");
+    }
+  },
   async created() {
     this.isBusy = !this.isBusy;
     await this.$http
       .get(`/dealers/${this.id}`)
       .then(res => (this.dealer = res.data))
       .catch(() => this.$router.push("/admin/404"));
-    await this.$http.get(`/states`).then(res => (this.states = res.data));
+    await this.$http.get(`/states`).then(res => {
+      this.states = res.data;
+      this.loadingCities = true;
+    });
     await this.$http
       .get(`/cities/${this.dealer.address.state_id}`)
       .then(res => {
         this.cities = res.data;
+        this.loadingCities = false;
       });
     this.isBusy = !this.isBusy;
   }
