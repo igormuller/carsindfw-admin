@@ -1,13 +1,27 @@
 <template>
   <div>
-    <v-card>
-      <v-card-title style="color: #00205b">{{ dealer.name }}</v-card-title>
+    <v-card v-if="dealer">
+      <v-card-title style="color: #00205b"><h1>{{ dealer.name }}</h1></v-card-title>
       <v-card-text style="color: #00205b">
         <v-row>
           <v-col cols="12" md="6">
-            <h2>Street: {{ dealer.address.street }}</h2>
-            <h2>City: {{ dealer.address.city.name }}</h2>
-            <h2>Phone: {{ dealer.phone }}</h2>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-img :src="setLogoDealer(dealer)"></v-img>
+              </v-col>
+              <v-col cols="12" md="6">
+                <h2 class="mb-2">Street: {{ dealer.address.street }}</h2>
+                <h2 class="mb-2">City: {{ dealer.address.city.name }}</h2>
+                <h2 class="mb-2">Phone: {{ dealer.phone }}</h2>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col v-if="images.length > 0">
+                <GaleryInverter :images="images" />
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="12" md="6">
             <v-card elevation="8" class="mt-4">
               <gmap-map
                 :center="center"
@@ -15,13 +29,10 @@
                 :options="{
                   zoomControl: false
                 }"
-                style="width:100%;  height: 350px;"
+                style="width:100%;  height: 550px;"
               >
               </gmap-map>
             </v-card>
-          </v-col>
-          <v-col cols="12" md="6">
-            <GaleryInverter :images="images" />
           </v-col>
         </v-row>
       </v-card-text>
@@ -72,10 +83,7 @@ export default {
       year_start: "",
       year_end: ""
     },
-    images: [
-      { url: "https://picsum.photos/id/11/500/300" },
-      { url: "https://picsum.photos/510/300?random" }
-    ]
+    images: []
   }),
   methods: {
     searchNow(dataSearch) {
@@ -90,12 +98,21 @@ export default {
           }
         })
         .then(res => (this.advertisements = res.data));
+    },
+    setLogoDealer(dealer) {
+      if (dealer.profile_url) {
+        return dealer.profile_url;
+      }
+      return require("@/assets/site/dealer-logo-default.png");
     }
   },
   async created() {
     await this.$http
       .get(`/dealer/${this.dealer_id}`)
-      .then(res => (this.dealer = res.data));
+      .then(res => {
+        this.dealer = res.data;
+        this.images = res.data.gallery;
+      });
     await this.$http
       .get(`/lat-lng-maps?address_id=${this.dealer.address.id}`)
       .then(res => {

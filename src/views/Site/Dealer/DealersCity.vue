@@ -23,8 +23,8 @@ export default {
   }),
   methods: {
     setLogoDealer(dealer) {
-      if (dealer.profile_path) {
-        return dealer.profile_path;
+      if (dealer.profile_url) {
+        return dealer.profile_url;
       }
       return require("@/assets/site/dealer-logo-default.png");
     }

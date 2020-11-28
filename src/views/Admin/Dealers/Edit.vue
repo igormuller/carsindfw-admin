@@ -163,7 +163,7 @@
                   <v-expansion-panel-content>
                     <v-row>
                       <v-col
-                        v-for="(image, key) in images"
+                        v-for="(image, key) in gallery"
                         :key="key"
                         cols="6"
                         md="3"
@@ -172,7 +172,7 @@
                         <v-hover>
                           <template v-slot:default="{ hover }">
                             <v-img
-                              :src="image"
+                              :src="image.url"
                               alt="Logo"
                               aspect-ratio="2"
                               class="grey lighten-2 ma-2"
@@ -197,7 +197,7 @@
                         </v-hover>
                       </v-col>
                     </v-row>
-                    <v-btn class="ma-2 primary" @click="uploadImages">
+                    <v-btn class="ma-2 primary" @click="uploadImages" :disabled="loadingImages" :loading="loadingImages">
                       <v-icon class="mr-2">mdi-plus</v-icon> Images
                     </v-btn>
                     <input
@@ -238,14 +238,13 @@ export default {
           zipcode: ""
         },
         profile_path: "",
-        images: []
       },
-      logo: "",
-      images: [],
+      gallery: [],
       states: [],
       cities: [],
       isBusy: false,
       loadingCities: false,
+      loadingImages: false,
       errors: {}
     };
   },
@@ -257,8 +256,7 @@ export default {
       this.$refs.uploaderImages.click();
     },
     removeImage(item) {
-      this.images.splice(item, 1);
-      console.log(item);
+      this.gallery.splice(item, 1);
     },
     save() {
       this.isBusy = true;
@@ -275,6 +273,15 @@ export default {
             msg: error.response.data.message
           });
         });
+      const formData = this.imagesFormData();
+      this.$http
+        .post(`/gallery-dealer/${this.id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => {
+        this.gallery = [];
+        this.gallery = res.data;
+      });
     },
     cityByState(item) {
       this.loadingCities = true;
@@ -291,13 +298,16 @@ export default {
         this.dealer.profile_url = res.data.files.file;
       });
     },
-    loadImages(items) {
-      this.dealer.images = [...items.target.files];
-
-      [...items.target.files].map(item => {
-        this.getPreviewImage(item).then(res =>
-          this.images.push(res.data.files.file)
-        );
+    async loadImages(items) {
+      this.loadingImages = true;
+      await [...items.target.files].map(item => {
+        this.getPreviewImage(item).then(res => {
+          this.gallery.push({
+            "url": res.data.files.file,
+            "file": item
+          });
+          this.loadingImages = false;
+        });
       });
     },
     getPreviewImage(image) {
@@ -306,7 +316,15 @@ export default {
       return axios.post("https://httpbin.org/post", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
-    }
+    },
+    imagesFormData() {
+      let formData = new FormData();
+      this.gallery.map((item, key) => {
+        formData.append(`gallery[${key}][file]`, item.file? item.file:'');
+        formData.append(`gallery[${key}][path]`, item.path? item.path:'');
+      });
+      return formData;
+    },
   },
   computed: {
     setLogoDealer() {
@@ -320,7 +338,10 @@ export default {
     this.isBusy = !this.isBusy;
     await this.$http
       .get(`/dealers/${this.id}`)
-      .then(res => (this.dealer = res.data))
+      .then(res => {
+        this.dealer = res.data;
+        this.gallery = res.data.gallery;
+      })
       .catch(() => this.$router.push("/admin/404"));
     await this.$http.get(`/states`).then(res => {
       this.states = res.data;

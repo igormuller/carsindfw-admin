@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Dealers</h1>
-    <v-row class="ma-2">
+    <v-row class="ma-2" v-if="this.$store.state.user.company.type === 'broker'">
       <router-link to="/admin/dealers/new" tag="div">
         <v-btn color="primary">New Dealer</v-btn>
       </router-link>
@@ -24,14 +24,14 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-tooltip top>
+            <!-- <v-tooltip top>
               <template v-slot:activator="{ on }">
                 <v-icon small v-on="on" @click="deleteItem(item)">
                   mdi-delete
                 </v-icon>
               </template>
               <span>Remove</span>
-            </v-tooltip>
+            </v-tooltip> -->
           </template>
         </v-data-table>
       </v-col>
@@ -57,24 +57,30 @@ export default {
     edit(id) {
       this.$router.push(`/admin/dealers/${id}`);
     },
-    deleteItem(item) {
-      this.$swal({
-        text: `Confirm that you remove ${item.name}`,
-        icon: "warning",
-        showCancelButton: true
-      }).then(data => {
-        if (data.value) {
-          this.$http
-            .delete(`/dealers/${item.id}`)
-            .then(res => {
-              this.$toasted.global.defaultSuccess({ msg: res.data });
-              this.items.splice(this.items.indexOf(item), 1);
-            })
-            .catch(error => {
-              this.$toasted.global.defaultError({ msg: error.response.data });
-            });
-        }
-      });
+    // deleteItem(item) {
+    //   this.$swal({
+    //     text: `Confirm that you remove ${item.name}`,
+    //     icon: "warning",
+    //     showCancelButton: true
+    //   }).then(data => {
+    //     if (data.value) {
+    //       this.$http
+    //         .delete(`/dealers/${item.id}`)
+    //         .then(res => {
+    //           this.$toasted.global.defaultSuccess({ msg: res.data });
+    //           this.items.splice(this.items.indexOf(item), 1);
+    //         })
+    //         .catch(error => {
+    //           this.$toasted.global.defaultError({ msg: error.response.data });
+    //         });
+    //     }
+    //   });
+    // }
+  },
+  created() {
+    let user = this.$store.state.user;
+    if (user.company.type === 'dealer') {
+      this.$router.push(`/admin/dealers/${user.company.id}`)
     }
   },
   mounted() {

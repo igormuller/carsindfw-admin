@@ -28,13 +28,13 @@
             </v-text-field>
           </form>
         </v-card-text>
-        <v-card-acitons>
+        <v-card-actions>
           <v-row class="text-right">
             <v-col>
               <v-btn color="primary" @click="save()" class="mr-3">save</v-btn>
             </v-col>
           </v-row>
-        </v-card-acitons>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
