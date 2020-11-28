@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-card v-if="dealer">
-      <v-card-title style="color: #00205b"><h1>{{ dealer.name }}</h1></v-card-title>
+      <v-card-title style="color: #00205b">
+        <h1>{{ dealer.name }}</h1>
+      </v-card-title>
       <v-card-text style="color: #00205b">
         <v-row>
           <v-col cols="12" md="6">
@@ -107,12 +109,10 @@ export default {
     }
   },
   async created() {
-    await this.$http
-      .get(`/dealer/${this.dealer_id}`)
-      .then(res => {
-        this.dealer = res.data;
-        this.images = res.data.gallery;
-      });
+    await this.$http.get(`/dealer/${this.dealer_id}`).then(res => {
+      this.dealer = res.data;
+      this.images = res.data.gallery;
+    });
     await this.$http
       .get(`/lat-lng-maps?address_id=${this.dealer.address.id}`)
       .then(res => {

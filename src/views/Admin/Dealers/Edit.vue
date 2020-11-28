@@ -197,7 +197,12 @@
                         </v-hover>
                       </v-col>
                     </v-row>
-                    <v-btn class="ma-2 primary" @click="uploadImages" :disabled="loadingImages" :loading="loadingImages">
+                    <v-btn
+                      class="ma-2 primary"
+                      @click="uploadImages"
+                      :disabled="loadingImages"
+                      :loading="loadingImages"
+                    >
                       <v-icon class="mr-2">mdi-plus</v-icon> Images
                     </v-btn>
                     <input
@@ -237,7 +242,7 @@ export default {
         address: {
           zipcode: ""
         },
-        profile_path: "",
+        profile_path: ""
       },
       gallery: [],
       states: [],
@@ -279,9 +284,9 @@ export default {
           headers: { "Content-Type": "multipart/form-data" }
         })
         .then(res => {
-        this.gallery = [];
-        this.gallery = res.data;
-      });
+          this.gallery = [];
+          this.gallery = res.data;
+        });
     },
     cityByState(item) {
       this.loadingCities = true;
@@ -303,8 +308,8 @@ export default {
       await [...items.target.files].map(item => {
         this.getPreviewImage(item).then(res => {
           this.gallery.push({
-            "url": res.data.files.file,
-            "file": item
+            url: res.data.files.file,
+            file: item
           });
           this.loadingImages = false;
         });
@@ -320,11 +325,11 @@ export default {
     imagesFormData() {
       let formData = new FormData();
       this.gallery.map((item, key) => {
-        formData.append(`gallery[${key}][file]`, item.file? item.file:'');
-        formData.append(`gallery[${key}][path]`, item.path? item.path:'');
+        formData.append(`gallery[${key}][file]`, item.file ? item.file : "");
+        formData.append(`gallery[${key}][path]`, item.path ? item.path : "");
       });
       return formData;
-    },
+    }
   },
   computed: {
     setLogoDealer() {

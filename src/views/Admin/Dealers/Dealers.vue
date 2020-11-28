@@ -56,7 +56,7 @@ export default {
   methods: {
     edit(id) {
       this.$router.push(`/admin/dealers/${id}`);
-    },
+    }
     // deleteItem(item) {
     //   this.$swal({
     //     text: `Confirm that you remove ${item.name}`,
@@ -79,8 +79,8 @@ export default {
   },
   created() {
     let user = this.$store.state.user;
-    if (user.company.type === 'dealer') {
-      this.$router.push(`/admin/dealers/${user.company.id}`)
+    if (user.company.type === "dealer") {
+      this.$router.push(`/admin/dealers/${user.company.id}`);
     }
   },
   mounted() {
