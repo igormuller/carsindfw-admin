@@ -283,10 +283,7 @@ export default {
         .post(`/gallery-dealer/${this.id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" }
         })
-        .then(res => {
-          this.gallery = [];
-          this.gallery = res.data;
-        });
+        .then(res => (this.gallery = res.data));
     },
     cityByState(item) {
       this.loadingCities = true;
@@ -345,7 +342,7 @@ export default {
       .get(`/dealers/${this.id}`)
       .then(res => {
         this.dealer = res.data;
-        this.gallery = res.data.gallery;
+        this.gallery = [...res.data.gallery];
       })
       .catch(() => this.$router.push("/admin/404"));
     await this.$http.get(`/states`).then(res => {
