@@ -27,7 +27,6 @@
                 item-value="id"
                 label="Make"
                 clearable
-                required
               ></v-autocomplete>
             </v-col>
             <v-col cols="12" md="2">
@@ -52,8 +51,8 @@
               <v-autocomplete
                 v-model="category"
                 :items="categories"
-                item-text="name"
-                item-value="id"
+                item-text="body_type_front"
+                item-value="body_type"
                 label="Category"
                 clearable
               >

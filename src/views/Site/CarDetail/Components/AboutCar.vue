@@ -66,7 +66,7 @@
       color="#acc0e3"
       style="color: #00205b;"
     >
-      <h1>{{ carDetail.value }}</h1>
+      <h1>{{ carDetail.value | currency }}</h1>
     </v-card>
     <v-card class="mt-3 pa-3 text-center">
       <v-card-title style="color:#00205b"><h3>Optionals</h3></v-card-title>
@@ -78,6 +78,14 @@
       >
         {{ feature }}
       </v-chip>
+    </v-card>
+    <v-card class="mt-3 pa-3">
+      <v-card-title style="color:#00205b">
+        <h3>Dealer's Description</h3>
+      </v-card-title>
+      <v-card-text>
+        <h3>{{ carDetail.description }}</h3>
+      </v-card-text>
     </v-card>
     <v-card class="mt-3 pa-5 text-center">
       <v-btn

@@ -49,31 +49,12 @@
             contain
             :src="setPhoto(advertisement)"
           ></v-img>
-          <v-card-title>{{ advertisement.trim }}</v-card-title>
+          <v-card-title>{{ advertisement.show_name }}</v-card-title>
           <v-card-text>
-            <v-row class="mx-0">
-              <v-rating
-                :value="4.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"
-              ></v-rating>
-              <div class="grey--text ml-4">4.5 (413)</div>
-            </v-row>
             <div class="my-1 subtitle-1">
-              <strong>$ {{ advertisement.value }}</strong>
-            </div>
-            <div>
-              {{ advertisement.description }}
+              <strong>{{ advertisement.value | currency }}</strong>
             </div>
           </v-card-text>
-          <!-- <v-card-actions>
-            <v-btn color="primary" text to="car-detail">
-              Reserve
-            </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
     </v-row>

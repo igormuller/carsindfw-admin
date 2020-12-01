@@ -4,35 +4,35 @@
     <v-card-text>
       <v-select
         v-model="dataSearch.type"
-        outlined
-        dense
         :items="types"
         label="New/Used"
         clearable
+        outlined
+        dense
         background-color="white"
       ></v-select>
       <v-autocomplete
         v-model="dataSearch.make"
-        outlined
-        dense
         :items="makes"
         item-text="name"
         item-value="id"
         label="Make"
         @change="searchModelsByMake(dataSearch.make)"
         clearable
+        outlined
+        dense
         background-color="white"
       ></v-autocomplete>
       <v-autocomplete
         v-model="dataSearch.model"
-        outlined
-        dense
         :items="models"
         item-text="name"
         item-value="id"
         label="Model"
         @change="searchCategoriesByModel(dataSearch.model)"
         clearable
+        outlined
+        dense
         background-color="white"
       >
         <template v-slot:no-data>
@@ -46,13 +46,13 @@
       <v-autocomplete
         v-model="dataSearch.category"
         :items="categories"
-        item-text="name"
-        item-value="id"
+        item-text="body_type_front"
+        item-value="body_type"
         label="Category"
+        clearable
         outlined
         dense
         background-color="white"
-        clearable
       >
         <template v-slot:no-data>
           <v-list-item>
@@ -68,19 +68,64 @@
           label="Year Start"
           outlined
           dense
-          required
           background-color="white"
-          class="mr-8"
         ></v-text-field>
+        <div class="mx-4 my-2">
+          <h3>to</h3>
+        </div>
         <v-text-field
           v-model="dataSearch.year_end"
           label="Year End"
           outlined
           dense
-          required
           background-color="white"
         ></v-text-field>
       </div>
+      <v-text-field
+        v-model="dataSearch.value"
+        label="Value Max"
+        v-mask="currencyMask"
+        prefix="$"
+        outlined
+        dense
+        background-color="white"
+      ></v-text-field>
+      <v-select
+        v-model="dataSearch.fuel_type"
+        :items="fuel_types"
+        label="Fuel Type"
+        clearable
+        outlined
+        dense
+        background-color="white"
+      ></v-select>
+      <v-select
+        v-model="dataSearch.transmission_type"
+        :items="transmission_types"
+        label="Gear Shift"
+        clearable
+        outlined
+        dense
+        background-color="white"
+      ></v-select>
+      <v-select
+        v-model="dataSearch.drive_train"
+        :items="drive_type"
+        label="Drive Train"
+        clearable
+        outlined
+        dense
+        background-color="white"
+      ></v-select>
+      <v-text-field
+        v-model="dataSearch.miles"
+        label="Miles"
+        type="number"
+        v-mask="'#######'"
+        outlined
+        dense
+        background-color="white"
+      ></v-text-field>
     </v-card-text>
     <v-card-actions>
       <v-btn block color="primary" @click="$emit('clickSearch', dataSearch)">
@@ -91,20 +136,40 @@
 </template>
 
 <script>
-import { CAR_TYPE } from "@/constants/variables.js";
+import {
+  CAR_TYPE,
+  FUEL_TYPE,
+  TRANSMISSION_TYPE,
+  DRIVE_TYPE
+} from "@/constants/variables.js";
+import createNumberMask from "text-mask-addons/dist/createNumberMask";
 
 export default {
   name: "Search",
   props: ["searchStart"],
   data: () => ({
+    currencyMask: createNumberMask({
+      prefix: false,
+      allowDecimal: true,
+      includeThousandsSeparator: true,
+      integerLimit: 8
+    }),
     types: CAR_TYPE,
+    fuel_types: FUEL_TYPE,
+    transmission_types: TRANSMISSION_TYPE,
+    drive_type: DRIVE_TYPE,
     dataSearch: {
       type: null,
       make: null,
       model: null,
       category: null,
       year_start: null,
-      year_end: null
+      year_end: null,
+      value: 0,
+      fuel_type: null,
+      transmission_type: null,
+      drive_train: null,
+      miles: 0
     },
     makes: [],
     models: [],
