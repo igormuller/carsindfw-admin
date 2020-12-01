@@ -165,11 +165,11 @@ export default {
       category: null,
       year_start: null,
       year_end: null,
-      value: 0,
+      value: null,
       fuel_type: null,
       transmission_type: null,
       drive_train: null,
-      miles: 0
+      miles: null
     },
     makes: [],
     models: [],

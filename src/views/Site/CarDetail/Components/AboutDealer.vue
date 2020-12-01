@@ -2,41 +2,28 @@
   <div>
     <v-row v-if="company.type === 'dealer'">
       <v-col cols="6">
-        <v-img
-          width="550"
-          contain
-          src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
-        ></v-img>
+        <v-img width="550" contain :src="setLogoDealer"></v-img>
       </v-col>
       <v-col cols="6" align-self="center">
         <v-btn text :to="`/dealer/${company.id}`">All cars</v-btn>
       </v-col>
     </v-row>
     <div>
-      <h2>{{ company.name }}</h2>
-      <span>Street: {{ company.address.street }}</span>
-      <br />
-      <span>
-        City: {{ company.address.city.name }} -
+      <h1 class="mb-2">{{ company.name }}</h1>
+      <div class="mb-2">
+        <strong>Street:</strong> {{ company.address.street }}
+      </div>
+      <div class="mb-2">
+        <strong>City:</strong> {{ company.address.city.name }} -
         {{ company.address.state.initials }}
-      </span>
-      <br />
-      <span>Phone: {{ company.phone }}</span>
-      <br />
-      <span>E-mail: {{ company.email }}</span>
-      <br />
-      <span>Site: {{ company.site }}</span>
-      <br />
+      </div>
+      <div class="mb-2"><strong>Phone:</strong> {{ company.phone }}</div>
+      <div class="mb-2"><strong>E-mail:</strong> {{ company.email }}</div>
+      <div class="mb-2"><strong>Site:</strong> {{ company.site }}</div>
     </div>
     <v-row v-if="company.type === 'dealer'">
-      <v-col cols="4">
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
-      </v-col>
-      <v-col cols="4">
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
-      </v-col>
-      <v-col cols="4">
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg"></v-img>
+      <v-col cols="4" v-for="image in company.gallery" :key="image.id">
+        <v-img :src="image.url"></v-img>
       </v-col>
     </v-row>
     <v-row v-if="company.type === 'dealer'">
@@ -57,18 +44,6 @@
         </gmap-map>
       </v-col>
     </v-row>
-    <!-- <v-row v-if="company.type === 'dealer'">
-      <v-col>
-        <h2 style="color:#bf0d3e">Dealers Review</h2>
-        <div class="mt-2">
-          <v-rating :value="5" readonly color="#00205b" dense></v-rating>
-          <v-rating :value="4" readonly color="#00205b" dense></v-rating>
-          <v-rating :value="3" readonly color="#00205b" dense></v-rating>
-          <v-rating :value="2" readonly color="#00205b" dense></v-rating>
-          <v-rating :value="1" readonly color="#00205b" dense></v-rating>
-        </div>
-      </v-col>
-    </v-row> -->
   </div>
 </template>
 
@@ -80,6 +55,14 @@ export default {
     center: { lat: 31.9685988, lng: -99.9018131 },
     zoom: 6
   }),
+  computed: {
+    setLogoDealer() {
+      if (this.company.profile_url) {
+        return this.company.profile_url;
+      }
+      return require("@/assets/site/dealer-logo-default.png");
+    }
+  },
   created() {
     this.$http
       .get(`/lat-lng-maps?address_id=${this.company.address.id}`)
