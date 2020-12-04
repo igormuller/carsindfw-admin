@@ -421,13 +421,12 @@ export default {
     async saveGallery() {
       this.changeLoading();
       let formData = new FormData();
-      formData.append("advertisement_id", this.advertisement_id);
       this.images.map((item, key) =>
-        formData.append("files[" + key + "]", item)
+        formData.append(`gallery[${key}][file]`, item)
       );
 
       await this.$http
-        .post("/gallery", formData, {
+        .post(`/gallery-advertisement/${this.advertisement_id}`, formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }

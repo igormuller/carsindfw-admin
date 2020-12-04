@@ -222,8 +222,8 @@
             <v-expansion-panel-content>
               <v-row>
                 <v-col
-                  v-for="gallery in advertisement.gallery"
-                  :key="gallery.id"
+                  v-for="(image, key) in gallery"
+                  :key="image.id"
                   cols="6"
                   md="3"
                   sm="4"
@@ -231,7 +231,7 @@
                   <v-hover>
                     <template v-slot:default="{ hover }">
                       <v-img
-                        :src="gallery.url"
+                        :src="image.url"
                         aspect-ratio="2"
                         class="grey lighten-2"
                       >
@@ -240,7 +240,7 @@
                             <v-btn
                               rounded
                               color="primary"
-                              @click="removePicture(gallery)"
+                              @click="removeImage(key)"
                             >
                               Remove
                             </v-btn>
@@ -251,7 +251,23 @@
                   </v-hover>
                 </v-col>
               </v-row>
-              <v-btn color="primary" small>Add More Pictures</v-btn>
+              <v-btn
+                color="primary"
+                small
+                @click="uploadImages"
+                :disabled="loadingImages"
+                :loading="loadingImages"
+              >
+                Add More Pictures
+              </v-btn>
+              <input
+                ref="uploaderImages"
+                class="d-none"
+                multiple
+                type="file"
+                accept="image/*"
+                @change="loadImages"
+              />
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -276,6 +292,7 @@ import {
 } from "@/constants/variables.js";
 import createNumberMask from "text-mask-addons/dist/createNumberMask";
 import Loading from "@/components/Loading";
+import axios from "axios";
 
 export default {
   components: { Loading },
@@ -300,12 +317,36 @@ export default {
       makes: [],
       models: [],
       advertisement: {},
+      gallery: [],
+      loadingImages: false,
       trim: null,
       errors: {},
       search: null
     };
   },
   methods: {
+    uploadImages() {
+      this.$refs.uploaderImages.click();
+    },
+    async loadImages(items) {
+      this.loadingImages = true;
+      await [...items.target.files].map(item => {
+        this.getPreviewImage(item).then(res => {
+          this.gallery.push({
+            url: res.data.files.file,
+            file: item
+          });
+          this.loadingImages = false;
+        });
+      });
+    },
+    getPreviewImage(image) {
+      let formData = new FormData();
+      formData.append("file", image);
+      return axios.post("https://httpbin.org/post", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+    },
     searchModelsByMake(make) {
       this.$http
         .get(`/model-by-make?make=${make}`)
@@ -353,27 +394,8 @@ export default {
 
       return true;
     },
-    removePicture(item) {
-      this.$swal({
-        text: `Confirm that you remove Picture`,
-        icon: "warning",
-        showCancelButton: true
-      }).then(data => {
-        if (data.value) {
-          this.$http
-            .delete(`/gallery/${item.id}`)
-            .then(res => {
-              this.$toasted.global.defaultSuccess({ msg: res.data });
-              this.advertisement.gallery.splice(
-                this.advertisement.gallery.indexOf(item),
-                1
-              );
-            })
-            .catch(error => {
-              this.$toasted.global.defaultError({ msg: error.response.data });
-            });
-        }
-      });
+    removeImage(item) {
+      this.gallery.splice(item, 1);
     },
     removeFeature(item) {
       this.advertisement.features.splice(
@@ -387,17 +409,41 @@ export default {
     },
     async save() {
       this.loading = !this.loading;
+      const formData = this.imagesFormData();
+      await this.$http
+        .post(`/gallery-advertisement/${this.id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => (this.gallery = res.data));
       await this.$http
         .put(`/advertisements/${this.id}`, this.advertisement)
-        .then(() => this.$router.push("/admin/advertisements"))
-        .catch(error => (this.errors = error.response.data.errors));
+        .then(() =>
+          this.$toasted.global.defaultSuccess({ msg: "Advertisement Saved!!!" })
+        )
+        .catch(error => {
+          this.errors = error.response.data.errors;
+          this.$toasted.global.defaultError({
+            msg: error.response.data.message
+          });
+        });
       this.loading = !this.loading;
+    },
+    imagesFormData() {
+      let formData = new FormData();
+      this.gallery.map((item, key) => {
+        formData.append(`gallery[${key}][file]`, item.file ? item.file : "");
+        formData.append(`gallery[${key}][path]`, item.path ? item.path : "");
+      });
+      return formData;
     }
   },
   async created() {
     await this.$http
       .get(`/advertisements/${this.id}`)
-      .then(res => (this.advertisement = res.data))
+      .then(res => {
+        this.advertisement = res.data;
+        this.gallery = [...res.data.gallery];
+      })
       .catch(() => this.$router.push("/admin/404"));
     await this.$http.get("/all-makes").then(res => (this.makes = res.data));
     await this.$http
