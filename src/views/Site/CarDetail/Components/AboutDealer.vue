@@ -11,11 +11,10 @@
     <div>
       <h1 class="mb-2">{{ company.name }}</h1>
       <div class="mb-2">
-        <strong>Street:</strong> {{ company.address.street }}
-      </div>
-      <div class="mb-2">
-        <strong>City:</strong> {{ company.address.city.name }} -
-        {{ company.address.state.initials }}
+        <strong>
+          {{ company.address.number }}, {{ company.address.street }},
+          {{ company.address.city.name }}, {{ company.address.state.initials }}
+        </strong>
       </div>
       <div class="mb-2"><strong>Phone:</strong> {{ company.phone }}</div>
       <div class="mb-2"><strong>E-mail:</strong> {{ company.email }}</div>

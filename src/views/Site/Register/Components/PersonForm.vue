@@ -59,47 +59,40 @@
 
               <v-stepper-content step="2">
                 <v-row>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="6">
                     <v-text-field
-                      label="First Name"
-                      v-model="person.first_name"
-                      :error-messages="errors.first_name"
+                      label="User Name"
+                      v-model="person.user_name"
+                      :error-messages="errors.user_name"
                     />
                   </v-col>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="6">
                     <v-text-field
-                      label="Last Name"
-                      v-model="person.last_name"
-                      :error-messages="errors.last_name"
-                    />
-                  </v-col>
-                  <v-col cols="12" md="4">
-                    <v-text-field
-                      label="E-mail"
+                      label="User E-mail"
                       type="email"
-                      v-model="person.email"
-                      :error-messages="errors.email"
+                      v-model="person.user_email"
+                      :error-messages="errors.user_email"
                     />
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="2">
                     <v-text-field
-                      label="Document"
-                      v-model="person.document"
-                      v-mask="'###-##-####'"
-                      :error-messages="errors.document"
+                      label="Create Password"
+                      type="password"
+                      v-model="person.password"
+                      :error-messages="errors.password"
                     />
                   </v-col>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="2">
                     <v-text-field
-                      label="Phone"
-                      v-model="person.phone"
-                      v-mask="'###-###-####'"
-                      :error-messages="errors.phone"
+                      label="Repeat Password"
+                      type="password"
+                      v-model="person.re_password"
+                      :error-messages="errors.re_password"
                     />
                   </v-col>
-                  <v-col cols="12" md="4">
+                  <v-col cols="12" md="2">
                     <v-text-field
                       label="Zip"
                       v-model="person.zipcode"
@@ -109,22 +102,20 @@
                       :error-messages="errors.zipcode"
                     />
                   </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="3">
                     <v-text-field
-                      label="Create Password"
-                      type="password"
-                      v-model="person.password"
-                      :error-messages="errors.password"
+                      label="Document"
+                      v-model="person.document"
+                      v-mask="'###-##-####'"
+                      :error-messages="errors.document"
                     />
                   </v-col>
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="3">
                     <v-text-field
-                      label="Repeat Password"
-                      type="password"
-                      v-model="person.re_password"
-                      :error-messages="errors.re_password"
+                      label="Phone"
+                      v-model="person.phone"
+                      v-mask="'(###) ###-####'"
+                      :error-messages="errors.phone"
                     />
                   </v-col>
                 </v-row>

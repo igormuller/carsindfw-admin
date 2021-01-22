@@ -66,7 +66,7 @@
               v-model="interest.copy"
             ></v-checkbox>
             <v-textarea
-              label="Proposal"
+              label="Your Offer"
               rows="3"
               dense
               v-model="interest.description"

@@ -99,36 +99,18 @@
 
               <v-stepper-content step="2">
                 <v-row>
-                  <v-col cols="12" md="6">
-                    <v-text-field
-                      label="Dealership Name"
-                      v-model="dealer.name_dealer"
-                      :error-messages="errors.name_dealer"
-                    />
-                  </v-col>
-                  <v-col cols="12" md="6">
-                    <v-text-field
-                      label="Dealership E-mail"
-                      type="email"
-                      v-model="dealer.email_dealer"
-                      :error-messages="errors.email_dealer"
-                    />
-                  </v-col>
-                </v-row>
-                <v-row>
                   <v-col cols="12" md="4">
                     <v-text-field
-                      label="Dealership Document"
-                      v-model="dealer.document"
-                      v-mask="'##-#######'"
-                      :error-messages="errors.document"
+                      label="Dealership Name"
+                      v-model="dealer.name"
+                      :error-messages="errors.name"
                     />
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-text-field
                       label="Dealership Phone"
                       v-model="dealer.phone"
-                      v-mask="'###-###-####'"
+                      v-mask="'(###) ###-####'"
                       :error-messages="errors.phone"
                     />
                   </v-col>
@@ -146,29 +128,20 @@
                 <v-row>
                   <v-col cols="12" md="4">
                     <v-text-field
-                      label="Your First Name"
-                      v-model="dealer.first_name"
-                      :error-messages="errors.first_name"
+                      label="User Name"
+                      v-model="dealer.user_name"
+                      :error-messages="errors.user_name"
                     />
                   </v-col>
                   <v-col cols="12" md="4">
                     <v-text-field
-                      label="Your Last Name"
-                      v-model="dealer.last_name"
-                      :error-messages="errors.last_name"
-                    />
-                  </v-col>
-                  <v-col cols="12" md="4">
-                    <v-text-field
-                      label="Your E-mail"
+                      label="User E-mail"
                       type="email"
-                      v-model="dealer.email"
-                      :error-messages="errors.email"
+                      v-model="dealer.user_email"
+                      :error-messages="errors.user_email"
                     />
                   </v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="2">
                     <v-text-field
                       label="Create Password"
                       type="password"
@@ -176,7 +149,7 @@
                       :error-messages="errors.password"
                     />
                   </v-col>
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="2">
                     <v-text-field
                       label="Repeat Password"
                       type="password"
@@ -236,11 +209,8 @@ export default {
       step: 1,
       dealer: {
         name: "",
-        dealer_email: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        document: "",
+        user_name: "",
+        user_email: "",
         phone: "",
         zipcode: "",
         password: "",

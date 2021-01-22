@@ -55,7 +55,7 @@
                   <v-text-field
                     label="Phone"
                     v-model="dealer.phone"
-                    v-mask="'###-###-####'"
+                    v-mask="'(###) ###-####'"
                     :error-messages="errors.phone"
                   >
                   </v-text-field>
@@ -101,10 +101,9 @@
           <v-row>
             <v-col cols="12" md="1">
               <v-text-field
-                label="Zipcode"
-                v-model="dealer.address.zipcode"
-                v-mask="'#####'"
-                :error-messages="errors['address.zipcode']"
+                label="Number"
+                v-model="dealer.address.number"
+                :error-messages="errors['address.number']"
               >
               </v-text-field>
             </v-col>
@@ -116,21 +115,24 @@
               >
               </v-text-field>
             </v-col>
-            <v-col cols="12" md="1">
+            <v-col cols="12" md="2">
               <v-text-field
-                label="Number"
-                v-model="dealer.address.number"
-                :error-messages="errors['address.number']"
+                label="Complement"
+                v-model="dealer.address.complements"
+                :error-messages="errors['address.complements']"
               >
               </v-text-field>
             </v-col>
-            <v-col cols="12" md="2">
-              <v-text-field
-                label="Neighborhood"
-                v-model="dealer.address.neighborhood"
-                :error-messages="errors['address.neighborhood']"
-              >
-              </v-text-field>
+            <v-col cols="12" md="3">
+              <v-select
+                :loading="loadingCities"
+                v-model="dealer.address.city_id"
+                :items="cities"
+                item-text="name"
+                item-value="id"
+                label="City"
+                :error-messages="errors['address.city_id']"
+              ></v-select>
             </v-col>
             <v-col cols="12" md="2">
               <v-select
@@ -143,16 +145,15 @@
                 :error-messages="errors['address.state_id']"
               ></v-select>
             </v-col>
-            <v-col cols="12" md="3">
-              <v-select
-                :loading="loadingCities"
-                v-model="dealer.address.city_id"
-                :items="cities"
-                item-text="name"
-                item-value="id"
-                label="City"
-                :error-messages="errors['address.city_id']"
-              ></v-select>
+            <v-col cols="12" md="1">
+              <v-text-field
+                label="Zipcode"
+                v-model="dealer.address.zipcode"
+                v-mask="'#####'"
+                :error-messages="errors['address.zipcode']"
+                @change="searchZipcode($event)"
+              >
+              </v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -269,6 +270,7 @@ export default {
         .put(`/dealers/${this.id}`, this.dealer)
         .then(() => {
           this.isBusy = false;
+          this.errors = [];
           this.$toasted.global.defaultSuccess({ msg: "Dealer Saved!!!" });
         })
         .catch(error => {
@@ -284,6 +286,24 @@ export default {
           headers: { "Content-Type": "multipart/form-data" }
         })
         .then(res => (this.gallery = res.data));
+    },
+    searchZipcode(zipcode) {
+      if (zipcode.length === 5) {
+        this.$http
+          .get(`/search-zipcode/${zipcode}`)
+          .then(res => {
+            this.dealer.address.state_id = res.data.city.state.id;
+            this.cityByState(res.data.city.state.id);
+            this.dealer.address.city_id = res.data.city.id;
+          })
+          .catch(() => {
+            this.$toasted.global.defaultError({
+              msg: "Zipcode not found"
+            });
+            this.dealer.address.state_id = null;
+            this.dealer.address.city_id = null;
+          });
+      }
     },
     cityByState(item) {
       this.loadingCities = true;
