@@ -98,7 +98,11 @@
               </v-stepper-content>
 
               <v-stepper-content step="2">
-                <v-row>
+                <v-subheader class="mb-n3">
+                  <strong>Enter below all the form fields.</strong>
+                </v-subheader>
+                <v-divider></v-divider>
+                <v-row class="mt-n3">
                   <v-col cols="12" md="4">
                     <v-text-field
                       label="Dealership Name"
@@ -158,6 +162,51 @@
                     />
                   </v-col>
                 </v-row>
+                <v-subheader class="mb-n3">
+                  <strong>
+                    Enter below those of credit card data. Relaxes you have 30
+                    days free.
+                  </strong>
+                </v-subheader>
+                <v-divider></v-divider>
+                <v-row class="mt-n3">
+                  <v-col cols="4">
+                    <v-text-field
+                      label="Card Number"
+                      v-mask="'#### #### #### ####'"
+                      v-model="dealer.card_number"
+                      @keyup="checkCreditCardFlag(card_number)"
+                      :error-messages="errors.card_number"
+                    >
+                      <v-icon slot="append" v-if="showCreditCardFlag">
+                        {{ flags[creditCardFlag] }}
+                      </v-icon>
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="4">
+                    <v-text-field
+                      label="Card Holder"
+                      v-model="dealer.card_name"
+                      :error-messages="errors.card_name"
+                    />
+                  </v-col>
+                  <v-col cols="2">
+                    <v-text-field
+                      label="Expiration Date"
+                      v-mask="'##/##'"
+                      v-model="dealer.card_expiration_date"
+                      :error-messages="errors.card_expiration_date"
+                    />
+                  </v-col>
+                  <v-col cols="2">
+                    <v-text-field
+                      label="CVV"
+                      v-mask="'###'"
+                      v-model="dealer.card_cvv"
+                      :error-messages="errors.card_cvv"
+                    />
+                  </v-col>
+                </v-row>
                 <v-row justify="end" class="mr-2">
                   <v-btn text @click="step = 1">Change Plan</v-btn>
                   <v-btn
@@ -165,14 +214,29 @@
                     class="white--text"
                     @click="sendRegister()"
                   >
-                    Register
+                    Register me
                   </v-btn>
                 </v-row>
               </v-stepper-content>
 
               <v-stepper-content step="3">
-                Thank you for register
-                <v-btn color="primary" to="/login">Make Login</v-btn>
+                <v-card
+                  elevation="5"
+                  class="text-center white--text mx-5 mt-5 mb-10 pa-10"
+                  color="#00205B"
+                >
+                  <h1>We forward the verification link to email @.</h1>
+                  <br />
+                  <h1>
+                    After confirmation of the email, access to the system will
+                    be released.
+                  </h1>
+                </v-card>
+                <v-row justify="end" class="mr-2">
+                  <v-btn color="#00205b" class="white--text" to="/login">
+                    Make Login
+                  </v-btn>
+                </v-row>
               </v-stepper-content>
             </v-stepper-items>
           </v-stepper>
@@ -216,7 +280,20 @@ export default {
         password: "",
         re_password: "",
         plan_type_id: "",
-        type: "dealer"
+        type: "dealer",
+        card_number: "",
+        card_name: "",
+        card_expiration_date: "",
+        card_cvv: ""
+      },
+      showCreditCardFlag: false,
+      creditCardFlag: null,
+      flags: {
+        37: "fab fa-cc-amex",
+        38: "fab fa-cc-diners-club",
+        4: "fab fa-cc-visa",
+        5: "fab fa-cc-mastercard",
+        6: "fab fa-cc-discover"
       },
       zipcode_message: "",
       errors: {}
@@ -244,6 +321,20 @@ export default {
     zipCodeFind(data) {
       this.errors.zipcode = "";
       this.zipcode_message = `${data.city.name}/${data.city.state.initials}`;
+    },
+    checkCreditCardFlag(number) {
+      if (number.length > 3 && number.length < 6) {
+        let firstNumber = number.substr(0, 1);
+        this.showCreditCardFlag = true;
+        this.creditCardFlag = firstNumber;
+        if (firstNumber === "3") {
+          this.creditCardFlag = number.substr(0, 2);
+        }
+      }
+
+      if (number.length <= 3) {
+        this.showCreditCardFlag = false;
+      }
     }
   }
 };
