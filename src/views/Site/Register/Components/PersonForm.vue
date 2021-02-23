@@ -58,15 +58,31 @@
               </v-stepper-content>
 
               <v-stepper-content step="2">
-                <v-row>
-                  <v-col cols="12" md="6">
+                <v-subheader class="mb-n3">
+                  <strong>
+                    Enter below all the form fields.
+                  </strong>
+                </v-subheader>
+                <v-divider></v-divider>
+                <v-row class="mt-n3">
+                  <v-col cols="12" md="2">
+                    <v-text-field
+                      label="Zip"
+                      v-model="person.zipcode"
+                      v-mask="'#####'"
+                      :messages="zipcode_message"
+                      @change="searchZipcode(person.zipcode)"
+                      :error-messages="errors.zipcode"
+                    />
+                  </v-col>
+                  <v-col cols="12" md="3">
                     <v-text-field
                       label="User Name"
                       v-model="person.user_name"
                       :error-messages="errors.user_name"
                     />
                   </v-col>
-                  <v-col cols="12" md="6">
+                  <v-col cols="12" md="3">
                     <v-text-field
                       label="User E-mail"
                       type="email"
@@ -74,8 +90,6 @@
                       :error-messages="errors.user_email"
                     />
                   </v-col>
-                </v-row>
-                <v-row>
                   <v-col cols="12" md="2">
                     <v-text-field
                       label="Create Password"
@@ -92,30 +106,48 @@
                       :error-messages="errors.re_password"
                     />
                   </v-col>
-                  <v-col cols="12" md="2">
+                </v-row>
+                <v-subheader class="mb-n3">
+                  <strong>
+                    Enter below those of credit card data.
+                  </strong>
+                </v-subheader>
+                <v-divider></v-divider>
+                <v-row class="mt-n3">
+                  <v-col cols="4">
                     <v-text-field
-                      label="Zip"
-                      v-model="person.zipcode"
-                      v-mask="'#####'"
-                      :messages="zipcode_message"
-                      @change="searchZipcode(person.zipcode)"
-                      :error-messages="errors.zipcode"
+                      label="Card Number"
+                      v-mask="'#### #### #### ####'"
+                      v-model="person.card_number"
+                      @keyup="checkCreditCardFlag(person.card_number)"
+                      :error-messages="errors.card_number"
+                    >
+                      <v-icon slot="append" v-if="showCreditCardFlag">
+                        {{ flags[creditCardFlag] }}
+                      </v-icon>
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="4">
+                    <v-text-field
+                      label="Card Holder"
+                      v-model="person.card_name"
+                      :error-messages="errors.card_name"
                     />
                   </v-col>
-                  <v-col cols="12" md="3">
+                  <v-col cols="2">
                     <v-text-field
-                      label="Document"
-                      v-model="person.document"
-                      v-mask="'###-##-####'"
-                      :error-messages="errors.document"
+                      label="Expiration Date"
+                      v-mask="'##/##'"
+                      v-model="person.card_expiration_date"
+                      :error-messages="errors.card_expiration_date"
                     />
                   </v-col>
-                  <v-col cols="12" md="3">
+                  <v-col cols="2">
                     <v-text-field
-                      label="Phone"
-                      v-model="person.phone"
-                      v-mask="'(###) ###-####'"
-                      :error-messages="errors.phone"
+                      label="CVV"
+                      v-mask="'###'"
+                      v-model="person.card_cvv"
+                      :error-messages="errors.card_cvv"
                     />
                   </v-col>
                 </v-row>
@@ -169,17 +201,28 @@ export default {
     return {
       step: 1,
       person: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        document: "",
-        phone: "",
+        user_name: "",
+        user_email: "",
         zipcode: "",
         password: "",
         re_password: "",
         plan_type_id: "",
-        type: "person"
+        type: "person",
+        card_number: "",
+        card_name: "",
+        card_expiration_date: "",
+        card_cvv: ""
       },
+      showCreditCardFlag: false,
+      creditCardFlag: null,
+      flags: {
+        37: "fab fa-cc-amex",
+        38: "fab fa-cc-diners-club",
+        4: "fab fa-cc-visa",
+        5: "fab fa-cc-mastercard",
+        6: "fab fa-cc-discover"
+      },
+      zipcode_message: "",
       errors: {}
     };
   },
@@ -188,7 +231,15 @@ export default {
       this.$http
         .post("/new-company", this.person)
         .then(() => this.$router.push("/login"))
-        .catch(error => (this.errors = error.response.data.errors));
+        .catch(error => {
+          if (error.response.status === 500) {
+            this.$toasted.global.defaultError({
+              msg: error.response.data.message
+            });
+            return false;
+          }
+          this.errors = error.response.data.errors;
+        });
     },
     selectPlan(plan) {
       this.person.plan_type_id = plan;
@@ -205,6 +256,20 @@ export default {
     zipCodeFind(data) {
       this.errors.zipcode = "";
       this.zipcode_message = `${data.city.name}/${data.city.state.initials}`;
+    },
+    checkCreditCardFlag(number) {
+      if (number.length > 3) {
+        let firstNumber = number.substr(0, 1);
+        this.showCreditCardFlag = true;
+        this.creditCardFlag = firstNumber;
+        if (firstNumber === "3") {
+          this.creditCardFlag = number.substr(0, 2);
+        }
+      }
+
+      if (number.length <= 3) {
+        this.showCreditCardFlag = false;
+      }
     }
   }
 };

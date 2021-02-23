@@ -175,7 +175,7 @@
                       label="Card Number"
                       v-mask="'#### #### #### ####'"
                       v-model="dealer.card_number"
-                      @keyup="checkCreditCardFlag(card_number)"
+                      @keyup="checkCreditCardFlag(dealer.card_number)"
                       :error-messages="errors.card_number"
                     >
                       <v-icon slot="append" v-if="showCreditCardFlag">
@@ -304,7 +304,15 @@ export default {
       this.$http
         .post("/new-company", this.dealer)
         .then(() => (this.step = 3))
-        .catch(error => (this.errors = error.response.data.errors));
+        .catch(error => {
+          if (error.response.status === 500) {
+            this.$toasted.global.defaultError({
+              msg: error.response.data.message
+            });
+            return false;
+          }
+          this.errors = error.response.data.errors;
+        });
     },
     selectPlan(plan) {
       this.dealer.plan_type_id = plan;
@@ -323,7 +331,7 @@ export default {
       this.zipcode_message = `${data.city.name}/${data.city.state.initials}`;
     },
     checkCreditCardFlag(number) {
-      if (number.length > 3 && number.length < 6) {
+      if (number.length > 3) {
         let firstNumber = number.substr(0, 1);
         this.showCreditCardFlag = true;
         this.creditCardFlag = firstNumber;
