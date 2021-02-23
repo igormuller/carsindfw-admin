@@ -305,7 +305,7 @@ export default {
         .post("/new-company", this.dealer)
         .then(() => (this.step = 3))
         .catch(error => {
-          if (error.response.status === 500) {
+          if (error.response.status === 402) {
             this.$toasted.global.defaultError({
               msg: error.response.data.message
             });
