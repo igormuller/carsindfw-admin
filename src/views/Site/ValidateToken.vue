@@ -7,10 +7,10 @@
             <v-card elevation="8" :loading="loading">
               <v-card-text class="d-flex justify-center py-10">
                 <div v-if="success">
-                  <h1 style="color: green">{{message}}</h1>
+                  <h1 style="color: green">{{ message }}</h1>
                 </div>
                 <div v-if="error">
-                  <h1 style="color: red">{{message}}</h1>
+                  <h1 style="color: red">{{ message }}</h1>
                 </div>
               </v-card-text>
             </v-card>
@@ -28,12 +28,12 @@ export default {
       message: "...",
       success: false,
       error: false,
-      loading: false,
+      loading: false
     };
   },
   created() {
-    const token = this.$route.query.token
-    const user_id = this.$route.query.user_check
+    const token = this.$route.query.token;
+    const user_id = this.$route.query.user_check;
 
     if (typeof token === "undefined" || typeof user_id === "undefined") {
       return false;
