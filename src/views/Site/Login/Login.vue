@@ -43,6 +43,14 @@
             </v-card>
           </v-col>
         </v-row>
+        <v-row class="d-flew justify-center">
+          <span class="caption pl-4">
+            If you need a new token
+            <router-link to="/new-token">
+              Here
+            </router-link>
+          </span>
+        </v-row>
       </v-container>
     </v-content>
   </v-app>

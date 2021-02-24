@@ -38,7 +38,13 @@ export default {
 
     this.$http
       .get("/users/info")
-      .then(res => (this.$store.state.user = res.data));
+      .then(res => (this.$store.state.user = res.data))
+      .catch(error => {
+        this.$toasted.global.defaultError({
+          msg: error.response.data.message
+        });
+        this.$router.push("/login");
+      });
   }
 };
 </script>
