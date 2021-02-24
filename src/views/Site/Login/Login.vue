@@ -45,9 +45,9 @@
         </v-row>
         <v-row class="d-flew justify-center">
           <span class="caption pl-4">
-            If you need a new token
+            If you haven't verified your email and forgot your token
             <router-link to="/new-token">
-              Here
+              Click Here
             </router-link>
           </span>
         </v-row>

@@ -34,6 +34,8 @@ import CarSearch from "../views/Site/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
 
 import Login from "../views/Site/Login/Login";
+import NewToken from "../views/Site/NewToken";
+import ValidateToken from "../views/Site/ValidateToken";
 import Register from "../views/Site/Register/Register";
 
 Vue.use(VueRouter);
@@ -83,6 +85,8 @@ const routes = [
     ]
   },
   { path: "/login", component: Login },
+  { path: "/new-token", component: NewToken },
+  { path: "/validate-token", component: ValidateToken },
   { path: "*", component: PageNotFound }
 ];
 
