@@ -3,7 +3,7 @@
     <v-list dense>
       <v-list-item link @click="openUserEdit()">
         <v-list-item-avatar class="ma-3">
-          <v-img src="@/assets/avatars/avatar-default.png"></v-img>
+          <v-img :src="setAvatar"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-title class="mt-2">
@@ -64,6 +64,12 @@ export default {
       return this.menu.filter(
         item => item.access === user.company.type || item.access === "all"
       );
+    },
+    setAvatar() {
+      let user = this.$store.state.user;
+      return user.profile_url
+        ? user.profile_url
+        : require("@/assets/avatars/avatar-default.png");
     }
   }
 };
