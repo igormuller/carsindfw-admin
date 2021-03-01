@@ -12,7 +12,7 @@
       </v-list-item>
       <v-divider class="ml-5 mr-5"></v-divider>
       <router-link
-        v-for="(item, key) in menu"
+        v-for="(item, key) in getMenu"
         :key="key"
         tag="div"
         :to="`/admin/${item.link}`"
@@ -37,19 +37,15 @@
 </template>
 
 <script>
+import { MENU } from "@/constants/menu.js";
+
 export default {
   name: "MenuLeft",
   props: {
     drawer: Boolean
   },
   data: () => ({
-    menu: [
-      { link: "dashboard", name: "Dashboard", icon: "dashboard" },
-      { link: "users", name: "Users", icon: "person" },
-      { link: "advertisements", name: "Advertisements", icon: "ballot" },
-      { link: "dealers", name: "Dealers", icon: "ballot" },
-      { link: "interests", name: "Interests", icon: "ballot" }
-    ]
+    menu: MENU
   }),
   methods: {
     logout() {
@@ -60,6 +56,14 @@ export default {
     openUserEdit() {
       let user = this.$store.state.user;
       this.$router.push(`/admin/users/${user.id}`);
+    }
+  },
+  computed: {
+    getMenu() {
+      let user = this.$store.state.user;
+      return this.menu.filter(
+        item => item.access === user.company.type || item.access === "all"
+      );
     }
   }
 };

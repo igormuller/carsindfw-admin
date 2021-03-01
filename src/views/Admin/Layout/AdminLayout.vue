@@ -33,6 +33,8 @@ export default {
       this.$http.defaults.headers.common["Authorization"] =
         "Bearer " + localStorage.getItem("carsindfw_admin_token");
     } else {
+      this.$store.user = {};
+      localStorage.clear();
       this.$router.push("/login");
     }
 
