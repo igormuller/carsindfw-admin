@@ -60,7 +60,14 @@
         <v-card-actions>
           <v-row class="text-right">
             <v-col>
-              <v-btn color="primary" @click="save()" class="mr-3" :loading="loading">save</v-btn>
+              <v-btn
+                color="primary"
+                @click="save()"
+                class="mr-3"
+                :loading="loading"
+              >
+                save
+              </v-btn>
             </v-col>
           </v-row>
         </v-card-actions>
