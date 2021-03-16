@@ -13,6 +13,7 @@ import Dealers from "../views/Admin/Dealers/Dealers";
 import DealersNew from "../views/Admin/Dealers/New";
 import DealersEdit from "../views/Admin/Dealers/Edit";
 import Interests from "../views/Admin/Interest/Interests";
+import Plan from "../views/Admin/Plan/Detail";
 // import DealersNew from "../views/Admin/Dealers/New";
 // import DealersEdit from "../views/Admin/Dealers/Edit";
 import PageNotFoundAdmin from "@/components/PageNotFoundAdmin";
@@ -61,6 +62,7 @@ const routes = [
       { path: "dealers/new", component: DealersNew },
       { path: "dealers/:id", component: DealersEdit, props: true },
       { path: "interests", component: Interests },
+      { path: "plan", component: Plan },
       { path: "*", component: PageNotFoundAdmin }
     ]
   },

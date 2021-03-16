@@ -2,31 +2,37 @@ export const MENU = [
   {
     link: "dashboard",
     name: "Dashboard",
-    icon: "dashboard",
+    icon: "fas fa-tachometer-alt",
     access: "all"
   },
   {
     link: "users",
     name: "Users",
-    icon: "person",
+    icon: "fas fa-users",
     access: "dealer"
   },
   {
     link: "advertisements",
     name: "Advertisements",
-    icon: "ballot",
+    icon: "fas fa-ad",
     access: "all"
   },
   {
     link: "dealers",
     name: "Dealers",
-    icon: "ballot",
+    icon: "fas fa-warehouse",
     access: "dealer"
   },
   {
     link: "interests",
     name: "Interests",
-    icon: "ballot",
+    icon: "fas fa-map-marker-alt",
+    access: "all"
+  },
+  {
+    link: "plan",
+    name: "My Plan",
+    icon: "far fa-money-bill-alt",
     access: "all"
   }
 ];
