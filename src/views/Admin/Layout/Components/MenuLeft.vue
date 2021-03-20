@@ -61,9 +61,12 @@ export default {
   computed: {
     getMenu() {
       let user = this.$store.state.user;
-      return this.menu.filter(
+      let menuFiltered = this.menu.filter(
         item => item.access === user.company.type || item.access === "all"
       );
+
+      menuFiltered.map( item => item.link = item.link.replace(/#id#/i, user.company_type.id));
+      return menuFiltered;
     },
     setAvatar() {
       let user = this.$store.state.user;

@@ -61,6 +61,7 @@ const routes = [
       { path: "dealers", component: Dealers },
       { path: "dealers/new", component: DealersNew },
       { path: "dealers/:id", component: DealersEdit, props: true },
+      { path: "dealer-detail/:id", component: DealersEdit, props: true },
       { path: "interests", component: Interests },
       { path: "plan", component: Plan },
       { path: "*", component: PageNotFoundAdmin }

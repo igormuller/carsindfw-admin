@@ -18,8 +18,8 @@ export const MENU = [
     access: "all"
   },
   {
-    link: "dealers",
-    name: "Dealers",
+    link: "dealer-detail/#id#",
+    name: "My Settings",
     icon: "fas fa-warehouse",
     access: "dealer"
   },
