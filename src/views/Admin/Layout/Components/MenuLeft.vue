@@ -65,7 +65,9 @@ export default {
         item => item.access === user.company.type || item.access === "all"
       );
 
-      menuFiltered.map( item => item.link = item.link.replace(/#id#/i, user.company_type.id));
+      menuFiltered.map(
+        item => (item.link = item.link.replace(/#id#/i, user.company_type.id))
+      );
       return menuFiltered;
     },
     setAvatar() {
