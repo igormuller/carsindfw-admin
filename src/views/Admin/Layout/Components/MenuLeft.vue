@@ -62,12 +62,14 @@ export default {
     getMenu() {
       let user = this.$store.state.user;
       let menuFiltered = this.menu.filter(
-        item => item.access === user.company.type || item.access === "all"
+        item => item.access === user.company_type.type || item.access === "all"
       );
 
-      menuFiltered.map(
-        item => (item.link = item.link.replace(/#id#/i, user.company_type.id))
-      );
+      if (user.company_type.type !== "person") {
+        menuFiltered.map(
+          item => (item.link = item.link.replace(/#id#/i, user.company_type.id))
+        );
+      }
       return menuFiltered;
     },
     setAvatar() {

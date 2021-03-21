@@ -3,8 +3,8 @@
     <v-app-bar-nav-icon @click.stop="changeDrawer()" />
     <v-toolbar-title @click="openSite()" style="cursor:pointer">
       {{
-        this.$store.state.user.company.type === "dealer"
-          ? this.$store.state.user.company.name
+        this.$store.state.user.company_type.type === "dealer"
+          ? this.$store.state.user.company_type.name
           : "CARSinDFW"
       }}
     </v-toolbar-title>

@@ -6,8 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {
-      company: {
-        type: ""
+      company_type: {
+        type: null
       }
     }
   },
