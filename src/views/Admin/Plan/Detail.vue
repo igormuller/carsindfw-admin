@@ -1,65 +1,96 @@
 <template>
   <v-row>
-    <v-col cols="12" md="4">
+    <v-col cols="12" md="5">
       <v-card elevation="3" :loading="loadingPlan">
         <v-card-title>Plan</v-card-title>
         <v-card-text v-if="!loadingPlan">
-          <v-row>
-            <v-col cols="5">
-              {{ plan.plan_type.description }}
-            </v-col>
-            <v-col cols="3">
-              {{ plan.plan_type.active === 1 ? "Active" : "Canceled" }}
-            </v-col>
-            <v-col cols="4">
-              {{ plan.last_plan.finished_date }}
-            </v-col>
-          </v-row>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Validate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ plan.plan_type.description }}</td>
+                  <td>{{ plan.status }}</td>
+                  <td v-if="plan.last_plan">
+                    {{ plan.last_plan.finished_date }}
+                  </td>
+                  <td v-else class="text-center">-</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-card-text>
       </v-card>
 
       <v-card elevation="3" class="mt-5" :loading="loadingMethods">
         <v-card-title>Payment Methods</v-card-title>
         <v-card-text>
-          <v-row v-for="(method, key) in methods" :key="key">
-            <v-col cols="3">
-              {{ method.brand }}
-            </v-col>
-            <v-col cols="3">
-              ****{{ method.last4 }}
-            </v-col>
-            <v-col cols="3">
-              {{ method.expiration }}
-            </v-col>
-            <v-col cols="3">
-              {{ method.default ? "Default" : "" }}
-            </v-col>
-          </v-row>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>Last Number</th>
+                  <th>Validate</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(method, key) in methods" :key="key">
+                  <td>{{ method.brand }}</td>
+                  <td>****{{ method.last4 }}</td>
+                  <td>{{ method.expiration }}</td>
+                  <td>{{ method.default ? "Default" : "" }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-card-text>
       </v-card>
     </v-col>
 
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="7">
       <v-card elevation="3" :loading="loadingIntents">
-        <v-card-title>Payments Intent</v-card-title>
+        <v-card-title>Payments</v-card-title>
         <v-card-text>
-          <v-row v-for="(intent, key) in intents" :key="key">
-            <v-col>{{ intent.amount_front }}</v-col>
-            <v-col>{{ intent.created }}</v-col>
-            <v-col>{{ intent.status }}</v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-
-      <v-card elevation="3" :loading="loadingInvoices" class="mt-5">
-        <v-card-title>Payments Invoice</v-card-title>
-        <v-card-text>
-          <v-row v-for="(invoice, key) in invoices" :key="key">
-            <v-col>{{ invoice.amount_paid_front }}</v-col>
-            <v-col>{{ invoice.created }}</v-col>
-            <v-col>{{ invoice.number }}</v-col>
-            <v-col>{{ invoice.status }}</v-col>
-          </v-row>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description Plan</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(intent, key) in intents" :key="key">
+                  <td>{{ intent.created }}</td>
+                  <td>{{ intent.description }}</td>
+                  <td>{{ intent.amount_front }}</td>
+                  <td>
+                    <v-chip
+                      color="success"
+                      small
+                      outlined
+                      v-if="intent.status === 'succeeded'"
+                    >
+                      Paid
+                    </v-chip>
+                    <v-chip color="red" small outlined v-else>
+                      Error
+                    </v-chip>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
         </v-card-text>
       </v-card>
     </v-col>
@@ -72,13 +103,9 @@ export default {
     plan: {},
     intents: [],
     methods: [],
-    invoices: [],
-    // subscription: [],
     loadingPlan: true,
     loadingMethods: true,
-    loadingIntents: true,
-    loadingInvoices: true
-    // loadingSubscription: true
+    loadingIntents: true
   }),
   created() {
     this.$http.get(`/payment-customer-detail`).then(res => {
@@ -93,14 +120,6 @@ export default {
       this.intents = res.data;
       this.loadingIntents = false;
     });
-    this.$http.get(`/payment-invoice-detail`).then(res => {
-      this.invoices = res.data;
-      this.loadingInvoices = false;
-    });
-    // this.$http.get(`/payment-subscription-detail`).then(res => {
-    //   this.subscriptions = res.data;
-    //   this.loadingSubscription = false;
-    // });
   }
 };
 </script>

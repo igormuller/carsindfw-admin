@@ -152,11 +152,12 @@
                   </v-col>
                 </v-row>
                 <v-row justify="end" class="mr-2">
-                  <v-btn text @click="step = 1">Change Plan</v-btn>
+                  <v-btn text @click="step = 1" :disabled="registering">Change Plan</v-btn>
                   <v-btn
                     color="#00205b"
                     class="white--text"
                     @click="sendRegister()"
+                    :loading="registering"
                   >
                     Register
                   </v-btn>
@@ -200,6 +201,7 @@ export default {
   data() {
     return {
       step: 1,
+      registering: false,
       person: {
         user_name: "",
         user_email: "",
@@ -228,10 +230,12 @@ export default {
   },
   methods: {
     sendRegister() {
+      this.registering = true;
       this.$http
         .post("/new-company", this.person)
         .then(() => this.$router.push("/login"))
         .catch(error => {
+          this.registering = false;
           if (error.response.status === 402) {
             this.$toasted.global.defaultError({
               msg: error.response.data.message
