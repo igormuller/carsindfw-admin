@@ -208,7 +208,9 @@
                   </v-col>
                 </v-row>
                 <v-row justify="end" class="mr-2">
-                  <v-btn text @click="step = 1" :disabled="registering">Change Plan</v-btn>
+                  <v-btn text @click="step = 1" :disabled="registering">
+                    Change Plan
+                  </v-btn>
                   <v-btn
                     color="#00205b"
                     class="white--text"
