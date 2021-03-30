@@ -28,8 +28,18 @@
         </v-card-text>
       </v-card>
 
+      <PaymentMethodNew
+        :dialog="dialog"
+        @closeDialog="changeCard"
+      ></PaymentMethodNew>
       <v-card elevation="3" class="mt-5" :loading="loadingMethods">
-        <v-card-title>Payment Methods</v-card-title>
+        <v-card-title>
+          Payment Methods
+          <v-spacer />
+          <v-btn outlined x-small color="indigo" @click="dialog = true">
+            New Brand
+          </v-btn>
+        </v-card-title>
         <v-card-text>
           <v-simple-table>
             <template v-slot:default>
@@ -98,8 +108,12 @@
 </template>
 
 <script>
+import PaymentMethodNew from "./Dialogs/PaymentMethods";
+
 export default {
+  components: { PaymentMethodNew },
   data: () => ({
+    dialog: false,
     plan: {},
     intents: [],
     methods: [],
@@ -107,6 +121,16 @@ export default {
     loadingMethods: true,
     loadingIntents: true
   }),
+  methods: {
+    changeCard() {
+      this.loadingMethods = true;
+      this.dialog = false;
+      this.$http.get(`/payment-method-detail`).then(res => {
+        this.methods = res.data;
+        this.loadingMethods = false;
+      });
+    }
+  },
   created() {
     this.$http.get(`/payment-customer-detail`).then(res => {
       this.plan = res.data;
