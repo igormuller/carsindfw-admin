@@ -49,6 +49,7 @@
                   <th>Last Number</th>
                   <th>Validate</th>
                   <th>Default</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +57,31 @@
                   <td>{{ method.brand }}</td>
                   <td>****{{ method.last4 }}</td>
                   <td>{{ method.expiration }}</td>
-                  <td>{{ method.default ? "Default" : "" }}</td>
+                  <td>
+                    <v-chip color="success" small outlined v-if="method.default">
+                      <v-icon x-small>
+                          fas fa-check
+                        </v-icon>
+                    </v-chip>
+                  </td>
+                  <td v-if="!method.default">
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <v-icon small v-on="on" class="mr-1" @click="defaultCard(method.id)" :disabled="loadingMethods">
+                          fas fa-check
+                        </v-icon>
+                      </template>
+                      <span>Default</span>
+                    </v-tooltip>
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on }">
+                        <v-icon small v-on="on" @click="deleteCard(method.id)" :disabled="loadingMethods">
+                          fas fa-trash
+                        </v-icon>
+                      </template>
+                      <span>Remove</span>
+                    </v-tooltip>
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -125,10 +150,21 @@ export default {
     changeCard() {
       this.loadingMethods = true;
       this.dialog = false;
+      this.loadingPaymentMethod();
+    },
+    loadingPaymentMethod() {
       this.$http.get(`/payment-method-detail`).then(res => {
         this.methods = res.data;
         this.loadingMethods = false;
       });
+    },
+    defaultCard(id) {
+      this.loadingMethods = true;
+      this.$http.put(`/default-payment-method`, {id: id}).then(() => this.loadingPaymentMethod()).catch(error => console.log(error.response))
+    },
+    deleteCard(id) {
+      this.loadingMethods = true;
+      this.$http.delete(`/delete-payment-method/${id}`).then(() => this.loadingPaymentMethod()).catch(error => console.log(error.response))
     }
   },
   created() {

@@ -1,13 +1,13 @@
 <template>
   <v-dialog v-model="dialog" max-width="800px" @click:outside="closeDialog()">
-    <v-card>
+    <v-card :loading="saving">
       <v-card-title>
         <span class="headline">New Brand</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <v-text-field
                 label="Card Number"
                 v-mask="'#### #### #### ####'"
@@ -20,14 +20,14 @@
                 </v-icon>
               </v-text-field>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <v-text-field
                 label="Card Holder"
                 v-model="card.card_name"
                 :error-messages="errors.card_name"
               />
             </v-col>
-            <v-col cols="2">
+            <v-col cols="12" sm="2">
               <v-text-field
                 label="Expiration Date"
                 v-mask="'##/##'"
@@ -35,7 +35,7 @@
                 :error-messages="errors.card_expiration_date"
               />
             </v-col>
-            <v-col cols="2">
+            <v-col cols="12" sm="2">
               <v-text-field
                 label="CVV"
                 v-mask="'###'"
@@ -48,8 +48,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="closeDialog()">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="saveCard()">Save</v-btn>
+        <v-btn color="blue darken-1" text @click="closeDialog()" :disabled="saving">Close</v-btn>
+        <v-btn color="blue darken-1" text @click="saveCard()" :disabled="saving">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -68,6 +68,7 @@ export default {
       card_expiration_date: "",
       card_cvv: ""
     },
+    saving: false,
     showCreditCardFlag: false,
     creditCardFlag: null,
     flags: {
@@ -83,12 +84,26 @@ export default {
     closeDialog() {
       this.$emit("closeDialog", false);
     },
+    clearCard() {
+      this.card = {
+        card_number: "",
+        card_name: "",
+        card_expiration_date: "",
+        card_cvv: ""
+      };
+    },
     saveCard() {
+      this.saving = true;
+      this.errors = {},
       this.$http
         .post('/new-payment-method', this.card)
-        .then(() => this.closeDialog())
+        .then(() => {
+          this.saving = false;
+          this.clearCard();
+          this.closeDialog();
+        })
         .catch(error => {
-          console.log(error.response)
+          this.saving = false;
           if (error.response.status === 402) {
             this.$toasted.global.defaultError({
               msg: error.response.data.message
