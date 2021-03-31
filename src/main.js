@@ -10,7 +10,10 @@ import VueMask from "v-mask";
 import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(VueMask);
-Vue.use(VueSweetalert2);
+Vue.use(VueSweetalert2, {
+  confirmButtonColor: "#41b882",
+  cancelButtonColor: "#ff7674"
+});
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyAimraeRdmEH0NntawJL22wBNSUgnhoPiA"
