@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: "PaymentMethodNew",
+  name: "NewBrand",
   props: {
     dialog: Boolean
   },
