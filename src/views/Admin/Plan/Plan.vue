@@ -5,7 +5,6 @@
       @closeDialog="dialog = false"
       @changeDialog="changePlan"
     ></new-plans>
-    
     <v-card elevation="3" :loading="loadingPlan">
       <v-card-title>
         Plan

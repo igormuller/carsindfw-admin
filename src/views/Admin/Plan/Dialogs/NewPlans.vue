@@ -72,7 +72,10 @@ export default {
     contractPlan() {
       this.saving = true;
       let user = this.$store.state.user;
-      let url = user.company_type.type === "person" ? "contract-new-plan" : "change-subscription";
+      let url =
+        user.company_type.type === "person"
+          ? "contract-new-plan"
+          : "change-subscription";
       this.$http
         .post(`/${url}`, { plan: this.planSelect })
         .then(() => {
