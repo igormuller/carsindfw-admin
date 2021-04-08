@@ -5,7 +5,7 @@
       <v-card-title>
         Payment Methods
         <v-spacer />
-        <v-btn outlined x-small color="indigo" @click="dialog = true">
+        <v-btn outlined x-small color="indigo" @click.stop="dialog = true">
           New Brand
         </v-btn>
       </v-card-title>

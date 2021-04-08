@@ -41,15 +41,9 @@
 <script>
 export default {
   name: "Payments",
-  data: () => ({
-    intents: [],
-    loadingIntents: true
-  }),
-  created() {
-    this.$http.get(`/payment-intent-detail`).then(res => {
-      this.intents = res.data;
-      this.loadingIntents = false;
-    });
+  props: {
+    intents: Array,
+    loadingIntents: Boolean
   }
 };
 </script>

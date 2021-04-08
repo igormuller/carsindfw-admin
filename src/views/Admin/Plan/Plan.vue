@@ -1,5 +1,11 @@
 <template>
   <div>
+    <new-plans
+      :dialog="dialog"
+      @closeDialog="dialog = false"
+      @changeDialog="changePlan"
+    ></new-plans>
+    
     <v-card elevation="3" :loading="loadingPlan">
       <v-card-title>
         Plan
@@ -10,7 +16,7 @@
             x-small
             color="indigo"
             v-if="checkChangeSubscription"
-            @click="changeSubscription()"
+            @click="dialog = true"
           >
             Change
           </v-btn>
@@ -37,7 +43,7 @@
             x-small
             color="success"
             v-if="checkNewPlan"
-            @click="newPlan()"
+            @click="dialog = true"
           >
             New Plan
           </v-btn>
@@ -71,18 +77,21 @@
 </template>
 
 <script>
+import NewPlans from "./Dialogs/NewPlans.vue";
 export default {
+  components: { NewPlans },
   name: "Plan",
+  props: {
+    plan: Object,
+    loadingPlan: Boolean
+  },
   data: () => ({
-    plan: {},
-    loadingPlan: true
+    dialog: false
   }),
   methods: {
-    loadingCustomerDetail() {
-      this.$http.get(`/payment-customer-detail`).then(res => {
-        this.plan = res.data;
-        this.loadingPlan = false;
-      });
+    changePlan() {
+      this.dialog = false;
+      this.$emit("loadingPlan");
     },
     cancelSubscription() {
       this.$swal({
@@ -95,10 +104,10 @@ export default {
           this.$http
             .get(`/cancel-subscription`)
             .then(() => {
-              this.loadingCustomerDetail();
               this.$toasted.global.defaultSuccess({
                 msg: "Subscription canceled!"
               });
+              this.$emit("loadingPlan");
             })
             .catch(error => {
               this.$toasted.global.defaultError({ msg: error.response.data });
@@ -129,12 +138,6 @@ export default {
     checkNewPlan() {
       return this.plan.plan_type.company_type === "person";
     }
-  },
-  created() {
-    this.$http.get(`/payment-customer-detail`).then(res => {
-      this.plan = res.data;
-      this.loadingPlan = false;
-    });
   }
 };
 </script>
