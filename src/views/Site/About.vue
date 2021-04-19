@@ -42,7 +42,7 @@
         </p>
         <p style="color: #00205b" class="font-weight-bold mt-n5">Owner</p>
       </v-col>
-      <v-col class="text-center">
+      <!-- <v-col class="text-center">
         <v-avatar size="125">
           <v-img
             src="@/assets/avatars/marcio_kosien.jpeg"
@@ -55,7 +55,7 @@
         <p style="color: #00205b" class="font-weight-bold mt-n5">
           Sales Manager
         </p>
-      </v-col>
+      </v-col> -->
     </v-row>
     <v-row>
       <v-col class="text-center">
