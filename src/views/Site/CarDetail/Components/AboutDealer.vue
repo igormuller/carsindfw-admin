@@ -18,7 +18,7 @@
       </div>
       <div class="mb-2"><strong>Phone:</strong> {{ company.phone }}</div>
       <div class="mb-2"><strong>E-mail:</strong> {{ company.email }}</div>
-      <div class="mb-2"><strong>Site:</strong> {{ company.site }}</div>
+      <div class="mb-2" v-if="company.type === 'dealer'"><strong>Site:</strong> {{ company.site }}</div>
     </div>
     <v-row v-if="company.type === 'dealer'">
       <v-col cols="4" v-for="image in company.gallery" :key="image.id">

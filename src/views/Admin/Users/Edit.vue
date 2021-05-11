@@ -1,7 +1,7 @@
 <template>
   <v-row align="center" justify="center">
     <v-col>
-      <v-card elevation="5" :loading="loading">
+      <v-card elevation="5" :loading="loading" :disabled="loading">
         <v-card-title><h2>Edit User</h2></v-card-title>
         <v-divider></v-divider>
         <v-card-text>
@@ -54,6 +54,72 @@
                 type="password"
               >
               </v-text-field>
+              <v-text-field
+                v-if="this.user.company.type === 'person'"
+                label="Phone"
+                v-model="user.phone"
+                v-mask="'(###) ###-####'"
+                :error-messages="errors.phone"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+          <v-row v-if="this.user.company.type === 'person'">
+            <v-col cols="12" md="1">
+              <v-text-field
+                label="Number"
+                v-model="user.address.number"
+                :error-messages="errors['address.number']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-text-field
+                label="Street"
+                v-model="user.address.street"
+                :error-messages="errors['address.street']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-text-field
+                label="Complement"
+                v-model="user.address.complements"
+                :error-messages="errors['address.complements']"
+              >
+              </v-text-field>
+            </v-col>
+            <v-col cols="12" md="3">
+              <v-select
+                :loading="loadingCities"
+                v-model="user.address.city_id"
+                :items="cities"
+                item-text="name"
+                item-value="id"
+                label="City"
+                :error-messages="errors['address.city_id']"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-select
+                v-model="user.address.state_id"
+                :items="states"
+                item-text="name"
+                item-value="id"
+                label="State" 
+                @change="cityByState($event)"
+                :error-messages="errors['address.state_id']"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" md="1">
+              <v-text-field
+                label="Zipcode"
+                v-model="user.address.zipcode"
+                v-mask="'#####'"
+                :error-messages="errors['address.zipcode']"
+                @change="searchZipcode($event)"
+              >
+              </v-text-field>
             </v-col>
           </v-row>
         </v-card-text>
@@ -83,9 +149,14 @@ export default {
   props: ["id"],
   data() {
     return {
-      user: {},
+      user: {
+        address: {
+          zipcode: ""
+        }
+      },
       errors: {},
-      loading: false
+      loading: false,
+      loadingCities: false
     };
   },
   methods: {
@@ -117,7 +188,34 @@ export default {
           this.loading = false;
           this.errors = error.response.data.errors;
         });
-    }
+    },
+    searchZipcode(zipcode) {
+      if (zipcode.length === 5) {
+        this.$http
+          .get(`/search-zipcode/${zipcode}`)
+          .then(res => {
+            this.user.address.state_id = res.data.city.state.id;
+            this.cityByState(res.data.city.state.id);
+            this.user.address.city_id = res.data.city.id;
+          })
+          .catch(() => {
+            this.$toasted.global.defaultError({
+              msg: "Zipcode not found"
+            });
+            this.user.address.state_id = null;
+            this.user.address.city_id = null;
+          });
+      }
+    },
+    cityByState(item) {
+      this.loadingCities = true;
+      this.user.address.city_id = null;
+      this.cities = [];
+      this.$http.get(`/cities/${item}`).then(res => {
+        this.cities = res.data;
+        this.loadingCities = false;
+      });
+    },
   },
   computed: {
     setAvatar() {
@@ -126,11 +224,27 @@ export default {
         : require("@/assets/site/avatar-default.png");
     }
   },
-  mounted() {
-    this.$http
+  async created() {
+    this.loading = !this.loading;
+    await this.$http
       .get(`/users/${this.id}`)
       .then(res => (this.user = res.data))
       .catch(() => this.$router.push("/404"));
+    
+    if (this.user.company.type === 'person') {
+      await this.$http.get(`/states`).then(res => {
+        this.states = res.data;
+        this.loadingCities = true;
+      });
+
+      await this.$http
+        .get(`/cities/${this.user.address.state_id}`)
+        .then(res => {
+          this.cities = res.data;
+          this.loadingCities = false;
+        });
+    }
+    this.loading = !this.loading;
   }
 };
 </script>
