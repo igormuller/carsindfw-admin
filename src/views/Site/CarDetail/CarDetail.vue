@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card v-if="advertisement.company_data">
+    <v-card v-if="!loading_advertisement">
       <BannerTop :slides="slides"></BannerTop>
     </v-card>
     <v-row>
@@ -13,18 +13,21 @@
             <v-card-title text="card.title">Anúncio</v-card-title>
           </v-img>
         </v-card>
-        <v-card class="mt-3">
-          <v-card-text v-if="advertisement.company_data">
+        <v-card class="mt-3" :loading="loading_advertisement">
+          <v-card-text v-if="!loading_advertisement">
             <AboutDealer :company="advertisement.company_data"></AboutDealer>
           </v-card-text>
         </v-card>
       </v-col>
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" v-if="!loading_advertisement">
         <Galery
           v-if="advertisement.gallery"
           :images="advertisement.gallery"
         ></Galery>
-        <AboutCar :carDetail="advertisement"></AboutCar>
+        <AboutCar
+          v-if="!loading_advertisement"
+          :carDetail="advertisement"
+        ></AboutCar>
       </v-col>
       <v-col cols="12" md="3">
         <!-- <v-card class="mb-3">
@@ -102,10 +105,11 @@ export default {
   components: { Galery, BannerTop, AboutCar, AboutDealer },
   props: ["id"],
   data: () => ({
-    advertisement: {},
+    advertisement: null,
     interest: {},
     interest_sended: false,
     loading_send: false,
+    loading_advertisement: true,
     errors: [],
     slides: [
       { src: require("@/assets/site/car-wash.png") },
@@ -133,7 +137,10 @@ export default {
   created() {
     this.$http
       .get(`/car-detail/${this.id}`)
-      .then(res => (this.advertisement = res.data))
+      .then(res => {
+        this.advertisement = res.data;
+        this.loading_advertisement = false;
+      })
       .catch(() => this.$router.push("/404"));
   }
 };
