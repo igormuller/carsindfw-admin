@@ -28,33 +28,77 @@
       </v-col>
     </v-row>
     <hr />
-    <v-row>
-      <v-col
-        v-for="advertisement in advertisements.data"
-        :key="advertisement.id"
-        xl="2"
-        lg="3"
-        md="4"
-        sm="6"
-        xs="12"
-      >
-        <v-card
-          max-width="374"
-          height="100%"
-          @click="carDetail(advertisement)"
-          hover
-        >
-          <v-img
-            max-height="170"
-            contain
-            :src="setPhoto(advertisement)"
-          ></v-img>
-          <v-card-title>{{ advertisement.show_name }}</v-card-title>
-          <v-card-text>
-            <div class="my-1 subtitle-1">
-              <strong>{{ advertisement.value | currency }}</strong>
-            </div>
-          </v-card-text>
+    <v-row v-for="advertisement in advertisements.data" :key="advertisement.id">
+      <v-col class="d-flex justify-center">
+        <v-card class="ma-2" width="100%" max-width="1000">
+          <v-card class="d-flex">
+            <v-row>
+              <v-col>
+                <v-carousel
+                  cycle
+                  height="300"
+                  hide-delimiters
+                  show-arrows-on-hover
+                >
+                  <v-carousel-item
+                    v-for="image in advertisement.gallery"
+                    :key="image.id"
+                  >
+                    <v-img
+                      height="300"
+                      width="450"
+                      class="ml-3"
+                      :src="image.url"
+                    ></v-img>
+                  </v-carousel-item>
+                </v-carousel>
+              </v-col>
+              <v-col class="d-flex flex-column justify-center">
+                <div>
+                  <h5 class="font-weight-thin">{{ advertisement.type }}</h5>
+                </div>
+                <div>
+                  <h3>{{ advertisement.show_name }}</h3>
+                </div>
+                <div>
+                  <h5 class="font-weight-thin">{{ advertisement.trim }}</h5>
+                </div>
+                <div class="mt-5">
+                  <h5>Miles {{ advertisement.miles }}</h5>
+                </div>
+                <div>{{ advertisement.value | currency }}</div>
+                <div class="caption mt-3">
+                  <v-row>
+                    <v-col>
+                      <span class="font-weight-bold">Ext. Color:</span>
+                      {{ advertisement.color_ext }}
+                    </v-col>
+                    <v-col>
+                      <span class="font-weight-bold">Transmission:</span>
+                      {{ advertisement.transmission_front }}
+                    </v-col>
+                  </v-row>
+                  <v-row class="mt-n5">
+                    <v-col>
+                      <span class="font-weight-bold">Int. Color:</span>
+                      {{ advertisement.color_int }}
+                    </v-col>
+                    <v-col>
+                      <span class="font-weight-bold">Drivetrain:</span>
+                      {{ advertisement.drive_type }}
+                    </v-col>
+                  </v-row>
+                </div>
+                <v-btn
+                  color="primary"
+                  class="mr-3 mt-5"
+                  @click="carDetail(advertisement)"
+                >
+                  Detail
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card>
         </v-card>
       </v-col>
     </v-row>
