@@ -106,7 +106,7 @@
                 :items="states"
                 item-text="name"
                 item-value="id"
-                label="State" 
+                label="State"
                 @change="cityByState($event)"
                 :error-messages="errors['address.state_id']"
               ></v-select>
@@ -215,7 +215,7 @@ export default {
         this.cities = res.data;
         this.loadingCities = false;
       });
-    },
+    }
   },
   computed: {
     setAvatar() {
@@ -230,8 +230,8 @@ export default {
       .get(`/users/${this.id}`)
       .then(res => (this.user = res.data))
       .catch(() => this.$router.push("/404"));
-    
-    if (this.user.company.type === 'person') {
+
+    if (this.user.company.type === "person") {
       await this.$http.get(`/states`).then(res => {
         this.states = res.data;
         this.loadingCities = true;
