@@ -54,44 +54,61 @@
                 </v-carousel>
               </v-col>
               <v-col class="d-flex flex-column justify-center">
-                <div>
-                  <h5 class="font-weight-thin">{{ advertisement.type }}</h5>
-                </div>
-                <div>
-                  <h3>{{ advertisement.show_name }}</h3>
-                </div>
-                <div>
-                  <h5 class="font-weight-thin">{{ advertisement.trim }}</h5>
-                </div>
-                <div class="mt-5">
-                  <h5>Miles {{ advertisement.miles }}</h5>
-                </div>
-                <div>{{ advertisement.value | currency }}</div>
-                <div class="caption mt-3">
-                  <v-row>
-                    <v-col>
-                      <span class="font-weight-bold">Ext. Color:</span>
-                      {{ advertisement.color_ext }}
-                    </v-col>
-                    <v-col>
-                      <span class="font-weight-bold">Transmission:</span>
-                      {{ advertisement.transmission_front }}
-                    </v-col>
-                  </v-row>
-                  <v-row class="mt-n5">
-                    <v-col>
-                      <span class="font-weight-bold">Int. Color:</span>
-                      {{ advertisement.color_int }}
-                    </v-col>
-                    <v-col>
-                      <span class="font-weight-bold">Drivetrain:</span>
-                      {{ advertisement.drive_type }}
-                    </v-col>
-                  </v-row>
+                <div class="d-flex justify-space-between">
+                  <div>
+                    <h4>{{ advertisement.type_front }}</h4>
+                    <h2 class="mt-n2">{{ advertisement.show_name }}</h2>
+                    <h4 class="mt-n2">{{ advertisement.name_detail_front }}</h4>
+                  </div>
+                  <div class="mr-5 mt-n3 d-flex" style="color: #00205b">
+                    <span class="mt-1">Miles: </span>
+                    <h2>{{ advertisement.miles }}</h2>
+                  </div>
                 </div>
                 <v-btn
-                  color="primary"
-                  class="mr-3 mt-5"
+                  class="mt-3"
+                  outlined
+                  rounded
+                  color="#00205b"
+                  width="180"
+                  small
+                >
+                  Delivery Avaliable
+                </v-btn>
+                <div class="mt-5 d-flex justify-center">
+                  <v-card
+                    class="pa-1 text-center"
+                    color="#cccccc"
+                    elevation="4"
+                    width="300"
+                  >
+                    <h1 style="color:#00205b">
+                      {{ advertisement.value | currency }}
+                    </h1>
+                  </v-card>
+                </div>
+                <div class="mt-5">
+                  <h5>
+                    {{ advertisement.company_data.address.city.name }} /
+                    {{ advertisement.company_data.address.state.initials }}
+                  </h5>
+                  <div class="d-flex">
+                    <h2>{{ advertisement.company_data.name }}</h2>
+                    <div class="d-flex ml-3">
+                      <v-rating
+                        :value="4.5"
+                        color="amber"
+                        dense
+                        half-increments
+                        readonly
+                      ></v-rating>
+                      <span class="ml-2 mt-1 grey--text">4.5 (413)</span>
+                    </div>
+                  </div>
+                </div>
+                <v-btn
+                  color="#00205b"
+                  class="mr-3 mt-2 white--text"
                   @click="carDetail(advertisement)"
                 >
                   Detail
