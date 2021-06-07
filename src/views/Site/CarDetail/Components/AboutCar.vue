@@ -13,25 +13,25 @@
         <v-row align="center">
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/engine.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/engine.svg"
+              height="50"
+              width="50"
             ></v-img>
             <p>{{ carDetail.engine }}</p>
           </v-col>
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/fuel-type.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/fuel-type.svg"
+              height="50"
+              width="50"
             ></v-img>
             <p>{{ carDetail.fuel_type_front }}</p>
           </v-col>
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/transmission.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/transmission.svg"
+              height="50"
+              width="50"
             ></v-img>
             <p>{{ carDetail.transmission_front }}</p>
           </v-col>
@@ -39,25 +39,25 @@
         <v-row align="center">
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/seats.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/seats.svg"
+              height="50"
+              width="50"
             ></v-img>
             <p>{{ carDetail.seats }}</p>
           </v-col>
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/color.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/mileage.svg"
+              height="50"
+              width="50"
             ></v-img>
-            <p>{{ carDetail.color_ext }}</p>
+            <p>{{ carDetail.miles }}</p>
           </v-col>
           <v-col class="d-flex flex-column align-center">
             <v-img
-              src="@/assets/site/car-detail/drivetrain.jpeg"
-              height="30"
-              width="30"
+              src="@/assets/site/car-detail/drivetrain.svg"
+              height="50"
+              width="50"
             ></v-img>
             <p>{{ carDetail.drive_type }}</p>
           </v-col>
@@ -88,6 +88,29 @@
       </v-card-title>
       <v-card-text>
         <h3>{{ carDetail.description }}</h3>
+      </v-card-text>
+    </v-card>
+    <v-card class="mt-3 pa-3">
+      <v-card-title style="color:#00205b">
+        <h3>Detail's Car</h3>
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col>
+            <p class="mt-n3"><strong>Exterior Color:</strong> {{ carDetail.color_ext }}</p>
+            <p class="mt-n3"><strong>Interior Color:</strong> {{ carDetail.color_int }}</p>
+            <p class="mt-n3"><strong>Transmission:</strong> {{ carDetail.transmission_front }}</p>
+            <p class="mt-n3"><strong>Mileage:</strong> {{ carDetail.miles }}</p>
+            <p class="mt-n3"><strong>Engine:</strong> {{ carDetail.engine }}</p>
+            <p class="mt-n3"><strong>Doors:</strong> {{ carDetail.doors }}</p>
+          </v-col>
+          <v-col>
+            <p class="mt-n3"><strong>Trim.:</strong> {{ carDetail.trim }}</p>
+            <p class="mt-n3"><strong>Year Model:</strong> {{ carDetail.year }}</p>
+            <p class="mt-n3"><strong>MPG City:</strong> {{ carDetail.car_description.epa_mileage_city }}</p>
+            <p class="mt-n3"><strong>MPG Highway:</strong> {{ carDetail.car_description.epa_mileage_street }}</p>
+          </v-col>
+        </v-row>
       </v-card-text>
     </v-card>
     <v-card class="mt-3 pa-5 text-center">
