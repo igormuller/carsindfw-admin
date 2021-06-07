@@ -97,18 +97,48 @@
       <v-card-text>
         <v-row>
           <v-col>
-            <p class="mt-n3"><strong>Exterior Color:</strong> {{ carDetail.color_ext }}</p>
-            <p class="mt-n3"><strong>Interior Color:</strong> {{ carDetail.color_int }}</p>
-            <p class="mt-n3"><strong>Transmission:</strong> {{ carDetail.transmission_front }}</p>
-            <p class="mt-n3"><strong>Mileage:</strong> {{ carDetail.miles }}</p>
-            <p class="mt-n3"><strong>Engine:</strong> {{ carDetail.engine }}</p>
-            <p class="mt-n3"><strong>Doors:</strong> {{ carDetail.doors }}</p>
+            <p class="mt-n3">
+              <strong>Exterior Color:</strong>
+              {{ carDetail.color_ext }}
+            </p>
+            <p class="mt-n3">
+              <strong>Interior Color:</strong>
+              {{ carDetail.color_int }}
+            </p>
+            <p class="mt-n3">
+              <strong>Transmission:</strong>
+              {{ carDetail.transmission_front }}
+            </p>
+            <p class="mt-n3">
+              <strong>Mileage:</strong>
+              {{ carDetail.miles }}
+            </p>
+            <p class="mt-n3">
+              <strong>Engine:</strong>
+              {{ carDetail.engine }}
+            </p>
+            <p class="mt-n3">
+              <strong>Doors:</strong>
+              {{ carDetail.doors }}
+            </p>
           </v-col>
           <v-col>
-            <p class="mt-n3"><strong>Trim.:</strong> {{ carDetail.trim }}</p>
-            <p class="mt-n3"><strong>Year Model:</strong> {{ carDetail.year }}</p>
-            <p class="mt-n3"><strong>MPG City:</strong> {{ carDetail.car_description.epa_mileage_city }}</p>
-            <p class="mt-n3"><strong>MPG Highway:</strong> {{ carDetail.car_description.epa_mileage_street }}</p>
+            <p class="mt-n3">
+              <strong>Trim.:</strong>
+              {{ carDetail.trim }}
+            </p>
+            <p class="mt-n3">
+              <strong>Year Model:</strong>
+              {{ carDetail.year }}
+            </p>
+            <p class="mt-n3">
+              <strong>MPG City:</strong>
+              {{ carDetail.car_description.epa_mileage_city }}
+            </p>
+            <p class="mt-n3">
+              <strong>MPG Highway:</strong>
+              {{ carDetail.car_description.epa_mileage_street }}
+            </p>
           </v-col>
         </v-row>
       </v-card-text>
