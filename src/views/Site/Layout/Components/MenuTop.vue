@@ -1,17 +1,23 @@
 <template>
   <v-app-bar app absolute height="80" color="#00205b">
     <v-app-bar-nav-icon
-      class="hidden-lg-and-up"
       color="white"
+      class="hidden-lg-and-up"
       @click.stop="changeNavigation()"
     />
-    <v-container fluid>
+    <v-img
+      style="cursor:pointer"
+      class="hidden-lg-and-up"
+      src="@/assets/site/full_logo.png"
+      max-width="250"
+      @click="pageStart()"
+    />
+    <v-container fluid class="hidden-md-and-down">
       <v-row align="center">
         <v-col md="4" align="start">
           <v-img
             style="cursor:pointer"
             src="@/assets/site/full_logo.png"
-            contain
             max-width="360"
             min-width="10"
             min-height="10"
@@ -22,7 +28,6 @@
           <v-btn
             v-for="(link, n) in links"
             :key="n"
-            class="hidden-md-and-down"
             text
             color="white"
             :to="link.link"
@@ -30,7 +35,7 @@
             {{ link.text }}
           </v-btn>
           <v-btn
-            class="white--text hidden-md-and-down ml-2 mr-2"
+            class="white--text ml-2 mr-2"
             color="#BF0D3E"
             to="/admin"
             v-if="logged"
@@ -38,18 +43,10 @@
             Admin
           </v-btn>
           <span v-else>
-            <v-btn
-              class="white--text hidden-md-and-down ml-2 mr-2"
-              color="#BF0D3E"
-              to="/register"
-            >
+            <v-btn class="white--text ml-2 mr-2" color="#BF0D3E" to="/register">
               Register
             </v-btn>
-            <v-btn
-              class="white--text hidden-md-and-down"
-              color="#BF0D3E"
-              to="/login"
-            >
+            <v-btn class="white--text" color="#BF0D3E" to="/login">
               Login
             </v-btn>
           </span>

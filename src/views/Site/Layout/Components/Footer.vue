@@ -2,7 +2,7 @@
   <div>
     <v-footer color="#c0323e" class="white--text" height="200">
       <v-row justify="center">
-        <v-col cols="2 sm-6" class="mr-5 hidden-md-and-down">
+        <v-col cols="2" class="mr-5 hidden-md-and-down">
           <h3>Company</h3>
           <v-btn text x-small to="/about" class="font-weight-black white--text">
             About CARSinDFW
@@ -32,7 +32,7 @@
             Fraud Awareness
           </v-btn>
         </v-col>
-        <v-col cols="2" class="mr-5">
+        <v-col cols="6" lg="2">
           <h3>Terms</h3>
           <h5>Terms of Use</h5>
           <h5>Privacy</h5>
@@ -67,40 +67,25 @@
             Dallas Events
           </v-btn>
         </v-col>
-        <v-col cols="2 sm-6" class="mr-5">
+        <v-col cols="6" sm="3" md="4" lg="2">
           <v-img
             src="@/assets/site/full_logo.png"
             min-width="150"
             max-width="200"
           ></v-img>
           <h3 style="font-family: Racing Sans One;">Passionate about cars!</h3>
-          <v-row class="d-flex">
+          <v-row class="d-flex justify-space-around">
             <a href="http://www.facebook.com/carsindfw" target="_blanck">
-              <v-img
-                class="mx-3"
-                height="32"
-                width="32"
-                src="@/assets/site/facebook.png"
-              />
+              <v-img height="32" width="32" src="@/assets/site/facebook.png" />
             </a>
             <a
               href=" https://wa.me/+1(469)456-4082?text=I'm%20interested%20in%20your%20car%20for%20sale"
               target="_blanck"
             >
-              <v-img
-                class="mx-3"
-                height="32"
-                width="32"
-                src="@/assets/site/whatsapp.png"
-              />
+              <v-img height="32" width="32" src="@/assets/site/whatsapp.png" />
             </a>
             <a href="http://www.instagram.com/cars.indfw" target="_blanck">
-              <v-img
-                class="mx-3"
-                height="32"
-                width="32"
-                src="@/assets/site/instagram.png"
-              />
+              <v-img height="32" width="32" src="@/assets/site/instagram.png" />
             </a>
           </v-row>
         </v-col>

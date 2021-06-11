@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col>
+    <v-col cols="12" md="7">
       <v-card :loading="loading" elevation="6" shaped>
         <div class="pa-5" v-if="!send">
           <v-text-field
@@ -45,7 +45,11 @@
         </div>
       </v-card>
     </v-col>
-    <v-col class="d-flex flex-column align-center justify-center">
+    <v-col
+      cols="12"
+      md="5"
+      class="d-flex flex-column align-center justify-center"
+    >
       <div>
         <h2 style="font-family: Racing Sans One; color:#00205b">
           Passionate about cars!

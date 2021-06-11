@@ -170,7 +170,7 @@
                 </v-subheader>
                 <v-divider></v-divider>
                 <v-row class="mt-n3">
-                  <v-col cols="4">
+                  <v-col cols="12" md="4">
                     <v-text-field
                       label="Card Number"
                       v-mask="'#### #### #### ####'"
@@ -183,14 +183,14 @@
                       </v-icon>
                     </v-text-field>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="12" md="4">
                     <v-text-field
                       label="Card Holder"
                       v-model="dealer.card_name"
                       :error-messages="errors.card_name"
                     />
                   </v-col>
-                  <v-col cols="2">
+                  <v-col cols="6" md="2">
                     <v-text-field
                       label="Expiration Date"
                       v-mask="'##/##'"
@@ -198,7 +198,7 @@
                       :error-messages="errors.card_expiration_date"
                     />
                   </v-col>
-                  <v-col cols="2">
+                  <v-col cols="6" md="2">
                     <v-text-field
                       label="CVV"
                       v-mask="'###'"

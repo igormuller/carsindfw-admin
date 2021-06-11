@@ -11,7 +11,7 @@
     </v-navigation-drawer>
     <MenuTop @changeNavigation="drawer = $event"></MenuTop>
     <v-content>
-      <v-container :fluid="isFluid">
+      <v-container>
         <router-view></router-view>
       </v-container>
     </v-content>
@@ -35,11 +35,6 @@ export default {
       { text: "Register", link: "/register" },
       { text: "Login", link: "/login" }
     ]
-  }),
-  computed: {
-    isFluid() {
-      return window.innerWidth < 1400;
-    }
-  }
+  })
 };
 </script>

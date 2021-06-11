@@ -25,7 +25,7 @@
           :searchStart="search"
         ></SearchCars>
       </v-col>
-      <v-col>
+      <v-col cols="12" md="9">
         <SearchResult
           :advertisements="advertisements"
           @clickPage="(page = $event), searchNow(search)"

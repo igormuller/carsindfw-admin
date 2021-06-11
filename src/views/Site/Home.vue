@@ -4,11 +4,11 @@
       <v-img
         src="@/assets/site/gif_cars_in_dallas_at_night.gif"
         class="flex-container"
-        max-height="500"
+        max-height="550"
       >
         <div class="mx-8 mb-5 search">
-          <v-row class="ml-5">
-            <v-col cols="12" md="2" class="mt-6" style="color: #00205b">
+          <v-row class="mx-5">
+            <v-col cols="12" md="2" class="mt-5" style="color: #00205b">
               <strong>Chose Your Next Car</strong>
             </v-col>
             <v-col cols="12" md="2">
