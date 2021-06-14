@@ -37,9 +37,9 @@
         <v-card width="100%" max-width="1000">
           <v-row>
             <v-col
-              cols="12"
+              cols="11"
               sm="5"
-              class="ml-3 d-flex flex-column justify-center"
+              class="ml-4 d-flex flex-column justify-center"
             >
               <v-carousel
                 cycle
@@ -51,7 +51,7 @@
                   v-for="image in advertisement.gallery"
                   :key="image.id"
                 >
-                  <v-img height="300" :src="image.url"></v-img>
+                  <v-img height="300" contain :src="image.url"></v-img>
                 </v-carousel-item>
               </v-carousel>
             </v-col>
@@ -67,7 +67,7 @@
                   <h2>{{ advertisement.miles }}</h2>
                 </div>
               </div>
-              <v-btn
+              <!-- <v-btn
                 class="mt-3"
                 outlined
                 rounded
@@ -76,7 +76,7 @@
                 small
               >
                 Delivery Avaliable
-              </v-btn>
+              </v-btn> -->
               <div class="mt-5 d-flex justify-center">
                 <v-card
                   class="pa-1 text-center"
@@ -96,7 +96,7 @@
                 </h5>
                 <div class="d-flex">
                   <h2>{{ advertisement.company_data.name }}</h2>
-                  <div class="d-flex ml-3">
+                  <!-- <div class="d-flex ml-3">
                     <v-rating
                       :value="4.5"
                       color="amber"
@@ -105,7 +105,7 @@
                       readonly
                     ></v-rating>
                     <span class="ml-2 mt-1 grey--text">4.5 (413)</span>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <v-btn

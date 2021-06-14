@@ -5,12 +5,11 @@
     </v-card>
     <v-row>
       <v-col cols="12" md="3">
-        <v-card>
+        <v-card to="/contact" class="pb-2">
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
-            class="white--text align-end"
+            src="@/assets/site/ad_with_us_banner_1.png"
+            class="white--text align-end mr-2"
           >
-            <v-card-title text="card.title">Anúncio</v-card-title>
           </v-img>
         </v-card>
         <v-card class="mt-3" :loading="loading_advertisement">
@@ -112,8 +111,14 @@ export default {
     loading_advertisement: true,
     errors: [],
     slides: [
-      { src: require("@/assets/site/car-wash.png") },
-      { src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }
+      {
+        src: require("@/assets/site/ad_with_us_banner_2.png"),
+        link: "/contact"
+      },
+      {
+        src: require("@/assets/site/sell_with_us_banner_2.png"),
+        link: "/register"
+      }
     ]
   }),
   methods: {

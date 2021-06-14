@@ -3,7 +3,7 @@
     <v-card>
       <BannerTop :slides="slides"></BannerTop>
     </v-card>
-    <v-card class="mt-3">
+    <!-- <v-card class="mt-3">
       <v-sheet>
         <v-slide-group show-arrows>
           <v-slide-item v-for="n in 18" :key="n">
@@ -17,7 +17,7 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
-    </v-card>
+    </v-card> -->
     <v-row>
       <v-col cols="12" md="3">
         <SearchCars
@@ -45,7 +45,16 @@ import SearchCars from "@/components/SearchCars";
 export default {
   components: { BannerTop, SearchResult, SearchCars },
   data: () => ({
-    slides: [{ src: "https://cdn.vuetifyjs.com/images/cards/road.jpg" }],
+    slides: [
+      {
+        src: require("@/assets/site/ad_with_us_banner_2.png"),
+        link: "/contact"
+      },
+      {
+        src: require("@/assets/site/sell_with_us_banner_2.png"),
+        link: "/register"
+      }
+    ],
     search: {
       type: "",
       make: "",

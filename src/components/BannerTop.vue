@@ -3,10 +3,11 @@
     <v-carousel-item
       v-for="(slide, i) in slides"
       :key="i"
-      :src="slide.src"
       reverse-transition="fade-transition"
       transition="fade-transition"
+      :to="slide.link"
     >
+      <v-img :src="slide.src" max-height="150"></v-img>
     </v-carousel-item>
   </v-carousel>
 </template>

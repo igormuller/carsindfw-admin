@@ -84,16 +84,19 @@
     <v-card>
       <v-carousel
         cycle
-        height="200"
+        height="150"
         hide-delimiter-background
         :show-arrows="false"
       >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet color="indigo" height="100%">
+        <v-carousel-item v-for="(slide, i) in slides" :key="i" :to="slide.link">
+          <v-row align="center" justify="center">
+            <v-img :src="slide.src" max-height="150"></v-img>
+          </v-row>
+          <!-- <v-sheet color="indigo" height="100%">
             <v-row class="fill-height" align="center" justify="center">
               <div class="display-3">{{ slide }}</div>
             </v-row>
-          </v-sheet>
+          </v-sheet> -->
         </v-carousel-item>
       </v-carousel>
     </v-card>
@@ -137,11 +140,14 @@ export default {
     categories: [],
     cars: [],
     slides: [
-      "Welcome to CARSinDFW",
-      "Advertisement 01",
-      "Advertisement 02",
-      "Advertisement 03",
-      "Advertisement 04"
+      {
+        src: require("@/assets/site/ad_with_us_banner_2.png"),
+        link: "/contact"
+      },
+      {
+        src: require("@/assets/site/sell_with_us_banner_2.png"),
+        link: "/register"
+      }
     ]
   }),
   watch: {
