@@ -55,7 +55,7 @@
           Passionate about cars!
         </h2>
       </div>
-      <div class="mt-8"><v-icon>mdi-email</v-icon> contato@carsindfw.com</div>
+      <div class="mt-8"><v-icon>mdi-email</v-icon> adm.carsindfw@gmail.com</div>
       <div class="mt-8"><v-icon>mdi-phone</v-icon> +1 (469) 456-4082</div>
     </v-col>
   </v-row>

@@ -81,6 +81,9 @@ export default {
     }
   },
   mounted() {
+    if (this.$store.state.user.company_type.type !== "dealer") {
+      this.$router.push("/admin/404");
+    }
     this.isBusy = !this.isBusy;
     this.$http.get("/users").then(res => {
       this.items = res.data;

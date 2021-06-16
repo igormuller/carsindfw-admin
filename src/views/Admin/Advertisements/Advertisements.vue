@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Advertisements</h1>
-    <v-row class="ma-2">
+    <v-row class="ma-2" v-if="isDealer">
       <router-link to="/admin/advertisements/new" tag="div">
         <v-btn color="primary">New Advertisements</v-btn>
       </router-link>
@@ -75,6 +75,11 @@ export default {
             });
         }
       });
+    }
+  },
+  computed: {
+    isDealer() {
+      return this.$store.state.user.company_type.type === "dealer";
     }
   },
   mounted() {

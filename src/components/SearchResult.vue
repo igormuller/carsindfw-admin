@@ -55,8 +55,8 @@
                 </v-carousel-item>
               </v-carousel>
             </v-col>
-            <v-col cols="12" sm="6" class="mx-3">
-              <div class="d-flex justify-space-between">
+            <v-col cols="12" sm="6">
+              <div class="ml-3 d-flex justify-space-between">
                 <div>
                   <h4>{{ advertisement.type_front }}</h4>
                   <h2 class="mt-n2">{{ advertisement.show_name }}</h2>
@@ -89,7 +89,7 @@
                   </h1>
                 </v-card>
               </div>
-              <div class="mt-5">
+              <div class="mt-5 ml-3">
                 <h5>
                   {{ advertisement.company_data.address.city.name }} /
                   {{ advertisement.company_data.address.state.initials }}
@@ -108,13 +108,16 @@
                   </div> -->
                 </div>
               </div>
-              <v-btn
-                color="#00205b"
-                class="mt-2 white--text"
-                :to="`/car-detail/${advertisement.id}`"
-              >
-                Detail
-              </v-btn>
+              <div class="mt-3 d-flex justify-center">
+                <v-btn
+                  color="#00205b"
+                  class="white--text"
+                  :to="`/car-detail/${advertisement.id}`"
+                  width="250"
+                >
+                  Detail
+                </v-btn>
+              </div>
             </v-col>
           </v-row>
         </v-card>

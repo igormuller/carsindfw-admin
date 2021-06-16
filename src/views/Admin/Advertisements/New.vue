@@ -440,6 +440,9 @@ export default {
     }
   },
   async created() {
+    if (this.$store.state.user.company_type.type !== "dealer") {
+      this.$router.push("/admin/404");
+    }
     await this.$http.get("/all-makes").then(res => (this.makes = res.data));
     this.changeLoading();
   }

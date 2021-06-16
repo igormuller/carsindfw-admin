@@ -79,7 +79,7 @@
               <v-img height="32" width="32" src="@/assets/site/facebook.png" />
             </a>
             <a
-              href=" https://wa.me/+1(469)456-4082?text=I'm%20interested%20in%20your%20car%20for%20sale"
+              href=" https://wa.me/14694564082?text=I'm%20interested%20in%20your%20car%20for%20sale"
               target="_blanck"
             >
               <v-img height="32" width="32" src="@/assets/site/whatsapp.png" />

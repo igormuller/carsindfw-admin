@@ -60,6 +60,11 @@ export default {
         .then(() => this.$router.push("/admin/users"))
         .catch(error => (this.errors = error.response.data.errors));
     }
+  },
+  mounted() {
+    if (this.$store.state.user.company_type.type !== "dealer") {
+      this.$router.push("/admin/404");
+    }
   }
 };
 </script>

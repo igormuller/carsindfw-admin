@@ -1,14 +1,16 @@
 <template>
   <div>
     <v-card class="mt-3">
-      <v-card-title style="color:#00205b">
-        <h2>
-          {{ carDetail.type }} {{ carDetail.make_name }}
-          {{ carDetail.model_name }}
-        </h2>
-        <br />
+      <div style="color:#00205b" class="pl-4 pa-4">
+        <div>
+          <h2>
+            {{ carDetail.type_front }} /
+            {{ carDetail.make_name }}
+            {{ carDetail.model_name }}
+          </h2>
+        </div>
         <strong>{{ carDetail.trim }}</strong>
-      </v-card-title>
+      </div>
       <v-card-text>
         <v-row align="center">
           <v-col class="d-flex flex-column align-center">
@@ -173,8 +175,8 @@
             </p>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col>
+        <v-row justify="center" align="center">
+          <v-col cols="12" md="5">
             <v-row>
               <v-col>
                 <v-text-field
@@ -212,9 +214,10 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col>
+          <v-divider inset vertical></v-divider>
+          <v-col cols="12" md="5">
             <v-row>
-              <v-col class="mt-3">
+              <v-col>
                 <v-btn-toggle
                   v-model="calculator.number_month"
                   dense
@@ -222,18 +225,10 @@
                   background-color="blue"
                   active-class="blue"
                 >
-                  <v-btn :value="36">
-                    <span class="hidden-sm-and-down">36</span>
-                  </v-btn>
-                  <v-btn :value="48">
-                    <span class="hidden-sm-and-down">48</span>
-                  </v-btn>
-                  <v-btn :value="60">
-                    <span class="hidden-sm-and-down">60</span>
-                  </v-btn>
-                  <v-btn :value="72">
-                    <span class="hidden-sm-and-down">72</span>
-                  </v-btn>
+                  <v-btn :value="36"><span>36</span></v-btn>
+                  <v-btn :value="48"><span>48</span></v-btn>
+                  <v-btn :value="60"><span>60</span></v-btn>
+                  <v-btn :value="72"><span>72</span></v-btn>
                 </v-btn-toggle>
               </v-col>
             </v-row>
@@ -261,7 +256,9 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="myPMT()">calculator</v-btn>
+        <v-btn @click="myPMT()" color="#00205b" class="pa-5 white--text">
+          calculator
+        </v-btn>
       </v-card-actions>
     </v-card>
     <v-dialog v-model="dialog" scrollable width="700">

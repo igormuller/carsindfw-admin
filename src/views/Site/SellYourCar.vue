@@ -18,6 +18,11 @@
         contain
       ></v-img>
     </div>
+    <div class="pb-5 d-flex justify-center">
+      <v-btn color="#00205b" class="pa-10 white--text" to="/register">
+        Did you like it? register with us
+      </v-btn>
+    </div>
   </v-card>
 </template>
 
