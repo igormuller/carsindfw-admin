@@ -18,6 +18,9 @@ import Plan from "../views/Admin/Plan/Detail";
 // import DealersEdit from "../views/Admin/Dealers/Edit";
 import PageNotFoundAdmin from "@/components/PageNotFoundAdmin";
 
+import MasterLayout from "../views/Master/Layout/AdminLayout";
+import NewsMaster from "../views/Master/News/News";
+
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
 import SellYourCar from "../views/Site/SellYourCar";
@@ -65,6 +68,14 @@ const routes = [
       { path: "interests", component: Interests },
       { path: "plan", component: Plan },
       { path: "*", component: PageNotFoundAdmin }
+    ]
+  },
+  {
+    path: "/master",
+    component: MasterLayout,
+    redirect: "/master/news",
+    children: [
+      { path: "news", component: NewsMaster },
     ]
   },
   {
