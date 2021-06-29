@@ -72,7 +72,7 @@ const routes = [
     component: Site,
     children: [
       { path: "/", component: Home },
-      { path: "/sell-your-car", component: SellYourCar },
+      { path: "/benefits", component: SellYourCar },
       { path: "/dealers", component: DealersList },
       { path: "/dealers/:city_id", component: DealersCity, props: true },
       { path: "/dealer/:dealer_id", component: DealerDetail, props: true },

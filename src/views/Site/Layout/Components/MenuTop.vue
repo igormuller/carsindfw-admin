@@ -44,7 +44,7 @@
           </v-btn>
           <span v-else>
             <v-btn class="white--text ml-2 mr-2" color="#BF0D3E" to="/register">
-              Register
+              Seel Your Car
             </v-btn>
             <v-btn class="white--text" color="#BF0D3E" to="/login">
               Login
@@ -63,7 +63,7 @@ export default {
     logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
       { text: "Car for Sale", link: "/search" },
-      { text: "Sell Your Car", link: "/sell-your-car" },
+      { text: "Benefits", link: "/benefits" },
       { text: "Dealership", link: "/dealers" },
       { text: "Contact us", link: "/contact" }
       // { text: "News", link: "/news" }
