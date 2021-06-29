@@ -20,6 +20,8 @@ import PageNotFoundAdmin from "@/components/PageNotFoundAdmin";
 
 import MasterLayout from "../views/Master/Layout/AdminLayout";
 import NewsMaster from "../views/Master/News/News";
+import NewsMasterNew from "../views/Master/News/New";
+import NewsMasterEdit from "../views/Master/News/Edit";
 
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
@@ -76,6 +78,8 @@ const routes = [
     redirect: "/master/news",
     children: [
       { path: "news", component: NewsMaster },
+      { path: "news/new", component: NewsMasterNew },
+      { path: "news/edit", component: NewsMasterEdit }
     ]
   },
   {
@@ -91,7 +95,7 @@ const routes = [
       { path: "/dallas-history", component: DallasHistory },
       { path: "/dallas-events", component: DallasEvents },
       { path: "/fraud-awareness", component: FraudAwareness },
-      { path: "/news", component: News },
+      { path: "/news/:slug", component: News, props: true },
       { path: "/about", component: About },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },

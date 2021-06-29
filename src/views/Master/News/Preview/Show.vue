@@ -1,7 +1,7 @@
 <template>
-  <div>Preview Show</div>
+  <div>Preview Shows</div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
