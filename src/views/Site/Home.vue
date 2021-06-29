@@ -82,24 +82,26 @@
     </v-card>
     <br />
     <v-card>
+      <banner-top :slides="slides"></banner-top>
+    </v-card>
+    <!-- <v-card>
       <v-carousel
-        cycle
         height="150"
+        cycle
         hide-delimiter-background
         :show-arrows="false"
       >
         <v-carousel-item v-for="(slide, i) in slides" :key="i" :to="slide.link">
-          <v-row align="center" justify="center">
-            <v-img :src="slide.src" max-height="150"></v-img>
+          <v-row
+            class="fill-height mr-1"
+            align="center"
+            justify="center"
+          >
+            <v-img :src="slide.src" contain max-height="150"></v-img>
           </v-row>
-          <!-- <v-sheet color="indigo" height="100%">
-            <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">{{ slide }}</div>
-            </v-row>
-          </v-sheet> -->
         </v-carousel-item>
       </v-carousel>
-    </v-card>
+    </v-card> -->
     <div class="mt-10 flex-container">
       <div class="title_cars">New Cars</div>
     </div>
@@ -127,8 +129,10 @@
 
 <script>
 import { CAR_TYPE } from "@/constants/variables.js";
+import BannerTop from "../../components/BannerTop.vue";
 
 export default {
+  components: { BannerTop },
   data: () => ({
     type: "",
     make: "",
@@ -141,12 +145,20 @@ export default {
     cars: [],
     slides: [
       {
-        src: require("@/assets/site/ad_with_us_banner_2.png"),
+        src: require("@/assets/site/banners/ad_01.png"),
         link: "/contact"
       },
       {
-        src: require("@/assets/site/sell_with_us_banner_2.png"),
+        src: require("@/assets/site/banners/sell_01.png"),
         link: "/register"
+      },
+      {
+        src: require("@/assets/site/banners/carias_care_1.png"),
+        link: "http://cariaslubeautocare.com"
+      },
+      {
+        src: require("@/assets/site/banners/planet_dents_1.png"),
+        link: "http://www.planetdents.com"
       }
     ]
   }),

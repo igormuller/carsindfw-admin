@@ -47,12 +47,20 @@ export default {
   data: () => ({
     slides: [
       {
-        src: require("@/assets/site/ad_with_us_banner_2.png"),
+        src: require("@/assets/site/banners/ad_01.png"),
         link: "/contact"
       },
       {
-        src: require("@/assets/site/sell_with_us_banner_2.png"),
+        src: require("@/assets/site/banners/sell_01.png"),
         link: "/register"
+      },
+      {
+        src: require("@/assets/site/banners/carias_care_1.png"),
+        link: "http://cariaslubeautocare.com"
+      },
+      {
+        src: require("@/assets/site/banners/planet_dents_1.png"),
+        link: "http://www.planetdents.com"
       }
     ],
     search: {
