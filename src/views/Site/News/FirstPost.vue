@@ -1,9 +1,17 @@
-<template>
+<!-- eslint-disable -->
+<template>  
   <v-card>
-    <v-card-title>THE X3 – TAKEN FURTHER</v-card-title>
-    <v-card-subtitle>The 2021 BMW X3 was optimized to give you the freedom to explore the world however you please.</v-card-subtitle>
     <v-card-text>
-      <v-img></v-img>
+      <div class="text-center">
+        <h1 class="display-3 font-weight-bold">THE X3 – TAKEN FURTHER</h1>
+        <h3>The 2021 BMW X3 was optimized to give you the freedom to explore the world however you please.</h3>
+      </div>
+      <v-img
+        src="https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularfront.jpeg"
+        contain
+        max-height="500"
+      >
+      </v-img>
       <div class="ma-5">
         <h5>DESIGN</h5>
         <h2>CREATED TO TAKE ON CHALLENGES</h2>
@@ -66,7 +74,23 @@
         3D View. Keep an eye on the surrounding area and capture every moment using the
         BMW Connected app.</p>
 
-        <div class="text-center"><h1>THE X3 AT A GLANCE</h1></div>
+        <v-row justify="center">
+          <v-col
+            lg="8"
+            offset-lg="0"
+          >
+            <v-carousel height="400" hide-delimiters>
+              <v-carousel-item
+                v-for="(item,i) in items"
+                :key="i"
+              >
+                <v-img :src="item.src" contain height="400"></v-img>
+              </v-carousel-item>
+            </v-carousel>
+          </v-col>
+        </v-row>
+
+        <div class="text-center mt-10"><h1 class="display-2 font-weight-bold">THE X3 AT A GLANCE</h1></div>
 
         <h3>Does the BMW X3 come in all-wheel drive?</h3>
         <p>The BMW X3 xDrive30i, X3 M40i, and X3 xDrive30e all come standard with xDrive. This
@@ -116,7 +140,8 @@
         <p class="font-italic font-weight-bold">Font: bmwusa.com</p>
 
         <p>
-          For buy cars, <v-btn text x-small to="/search">click here</v-btn><br />
+          For buy cars, <v-btn text x-small to="/search">click here</v-btn>
+          <br />
           For sell cars, <v-btn text x-small to="/register">click here</v-btn>
         </p>
       </div>
@@ -125,5 +150,21 @@
 </template>
 
 <script>
-export default {};
+/* eslint-disable */
+export default {
+  data() {
+    return {
+      items: [
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularfront.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularrear.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_dashboard.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_engine.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_frontview.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_sideview.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_steeringwheel.jpeg" },
+        { src: "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_trunk.jpeg" }
+      ]
+    };
+  }
+};
 </script>

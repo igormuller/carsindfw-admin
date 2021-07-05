@@ -25,7 +25,6 @@ import DealersList from "../views/Site/Dealer/DealersList";
 import DealersCity from "../views/Site/Dealer/DealersCity";
 import DealerDetail from "../views/Site/Dealer/DealerDetail";
 import Contact from "../views/Site/Contact";
-import News from "../views/Site/News";
 import About from "../views/Site/About";
 import DallasHistory from "../views/Site/DallasHistory";
 import DallasEvents from "../views/Site/DallasEvents";
@@ -33,6 +32,9 @@ import FraudAwareness from "../views/Site/FraudAwareness";
 import CarDetail from "../views/Site/CarDetail/CarDetail";
 import CarSearch from "../views/Site/CarSearch";
 import PageNotFound from "@/components/PageNotFound";
+
+import News from "../views/Site/News/News";
+import NewsFirst from "../views/Site/News/FirstPost";
 
 import Login from "../views/Site/Login/Login";
 import NewToken from "../views/Site/NewToken";
@@ -80,11 +82,12 @@ const routes = [
       { path: "/dallas-history", component: DallasHistory },
       { path: "/dallas-events", component: DallasEvents },
       { path: "/fraud-awareness", component: FraudAwareness },
-      { path: "/news", component: News },
       { path: "/about", component: About },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },
-      { path: "/register", component: Register }
+      { path: "/register", component: Register },
+      { path: "/news", component: News },
+      { path: "/news/the-x3-taken-further", component: NewsFirst }
     ]
   },
   { path: "/login", component: Login },

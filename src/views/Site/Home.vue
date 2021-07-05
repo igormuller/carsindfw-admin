@@ -84,24 +84,24 @@
     <v-card>
       <banner-top :slides="slides"></banner-top>
     </v-card>
-    <!-- <v-card>
-      <v-carousel
-        height="150"
-        cycle
-        hide-delimiter-background
-        :show-arrows="false"
-      >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i" :to="slide.link">
-          <v-row
-            class="fill-height mr-1"
-            align="center"
-            justify="center"
-          >
-            <v-img :src="slide.src" contain max-height="150"></v-img>
-          </v-row>
-        </v-carousel-item>
-      </v-carousel>
-    </v-card> -->
+    <div class="mt-10 flex-container">
+      <div class="title_cars">News</div>
+    </div>
+    <v-row>
+      <v-col xl="2" lg="3" md="4" sm="6" xs="12">
+        <v-card to="/news/the-x3-taken-further" width="500" class="pr-2">
+          <v-img
+            src="https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularfront.jpeg"
+            contain
+            height="200"
+          ></v-img>
+          <v-card-text>
+            <v-divider class="mb-2"></v-divider>
+            <strong>THE X3 – TAKEN FURTHER</strong>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
     <div class="mt-10 flex-container">
       <div class="title_cars">New Cars</div>
     </div>
