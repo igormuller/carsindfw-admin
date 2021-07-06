@@ -3,7 +3,7 @@
   <v-card>
     <v-card-text>
       <div class="text-center">
-        <h1 class="display-3 font-weight-bold">THE X3 – TAKEN FURTHER</h1>
+        <h1 class="display-2 font-weight-bold">THE X3 – TAKEN FURTHER</h1>
         <h3>The 2021 BMW X3 was optimized to give you the freedom to explore the world however you please.</h3>
       </div>
       <v-img

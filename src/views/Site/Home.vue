@@ -88,21 +88,26 @@
       <div class="title_cars">News</div>
     </div>
     <v-row>
-      <v-col xl="2" lg="3" md="4" sm="6" xs="12">
-        <v-card to="/news/the-x3-taken-further" width="500" class="pr-2">
-          <v-img
-            src="https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularfront.jpeg"
-            contain
-            height="200"
-          ></v-img>
+      <v-col
+        v-for="(newPost, key) in newPosts"
+        :key="key"
+        xl="2"
+        lg="3"
+        md="4"
+        sm="6"
+        xs="12"
+      >
+        <v-card :to="newPost.link" width="500" class="pr-2">
+          <v-img :src="newPost.src" contain height="200"></v-img>
           <v-card-text>
             <v-divider class="mb-2"></v-divider>
-            <strong>THE X3 – TAKEN FURTHER</strong>
+            <strong>{{ newPost.title }}</strong>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <div class="mt-10 flex-container">
+    <v-divider class="mt-10"></v-divider>
+    <div class="flex-container">
       <div class="title_cars">New Cars</div>
     </div>
     <v-row>
@@ -118,6 +123,7 @@
         <v-card :to="`car-detail/${car.id}`" width="500" class="pr-2">
           <v-img :src="car.photo" height="200"></v-img>
           <v-card-text>
+            <v-divider class="mb-2"></v-divider>
             <p>{{ car.make_name }}, {{ car.model_name }}, {{ car.trim }}</p>
             <strong>FROM {{ car.company_data.name }}</strong>
           </v-card-text>
@@ -145,20 +151,26 @@ export default {
     cars: [],
     slides: [
       {
-        src: require("@/assets/site/banners/ad_01.png"),
-        link: "/contact"
-      },
-      {
-        src: require("@/assets/site/banners/sell_01.png"),
-        link: "/register"
-      },
-      {
         src: require("@/assets/site/banners/carias_care_1.png"),
         link: "http://cariaslubeautocare.com"
       },
       {
         src: require("@/assets/site/banners/planet_dents_1.png"),
         link: "http://www.planetdents.com"
+      }
+    ],
+    newPosts: [
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FirstPost/2021_bmw_x3_angularfront.jpeg",
+        link: "/news/the-x3-taken-further",
+        title: "THE X3 – TAKEN FURTHER"
+      },
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/SecondPost/Kia_Seltos_Nightfall_Edition_02.jpg",
+        link: "/news/2022-kia-seltos",
+        title: "2022 Kia Seltos"
       }
     ]
   }),

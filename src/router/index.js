@@ -35,6 +35,7 @@ import PageNotFound from "@/components/PageNotFound";
 
 import News from "../views/Site/News/News";
 import NewsFirst from "../views/Site/News/FirstPost";
+import NewsSecond from "../views/Site/News/SecondPost";
 
 import Login from "../views/Site/Login/Login";
 import NewToken from "../views/Site/NewToken";
@@ -87,7 +88,8 @@ const routes = [
       { path: "/search", component: CarSearch },
       { path: "/register", component: Register },
       { path: "/news", component: News },
-      { path: "/news/the-x3-taken-further", component: NewsFirst }
+      { path: "/news/the-x3-taken-further", component: NewsFirst },
+      { path: "/news/2022-kia-seltos", component: NewsSecond }
     ]
   },
   { path: "/login", component: Login },
