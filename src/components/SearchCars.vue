@@ -1,5 +1,5 @@
 <template>
-  <v-card color="#E5E5E5">
+  <v-card color="#E5E5E5" class="pb-4">
     <v-card-title style="color:#00205b">Chose Your Next Car</v-card-title>
     <v-card-text>
       <v-select

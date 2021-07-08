@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card>
-      <BannerTop :slides="slides"></BannerTop>
-    </v-card>
+    <BannerTop :slides="slides"></BannerTop>
     <!-- <v-card class="mt-3">
       <v-sheet>
         <v-slide-group show-arrows>

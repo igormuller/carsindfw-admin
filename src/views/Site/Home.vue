@@ -81,9 +81,7 @@
       </v-img>
     </v-card>
     <br />
-    <v-card>
-      <banner-top :slides="slides"></banner-top>
-    </v-card>
+    <banner-top :slides="slides"></banner-top>
     <div class="mt-10 flex-container">
       <div class="title_cars">News</div>
     </div>

@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card v-if="!loading_advertisement">
-      <BannerTop :slides="slides"></BannerTop>
-    </v-card>
+    <BannerTop :slides="slides" v-if="!loading_advertisement"></BannerTop>
     <v-row>
       <v-col cols="12" md="3">
         <v-card to="/contact" class="pb-2">

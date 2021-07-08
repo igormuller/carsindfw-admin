@@ -4,7 +4,7 @@
       {{ advertisements.total }} cars finded!!!
     </div>
     <v-row>
-      <v-col cols="12" md="4" class="mb-n5">
+      <v-col cols="12" md="4">
         <v-select
           dense
           v-model="order_by"
@@ -15,7 +15,7 @@
           background-color="white"
         ></v-select>
       </v-col>
-      <v-col cols="12" md="2" class="mb-n5">
+      <v-col cols="12" md="2">
         <v-select
           dense
           v-model="paginate"
@@ -27,20 +27,17 @@
         ></v-select>
       </v-col>
     </v-row>
-    <hr />
-    <v-row>
+    <v-divider></v-divider>
+    <v-row class="my-1">
       <v-col
         v-for="advertisement in advertisements.data"
         :key="advertisement.id"
         cols="12"
+        class="my-2"
       >
         <v-card width="100%" max-width="1000">
-          <v-row>
-            <v-col
-              cols="11"
-              sm="5"
-              class="ml-4 d-flex flex-column justify-center"
-            >
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="6">
               <v-carousel
                 cycle
                 height="300"
@@ -50,6 +47,7 @@
                 <v-carousel-item
                   v-for="image in advertisement.gallery"
                   :key="image.id"
+                  class="mx-2"
                 >
                   <v-img height="300" contain :src="image.url"></v-img>
                 </v-carousel-item>
