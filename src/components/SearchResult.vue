@@ -121,7 +121,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row class="text-center">
+    <v-row justify="center" class="mb-2">
       <v-pagination
         @input="$emit('clickPage', page)"
         v-model="page"

@@ -241,7 +241,7 @@
                   </v-btn>
                   <v-btn
                     color="#00205b"
-                    class="white--text"
+                    class="white--text ml-2"
                     @click="sendRegister()"
                     :loading="registering"
                   >
