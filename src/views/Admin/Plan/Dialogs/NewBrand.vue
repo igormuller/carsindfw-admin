@@ -48,8 +48,16 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="closeDialog()" :disabled="saving">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="saveCard()" :disabled="saving">Save</v-btn>
+        <v-btn
+          color="blue darken-1"
+          text
+          @click="closeDialog()"
+          :disabled="saving"
+          >Close</v-btn
+        >
+        <v-btn color="blue darken-1" text @click="saveCard()" :disabled="saving"
+          >Save</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -94,24 +102,24 @@ export default {
     },
     saveCard() {
       this.saving = true;
-      this.errors = {},
-      this.$http
-        .post('/new-payment-method', this.card)
-        .then(() => {
-          this.saving = false;
-          this.clearCard();
-          this.closeDialog();
-        })
-        .catch(error => {
-          this.saving = false;
-          if (error.response.status === 402) {
-            this.$toasted.global.defaultError({
-              msg: error.response.data.message
-            });
-            return false;
-          }
-          this.errors = error.response.data.errors;
-        });
+      (this.errors = {}),
+        this.$http
+          .post("/new-payment-method", this.card)
+          .then(() => {
+            this.saving = false;
+            this.clearCard();
+            this.closeDialog();
+          })
+          .catch(error => {
+            this.saving = false;
+            if (error.response.status === 402) {
+              this.$toasted.global.defaultError({
+                msg: error.response.data.message
+              });
+              return false;
+            }
+            this.errors = error.response.data.errors;
+          });
     },
     checkCreditCardFlag(number) {
       if (number.length > 3) {

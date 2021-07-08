@@ -1,14 +1,14 @@
 <template>
-  <v-card class="elevation-8 mt-3 mb-3">
-    <v-card-text class="px-8">
+  <v-card class="elevation-8">
+    <v-card-text class="pa-8">
       <v-row>
         <v-col cols="3">
           <v-img src="@/assets/site/network-people.png" contain></v-img>
         </v-col>
         <v-col
           cols="9"
-          style="background-color: #00205B; color: white;"
-          class="d-flex flex-row align-center justify-center"
+          style="background-color: #00205b; color: white"
+          class="d-flex align-center justify-center"
           align="center"
         >
           <h3>
@@ -33,68 +33,96 @@
                   </h2>
                 </div>
                 <br />
-                <v-row>
-                  <v-col md="6" lg="3" align="center">
-                    <v-card
-                      @click="selectPlan(4)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center"
-                      color="grey lighten-2"
-                      height="200px"
-                      width="200px"
-                    >
-                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
-                      <div class="mt-3 number-advertisement">0-20</div>
-                      <div class="mt-10 price-advertisement">$99</div>
-                      <div class="mt-10 price-per-car">$4,95/car</div>
-                    </v-card>
-                  </v-col>
-                  <v-col md="6" lg="3" align="center">
-                    <v-card
-                      @click="selectPlan(5)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center"
-                      color="grey lighten-2"
-                      height="200px"
-                      width="200px"
-                    >
-                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
-                      <div class="mt-3 number-advertisement">0-50</div>
-                      <div class="mt-10 price-advertisement">$199</div>
-                      <div class="mt-10 price-per-car">$3,98/car</div>
-                    </v-card>
-                  </v-col>
-                  <v-col md="6" lg="3" align="center">
-                    <v-card
-                      @click="selectPlan(6)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center"
-                      color="grey lighten-2"
-                      height="200px"
-                      width="200px"
-                    >
-                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
-                      <div class="mt-3 number-advertisement">0-100</div>
-                      <div class="mt-10 price-advertisement">$299</div>
-                      <div class="mt-10 price-per-car">$2,99/car</div>
-                    </v-card>
-                  </v-col>
-                  <v-col md="6" lg="3" align="center">
-                    <v-card
-                      @click="selectPlan(7)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center"
-                      color="grey lighten-2"
-                      height="200px"
-                      width="200px"
-                    >
-                      <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
-                      <div class="mt-3 number-advertisement">0-200</div>
-                      <div class="mt-10 price-advertisement">$399</div>
-                      <div class="mt-10 price-per-car">$1,99/car</div>
-                    </v-card>
-                  </v-col>
-                </v-row>
+                <div class="d-flex justify-center flex-wrap">
+                  <!-- <v-col md="6" lg="3"> -->
+                  <v-card
+                    @click="selectPlan(4)"
+                    link
+                    class="
+                      elevation-8
+                      mx-5
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                    "
+                    color="grey lighten-2"
+                    height="200"
+                    width="200"
+                  >
+                    <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
+                    <div class="mt-3 number-advertisement">0-20</div>
+                    <div class="mt-10 price-advertisement">$99</div>
+                    <div class="mt-10 price-per-car">$4,95/car</div>
+                  </v-card>
+                  <!-- </v-col> -->
+                  <!-- <v-col md="6" lg="3" align="center"> -->
+                  <v-card
+                    @click="selectPlan(5)"
+                    link
+                    class="
+                      elevation-8
+                      mx-5
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                    "
+                    color="grey lighten-2"
+                    height="200px"
+                    width="200px"
+                  >
+                    <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
+                    <div class="mt-3 number-advertisement">0-50</div>
+                    <div class="mt-10 price-advertisement">$199</div>
+                    <div class="mt-10 price-per-car">$3,98/car</div>
+                  </v-card>
+                  <!-- </v-col> -->
+                  <!-- <v-col md="6" lg="3" align="center"> -->
+                  <v-card
+                    @click="selectPlan(6)"
+                    link
+                    class="
+                      elevation-8
+                      mx-5
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                    "
+                    color="grey lighten-2"
+                    height="200px"
+                    width="200px"
+                  >
+                    <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
+                    <div class="mt-3 number-advertisement">0-100</div>
+                    <div class="mt-10 price-advertisement">$299</div>
+                    <div class="mt-10 price-per-car">$2,99/car</div>
+                  </v-card>
+                  <!-- </v-col> -->
+                  <!-- <v-col md="6" lg="3" align="center"> -->
+                  <v-card
+                    @click="selectPlan(7)"
+                    link
+                    class="
+                      elevation-8
+                      mx-5
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                    "
+                    color="grey lighten-2"
+                    height="200px"
+                    width="200px"
+                  >
+                    <h3 class="mt-3 color-carsindfw">INVENTORY SIZE</h3>
+                    <div class="mt-3 number-advertisement">0-200</div>
+                    <div class="mt-10 price-advertisement">$399</div>
+                    <div class="mt-10 price-per-car">$1,99/car</div>
+                  </v-card>
+                  <!-- </v-col> -->
+                </div>
               </v-stepper-content>
 
               <v-stepper-content step="2">
@@ -207,7 +235,7 @@
                     />
                   </v-col>
                 </v-row>
-                <v-row justify="end" class="mr-2">
+                <div class="d-flex justify-end">
                   <v-btn text @click="step = 1" :disabled="registering">
                     Change Plan
                   </v-btn>
@@ -219,7 +247,7 @@
                   >
                     Register me
                   </v-btn>
-                </v-row>
+                </div>
               </v-stepper-content>
 
               <v-stepper-content step="3">
@@ -246,22 +274,24 @@
         </v-col>
       </v-row>
 
-      <v-row class="mt-12">
-        <v-col class="d-flex flex-row justify-center">
-          <div>
-            <h2 class="color-carsindfw">
-              Not a dealer, but interested in <br />
-              advertising on carsindfw.com?
-            </h2>
-          </div>
-          <div class="ml-10">
-            <v-btn
-              color="red"
-              class="white--text"
-              @click="$emit('changeType', 'person')"
-            >
-              Click Here!
-            </v-btn>
+      <v-row>
+        <v-col>
+          <div class="d-flex flex-row justify-center my-5">
+            <div>
+              <h2 class="color-carsindfw">
+                Not a dealer, but interested in <br />
+                advertising on carsindfw.com?
+              </h2>
+            </div>
+            <div class="ml-10">
+              <v-btn
+                color="red"
+                class="white--text"
+                @click="$emit('changeType', 'person')"
+              >
+                Click Here!
+              </v-btn>
+            </div>
           </div>
         </v-col>
       </v-row>

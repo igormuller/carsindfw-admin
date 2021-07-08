@@ -21,33 +21,45 @@
                   </h2>
                 </div>
                 <br />
-                <v-row>
-                  <v-col cols="12" md="6" align="center">
-                    <v-card
-                      @click="selectPlan(2)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
-                      height="200px"
-                      width="200px"
-                    >
-                      <div class="days-person">30 days</div>
-                      <div class="mt-5 days-person">$19,90</div>
-                    </v-card>
-                  </v-col>
-                  <v-col cols="12" md="6" align="center">
-                    <v-card
-                      @click="selectPlan(3)"
-                      link
-                      class="elevation-8 mx-12 d-flex flex-column align-center justify-center"
-                      height="200px"
-                      width="200px"
-                    >
-                      <div class="days-person">60 days</div>
-                      <div class="mt-5 days-person">$24,90</div>
-                    </v-card>
-                  </v-col>
-                </v-row>
-                <div class="mt-12 mb-5 d-flex flex-row justify-center">
+                <div class="d-flex justify-center flex-wrap">
+                  <v-card
+                    @click="selectPlan(2)"
+                    link
+                    class="
+                      elevation-8
+                      mx-12
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                      justify-center
+                    "
+                    height="200px"
+                    width="200px"
+                  >
+                    <div class="days-person">30 days</div>
+                    <div class="mt-5 days-person">$19,90</div>
+                  </v-card>
+                  <v-card
+                    @click="selectPlan(3)"
+                    link
+                    class="
+                      elevation-8
+                      mx-12
+                      my-5
+                      d-flex
+                      flex-column
+                      align-center
+                      justify-center
+                    "
+                    height="200px"
+                    width="200px"
+                  >
+                    <div class="days-person">60 days</div>
+                    <div class="mt-5 days-person">$24,90</div>
+                  </v-card>
+                </div>
+                <div class="my-5 d-flex flex-row justify-center">
                   <v-card class="elevation-8 pa-10" color="grey lighten-2">
                     <h2 align="center" class="color-carsindfw">
                       To advertise with us is verys simple. You just need an
@@ -59,9 +71,7 @@
 
               <v-stepper-content step="2">
                 <v-subheader class="mb-n3">
-                  <strong>
-                    Enter below all the form fields.
-                  </strong>
+                  <strong> Enter below all the form fields. </strong>
                 </v-subheader>
                 <v-divider></v-divider>
                 <v-row class="mt-n3">
@@ -108,9 +118,7 @@
                   </v-col>
                 </v-row>
                 <v-subheader class="mb-n3">
-                  <strong>
-                    Enter below those of credit card data.
-                  </strong>
+                  <strong> Enter below those of credit card data. </strong>
                 </v-subheader>
                 <v-divider></v-divider>
                 <v-row class="mt-n3">
@@ -175,22 +183,24 @@
         </v-col>
       </v-row>
 
-      <v-row class="mt-12">
-        <v-col class="d-flex flex-row justify-center" style="color:#00205B">
-          <div>
-            <h2>
-              Are you a dealer interested in <br />
-              advertising on carsindfw.com?
-            </h2>
-          </div>
-          <div class="ml-10">
-            <v-btn
-              color="red"
-              class="white--text"
-              @click="$emit('changeType', 'dealer')"
-            >
-              Click Here!
-            </v-btn>
+      <v-row>
+        <v-col style="color: #00205b">
+          <div class="d-flex flex-row justify-center my-5">
+            <div>
+              <h2>
+                Are you a dealer interested in <br />
+                advertising on carsindfw.com?
+              </h2>
+            </div>
+            <div class="ml-10">
+              <v-btn
+                color="red"
+                class="white--text"
+                @click="$emit('changeType', 'dealer')"
+              >
+                Click Here!
+              </v-btn>
+            </div>
           </div>
         </v-col>
       </v-row>
