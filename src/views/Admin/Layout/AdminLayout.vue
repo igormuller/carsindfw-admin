@@ -2,13 +2,13 @@
   <v-app id="inspire">
     <MenuLeft :drawer="drawer"></MenuLeft>
     <MenuTop @drawerChange="drawer = $event"></MenuTop>
-    <v-content>
+    <v-main>
       <v-container class="pa-5">
         <v-fade-transition mode="out-in">
           <router-view></router-view>
         </v-fade-transition>
       </v-container>
-    </v-content>
+    </v-main>
     <Footer></Footer>
   </v-app>
 </template>

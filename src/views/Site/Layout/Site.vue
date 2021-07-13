@@ -10,11 +10,11 @@
       </v-list>
     </v-navigation-drawer>
     <MenuTop @changeNavigation="drawer = $event"></MenuTop>
-    <v-content>
+    <v-main>
       <v-container>
         <router-view></router-view>
       </v-container>
-    </v-content>
+    </v-main>
     <Footer></Footer>
   </v-app>
 </template>
