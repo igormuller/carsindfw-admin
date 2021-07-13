@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-8 mt-5">
+  <v-card class="elevation-8 my-5">
     <v-row>
       <v-col cols="3">
         <v-img src="@/assets/site/network-people.png" contain></v-img>
@@ -17,7 +17,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-stepper v-model="step">
+        <v-stepper flat v-model="step">
           <v-stepper-items>
             <v-stepper-content step="1">
               <div class="ma-2 d-flex justify-center flex-wrap">
@@ -40,7 +40,7 @@
                       </div>
                     </v-avatar>
                     <div class="my-2">
-                      <p>For tha dealer, very advertisements in one place.</p>
+                      <p>For the dealer, very advertisements in one place.</p>
                     </div>
                     <v-btn
                       rounded
@@ -64,13 +64,13 @@
                     >
                       Person
                     </div>
-                    <v-avatar size="100" color="#00205b" class="mt-2 mb-5">
+                    <v-avatar size="100" color="#00205b" class="my-2">
                       <div class="d-flex flex-column white--text">
                         <h3 class="text-decoration-line-through">69</h3>
                         <h1>$19</h1>
                       </div>
                     </v-avatar>
-                    <div class="my-4">
+                    <div class="my-6">
                       <p>For you to sell your car, during 60 days</p>
                     </div>
                     <v-btn
@@ -130,7 +130,7 @@ export default {
   components: { DealerForm, PersonForm },
   data() {
     return {
-      step: "1",
+      step: 1,
       type: null,
       plan: null
     };
