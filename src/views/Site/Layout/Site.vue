@@ -28,11 +28,11 @@ export default {
     drawer: false,
     links: [
       { text: "Car for Sale", link: "/search" },
-      { text: "Sell Your Car", link: "/sell-your-car" },
+      { text: "Benefits", link: "/benefits" },
       { text: "Dealership", link: "/dealers" },
       { text: "Contact us", link: "/contact" },
       // { text: "News", link: "/news" }
-      { text: "Register", link: "/register" },
+      { text: "Sell Your Car", link: "/register" },
       { text: "Login", link: "/login" }
     ]
   })

@@ -44,7 +44,7 @@
           </v-btn>
           <span v-else>
             <v-btn class="white--text ml-2 mr-2" color="#BF0D3E" to="/register">
-              Seel Your Car
+              Sell Your Car
             </v-btn>
             <v-btn class="white--text" color="#BF0D3E" to="/login">
               Login
