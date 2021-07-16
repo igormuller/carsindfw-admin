@@ -36,6 +36,8 @@ import PageNotFound from "@/components/PageNotFound";
 import News from "../views/Site/News/News";
 import NewsFirst from "../views/Site/News/FirstPost";
 import NewsSecond from "../views/Site/News/SecondPost";
+import NewsThird from "../views/Site/News/ThirdPost";
+import NewsFourth from "../views/Site/News/FourthPost";
 
 import Login from "../views/Site/Login/Login";
 import NewToken from "../views/Site/NewToken";
@@ -89,7 +91,9 @@ const routes = [
       { path: "/register", component: Register },
       { path: "/news", component: News },
       { path: "/news/the-x3-taken-further", component: NewsFirst },
-      { path: "/news/2022-kia-seltos", component: NewsSecond }
+      { path: "/news/2022-kia-seltos", component: NewsSecond },
+      { path: "/news/mercedes-benz-gla-suv", component: NewsThird },
+      { path: "/news/lexus-is-300-awd", component: NewsFourth }
     ]
   },
   { path: "/login", component: Login },

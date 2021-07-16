@@ -169,6 +169,18 @@ export default {
           "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/SecondPost/Kia_Seltos_Nightfall_Edition_02.jpg",
         link: "/news/2022-kia-seltos",
         title: "2022 Kia Seltos"
+      },
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/ThirdPost/Mercedes-Benz+GLA-Class.jpg",
+        link: "/news/mercedes-benz-gla-suv",
+        title: "2021 MERCEDES-BENZ GLA SUV"
+      },
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FourthPost/Lexus-IS-gallery-07.jpg",
+        link: "/news/lexus-is-300-awd",
+        title: "2021 Lexus IS 300 AWD"
       }
     ]
   }),
