@@ -181,6 +181,18 @@ export default {
           "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FourthPost/Lexus-IS-gallery-07.jpg",
         link: "/news/lexus-is-300-awd",
         title: "2021 Lexus IS 300 AWD"
+      },
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/FifthPost/2022-infiniti-qx60-apple-carplay.jpg",
+        link: "/news/infiniti-qx60",
+        title: "2022 INFINITI QX60"
+      },
+      {
+        src:
+          "https://carsindfwgallery.s3.us-east-2.amazonaws.com/news/SixthPost/2021-toyota-tundra-nightshade-003-1619206966.jpg",
+        link: "/news/toyota-tundra",
+        title: "2022 TOYOTA TUNDRA"
       }
     ]
   }),

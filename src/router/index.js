@@ -38,6 +38,8 @@ import NewsFirst from "../views/Site/News/FirstPost";
 import NewsSecond from "../views/Site/News/SecondPost";
 import NewsThird from "../views/Site/News/ThirdPost";
 import NewsFourth from "../views/Site/News/FourthPost";
+import NewsFifth from "../views/Site/News/FifthPost";
+import NewsSixth from "../views/Site/News/SixthPost";
 
 import Login from "../views/Site/Login/Login";
 import NewToken from "../views/Site/NewToken";
@@ -93,7 +95,9 @@ const routes = [
       { path: "/news/the-x3-taken-further", component: NewsFirst },
       { path: "/news/2022-kia-seltos", component: NewsSecond },
       { path: "/news/mercedes-benz-gla-suv", component: NewsThird },
-      { path: "/news/lexus-is-300-awd", component: NewsFourth }
+      { path: "/news/lexus-is-300-awd", component: NewsFourth },
+      { path: "/news/infiniti-qx60", component: NewsFifth },
+      { path: "/news/toyota-tundra", component: NewsSixth }
     ]
   },
   { path: "/login", component: Login },
