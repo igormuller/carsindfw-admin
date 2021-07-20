@@ -134,11 +134,11 @@
       style="color: #c0323e"
     >
       <p>
-        For more abaut all we can do for you,
+        For more about all we can do for you,
         <a href="/contact" style="color: #00205b">click here</a> for contact us.
       </p>
       <p class="mt-n4">
-        And<a href="/register" style="color: #00205b">click here</a> for out
+        And<a href="/register" style="color: #00205b">click here</a> for our
         plan options.
       </p>
     </div>
