@@ -1,10 +1,10 @@
 <template>
   <v-card class="elevation-8 my-5">
     <v-row>
-      <v-col cols="3">
+      <v-col cols="3" class="hidden-sm-and-down">
         <v-img src="@/assets/site/network-people.png" contain></v-img>
       </v-col>
-      <v-col cols="9" align="center">
+      <v-col cols="12" md="9" align="center">
         <div
           style="background-color: #00205b; height:100%"
           class="d-flex align-center justify-center"
@@ -19,7 +19,89 @@
       <v-col>
         <v-stepper flat v-model="step">
           <v-stepper-items>
-            <v-stepper-content step="1">
+            <v-stepper-content step="1" style="color:#00205b">
+              <v-col
+                offset-md="2"
+                style="background-color: #00205b"
+                class="white--text"
+              >
+                <span class="display-1">SELL YOUR CAR WITH US!</span>
+              </v-col>
+              <div class="d-flex justify-center align-center flex-wrap mt-5">
+                <div class="mx-8 my-5">
+                  <div class="d-flex align-center">
+                    <v-img
+                      src="@/assets/site/logo.png"
+                      max-height="20"
+                      max-width="20"
+                      class="mr-2"
+                    ></v-img>
+                    <div class="headline">Benefits for all categories</div>
+                  </div>
+                  <div class="d-flex align-center">
+                    <v-img
+                      src="@/assets/site/logo.png"
+                      max-height="20"
+                      max-width="20"
+                      class="mr-2"
+                    ></v-img>
+                    <h3 class="headline">Exclusive page for dealers</h3>
+                  </div>
+                  <div class="d-flex align-center">
+                    <v-img
+                      src="@/assets/site/logo.png"
+                      max-height="20"
+                      max-width="20"
+                      class="mr-2"
+                    ></v-img>
+                    <div>
+                      <h3 class="headline">Advertisement avalable for</h3>
+                      <h3 class="headline mt-n2">
+                        dealers and private sellers
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="mx-8 my-5">
+                  <v-img src="@/assets/site/image_01_page_sell.png"></v-img>
+                </div>
+              </div>
+              <div class="d-flex justify-center align-center flex-wrap mt-5">
+                <div class="mx-8">
+                  <v-img src="@/assets/site/image_02_page_sell.png"></v-img>
+                </div>
+                <div class="mx-8">
+                  <div class="d-flex align-center">
+                    <v-img
+                      src="@/assets/site/logo.png"
+                      max-height="20"
+                      max-width="20"
+                      class="mr-2"
+                    >
+                    </v-img>
+                    <div class="headline">Access for one user or more</div>
+                  </div>
+                  <div class="d-flex align-center">
+                    <v-img
+                      src="@/assets/site/logo.png"
+                      max-height="20"
+                      max-width="20"
+                      class="mr-2"
+                    >
+                    </v-img>
+                    <h3 class="headline">Exclusive focus on the DFW market</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-8">
+                <div class="headline">
+                  <!-- eslint-disable-next-line -->
+                  You can contact us! <span class="text-decoration-underline" style="cursor:pointer; color:#c0323e" @click="step=2">Click Here</span> for more information about our<br>
+                  plans and more benefits!
+                </div>
+              </div>
+            </v-stepper-content>
+            <v-stepper-content step="2">
               <div class="ma-2 d-flex justify-center flex-wrap">
                 <v-card
                   elevation="8"
@@ -84,20 +166,25 @@
                   </v-card-text>
                 </v-card>
               </div>
+              <div class="text-center">
+                <v-btn text @click="step = 1">
+                  <i class="fas fa-angle-left mr-2"></i>Back
+                </v-btn>
+              </div>
             </v-stepper-content>
-            <v-stepper-content step="2">
+            <v-stepper-content step="3">
               <dealer-form
                 v-if="type === 'dealer'"
-                @changeStep="step = $event"
+                @backStep="step = 2"
                 :planType="plan"
               ></dealer-form>
               <person-form
                 v-if="type === 'person'"
-                @changeStep="step = $event"
+                @backStep="step = 2"
                 :planType="plan"
               ></person-form>
             </v-stepper-content>
-            <v-stepper-content step="3">
+            <v-stepper-content step="4">
               <div class="text-center ma-8" style="color:#00205b">
                 <h1 class="mb-5">Thanks for registering</h1>
                 <h3>
@@ -137,7 +224,7 @@ export default {
   },
   methods: {
     selectPlan(type, plan) {
-      this.step = 2;
+      this.step = 3;
       this.type = type;
       this.plan = plan;
     }

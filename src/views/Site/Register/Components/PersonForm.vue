@@ -90,7 +90,7 @@
       </v-col>
     </v-row>
     <div class="d-flex justify-end">
-      <v-btn text @click="$emit('changeStep', 1)" :disabled="registering">
+      <v-btn text @click="$emit('backStep')" :disabled="registering">
         Change Plan
       </v-btn>
       <v-btn
