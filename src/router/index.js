@@ -26,6 +26,8 @@ import DealersCity from "../views/Site/Dealer/DealersCity";
 import DealerDetail from "../views/Site/Dealer/DealerDetail";
 import Contact from "../views/Site/Contact";
 import About from "../views/Site/About";
+import Privacy from "../views/Site/Privacy";
+import TermsOfService from "../views/Site/TermsOfService";
 import DallasHistory from "../views/Site/DallasHistory";
 import DallasEvents from "../views/Site/DallasEvents";
 import FraudAwareness from "../views/Site/FraudAwareness";
@@ -88,6 +90,8 @@ const routes = [
       { path: "/dallas-events", component: DallasEvents },
       { path: "/fraud-awareness", component: FraudAwareness },
       { path: "/about", component: About },
+      { path: "/privacy", component: Privacy },
+      { path: "/terms-of-service", component: TermsOfService },
       { path: "/car-detail/:id", component: CarDetail, props: true },
       { path: "/search", component: CarSearch },
       { path: "/register", component: Register },

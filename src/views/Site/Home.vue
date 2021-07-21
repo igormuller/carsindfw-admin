@@ -6,9 +6,9 @@
         class="flex-container"
         max-height="550"
       >
-        <div class="mx-8 mb-5 search">
-          <v-row class="mx-5">
-            <v-col cols="12" md="2" class="mt-5" style="color: #00205b">
+        <div class="mx-8 mb-8 px-2 search">
+          <v-row align="center" class="mt-2">
+            <v-col cols="12" md="2" class="text-center" style="color: #00205b">
               <strong>Chose Your Next Car</strong>
             </v-col>
             <v-col cols="12" md="2">
@@ -65,10 +65,11 @@
                 </template>
               </v-autocomplete>
             </v-col>
-            <v-col>
+            <v-col md="2">
               <v-btn
+                block
                 color="#bf0d3e"
-                class="ml-4 mt-3 white--text"
+                class="white--text"
                 :to="
                   `search?type=${type}&make=${make}&model=${model}&category=${category}`
                 "

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="pa-5">
     <v-img
       src="@/assets/site/gif_cars_in_dallas_at_night.gif"
       max-height="450"
@@ -25,15 +25,15 @@
         </p>
       </v-col>
     </v-row>
-    <v-row class="mx-8">
-      <v-col class="text-center">
+    <div class="d-flex justify-center flex-wrap my-5">
+      <div class="text-center mx-5">
         <v-avatar size="125">
           <v-img src="@/assets/avatars/tiago_back.jpg" alt="Tiago Back"></v-img>
         </v-avatar>
         <p style="color: #00205b" class="font-weight-bold mt-2">Tiago Back</p>
         <p style="color: #00205b" class="font-weight-bold mt-n5">Owner</p>
-      </v-col>
-      <v-col class="text-center">
+      </div>
+      <div class="text-center mx-5">
         <v-avatar size="125">
           <v-img src="@/assets/avatars/lilian.png" alt="Lilian Müller"></v-img>
         </v-avatar>
@@ -41,24 +41,10 @@
           Lilian Müller
         </p>
         <p style="color: #00205b" class="font-weight-bold mt-n5">Owner</p>
-      </v-col>
-      <!-- <v-col class="text-center">
-        <v-avatar size="125">
-          <v-img
-            src="@/assets/avatars/marcio_kosien.jpeg"
-            alt="Marcio Kosien"
-          ></v-img>
-        </v-avatar>
-        <p style="color: #00205b" class="font-weight-bold mt-2">
-          Marcio Kosien
-        </p>
-        <p style="color: #00205b" class="font-weight-bold mt-n5">
-          Sales Manager
-        </p>
-      </v-col> -->
-    </v-row>
-    <v-row>
-      <v-col class="text-center">
+      </div>
+    </div>
+    <div class="d-flex justify-center flex-wrap my-5">
+      <div class="text-center mx-10">
         <v-avatar size="125">
           <v-img src="@/assets/avatars/gisele.jpg" alt="Gisele Martins"></v-img>
         </v-avatar>
@@ -68,8 +54,8 @@
         <p style="color: #00205b" class="font-weight-bold mt-n5">
           Marketing Manager
         </p>
-      </v-col>
-      <v-col class="text-center">
+      </div>
+      <div class="text-center mx-10">
         <v-avatar size="125">
           <v-img
             src="@/assets/avatars/igor_muller.jpeg"
@@ -82,8 +68,8 @@
         <p style="color: #00205b" class="font-weight-bold mt-n5">
           Developer Manager
         </p>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-card>
 </template>
 

@@ -10,7 +10,7 @@
           <v-btn
             text
             x-small
-            to="/sell-your-car"
+            to="/benefits"
             class="font-weight-black white--text"
           >
             Advice for Buyers
@@ -32,10 +32,25 @@
             Fraud Awareness
           </v-btn>
         </v-col>
-        <v-col cols="6" lg="2">
+        <v-col cols="2">
           <h3>Terms</h3>
-          <h5>Terms of Use</h5>
-          <h5>Privacy</h5>
+          <v-btn
+            text
+            x-small
+            to="/terms-of-service"
+            class="font-weight-black white--text"
+          >
+            Terms of Use
+          </v-btn>
+          <br />
+          <v-btn
+            text
+            x-small
+            to="/privacy"
+            class="font-weight-black white--text"
+          >
+            Privacy
+          </v-btn>
         </v-col>
         <v-col cols="2" class="mr-5 hidden-md-and-down">
           <h3>For Dealers</h3>
