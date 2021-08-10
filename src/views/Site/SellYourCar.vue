@@ -124,7 +124,7 @@
         </v-avatar>
         <div class="font-weight-medium" style="color: #00205b">
           No long term contracts - We understand local business and support
-          flexibility. Tou will have the option to continue advertising with us
+          flexibility. You will have the option to continue advertising with us
           or cancel at any time.
         </div>
       </v-card>
