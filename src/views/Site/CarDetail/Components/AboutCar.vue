@@ -164,8 +164,8 @@
       <v-card-title style="color:#00205b">
         <h3>Calculator</h3>
       </v-card-title>
+      <hr />
       <v-card-text>
-        <hr />
         <v-row class="text-center">
           <v-col>
             <h1>$ {{ calculator.value_month }}</h1>

@@ -3,14 +3,7 @@
     <BannerTop :slides="slides" v-if="!loading_advertisement"></BannerTop>
     <v-row>
       <v-col cols="12" md="3">
-        <v-card to="/contact" class="pb-2">
-          <v-img
-            src="@/assets/site/banners/ad_with_us_banner_1.png"
-            class="white--text align-end mr-2"
-          >
-          </v-img>
-        </v-card>
-        <v-card class="mt-3" :loading="loading_advertisement">
+        <v-card :loading="loading_advertisement">
           <v-card-text v-if="!loading_advertisement">
             <AboutDealer :company="advertisement.company_data"></AboutDealer>
           </v-card-text>
