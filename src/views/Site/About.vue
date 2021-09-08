@@ -1,8 +1,9 @@
 <template>
   <v-card class="pa-5">
     <v-img
-      src="@/assets/site/gif_cars_in_dallas_at_night.gif"
-      max-height="450"
+      src="@/assets/site/new_front_cars.jpg"
+      ref="https://www.hyundaiusa.com/us/en/vehicles/santa-fe/gallery"
+      max-height="350"
       contain
     ></v-img>
     <v-row class="mx-5 mt-5">
