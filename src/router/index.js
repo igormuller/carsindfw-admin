@@ -18,6 +18,8 @@ import Plan from "../views/Admin/Plan/Detail";
 // import DealersEdit from "../views/Admin/Dealers/Edit";
 import PageNotFoundAdmin from "@/components/PageNotFoundAdmin";
 
+import RegisterDealer from "../views/Broker/RegisterDealer";
+
 import Site from "../views/Site/Layout/Site";
 import Home from "../views/Site/Home";
 import SellYourCar from "../views/Site/SellYourCar";
@@ -76,6 +78,7 @@ const routes = [
       { path: "*", component: PageNotFoundAdmin }
     ]
   },
+  { path: "/broker", component: RegisterDealer },
   {
     path: "/",
     component: Site,

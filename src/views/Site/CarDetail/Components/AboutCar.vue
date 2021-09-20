@@ -94,7 +94,7 @@
     </v-card>
     <v-card class="mt-3 pa-3">
       <v-card-title style="color:#00205b">
-        <h3>Detail's Car</h3>
+        <h3>Details</h3>
       </v-card-title>
       <v-card-text>
         <v-row>

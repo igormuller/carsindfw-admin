@@ -175,12 +175,12 @@
             <v-stepper-content step="3">
               <dealer-form
                 v-if="type === 'dealer'"
-                @backStep="step = 2"
+                @changeStep="step = $event"
                 :planType="plan"
               ></dealer-form>
               <person-form
                 v-if="type === 'person'"
-                @backStep="step = 2"
+                @changeStep="step = $event"
                 :planType="plan"
               ></person-form>
             </v-stepper-content>

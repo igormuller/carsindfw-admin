@@ -2,9 +2,8 @@
   <div>
     <v-card class="mt-3">
       <v-img
-        src="@/assets/site/new_front_cars.jpg"
+        src="@/assets/site/gif_cars_in_dallas_at_night.gif"
         class="flex-container"
-        ref="https://www.hyundaiusa.com/us/en/vehicles/santa-fe/gallery"
         max-height="550"
       >
         <div class="mx-8 mb-8 px-2 search">

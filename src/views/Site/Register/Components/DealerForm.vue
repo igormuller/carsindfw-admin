@@ -66,7 +66,7 @@
     </v-row>
     <v-subheader class="mb-n3">
       <strong>
-        Enter below those of credit card data. Relaxes you have 30 days free.
+        Enter below those of credit card data.
       </strong>
     </v-subheader>
     <v-divider></v-divider>
@@ -108,8 +108,41 @@
         />
       </v-col>
     </v-row>
+    <v-subheader class="mb-n3">
+      <strong>
+        If you have a Promotion Code, input here.
+      </strong>
+    </v-subheader>
+    <v-divider></v-divider>
+    <v-row class="mt-n3">
+      <v-col cols="12" md="4">
+        <v-text-field
+          label="Promotion Code"
+          v-model="dealer.promotion_code"
+          :loading="loadingPromoCode"
+          @change="searchPromotionCode($event)"
+          :error-messages="errorCode"
+        ></v-text-field>
+      </v-col>
+      <v-col class="d-flex justify-end my-5">
+        <table>
+          <tr>
+            <td class="font-weight-bold">Price:</td>
+            <td class="text-right">$ 399.00</td>
+          </tr>
+          <tr v-if="discount">
+            <td class="font-weight-bold pr-2">Discount:</td>
+            <td class="text-right">$ {{ discount }}</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">Final:</td>
+            <td class="text-right">$ {{ total }}</td>
+          </tr>
+        </table>
+      </v-col>
+    </v-row>
     <div class="d-flex justify-end">
-      <v-btn text @click="$emit('backStep')" :disabled="registering">
+      <v-btn text @click="$emit('changeStep', 2)" :disabled="registering">
         Change Plan
       </v-btn>
       <v-btn
@@ -130,6 +163,9 @@ export default {
   data() {
     return {
       registering: false,
+      discount: 0,
+      loadingPromoCode: false,
+      errorCode: "",
       dealer: {
         name: "",
         user_name: "",
@@ -143,7 +179,8 @@ export default {
         card_number: "",
         card_name: "",
         card_expiration_date: "",
-        card_cvv: ""
+        card_cvv: "",
+        promotion_code: null
       },
       showCreditCardFlag: false,
       creditCardFlag: null,
@@ -164,7 +201,7 @@ export default {
       this.dealer.plan_type_id = this.planType;
       this.$http
         .post("/new-company", this.dealer)
-        .then(() => this.$emit("changeStep", 3))
+        .then(() => this.$emit("changeStep", 4))
         .catch(error => {
           this.registering = false;
           if (error.response.status === 402) {
@@ -201,6 +238,34 @@ export default {
       if (number.length <= 3) {
         this.showCreditCardFlag = false;
       }
+    },
+    searchPromotionCode(value) {
+      this.loadingPromoCode = true;
+      this.errorCode = "";
+      this.discount = 0;
+      this.$http
+        .get(`/promotion-code/${value}`)
+        .then(res => {
+          let promotion = res.data.promotion;
+          this.dealer.promotion_code = promotion.promotion_code;
+          if (promotion.amount_off) {
+            this.discount = promotion.amount_off;
+          } else {
+            let value = (399 * promotion.percent_off) / 100;
+            this.discount = value;
+          }
+          this.loadingPromoCode = false;
+        })
+        .catch(error => {
+          this.errorCode = error.response.data.error;
+          this.dealer.promotion_code = null;
+          this.loadingPromoCode = false;
+        });
+    }
+  },
+  computed: {
+    total() {
+      return parseFloat(399 - this.discount).toFixed(2);
     }
   }
 };
