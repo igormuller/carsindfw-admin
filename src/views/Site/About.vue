@@ -45,18 +45,7 @@
     </div>
     <div class="d-flex justify-center flex-wrap my-5">
       <div class="text-center mx-10">
-        <v-avatar size="125">
-          <v-img src="@/assets/avatars/gisele.jpg" alt="Gisele Martins"></v-img>
-        </v-avatar>
-        <p style="color: #00205b" class="font-weight-bold mt-2">
-          Gisele Martins
-        </p>
-        <p style="color: #00205b" class="font-weight-bold mt-n5">
-          Marketing Manager
-        </p>
-      </div>
-      <div class="text-center mx-10">
-        <v-avatar size="125">
+        <v-avatar size="100">
           <v-img
             src="@/assets/avatars/igor_muller.jpeg"
             alt="Igor Müller"

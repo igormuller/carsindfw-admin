@@ -15,16 +15,23 @@
                 <h2 class="mb-2">Street: {{ dealer.address.street }}</h2>
                 <h2 class="mb-2">City: {{ dealer.address.city.name }}</h2>
                 <h2 class="mb-2">Phone: {{ dealer.phone }}</h2>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col v-if="images.length > 0">
-                <GaleryInverter :images="images" />
+                <h2 class="mb-2">E-mail: {{ dealer.email }}</h2>
+                <h2 class="mb-2">
+                  Site:
+                  <a :href="`http://${dealer.site}`" target="_blank">
+                    {{ dealer.site }}
+                  </a>
+                </h2>
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="12" md="6">
-            <v-card elevation="8" class="mt-4">
+        </v-row>
+        <v-row>
+          <v-col md="6" sm="12" v-if="images.length > 0">
+            <GaleryInverter :images="images" />
+          </v-col>
+          <v-col md="6" sm="12">
+            <v-card elevation="8">
               <gmap-map
                 :center="center"
                 :zoom="zoom"

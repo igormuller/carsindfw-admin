@@ -19,7 +19,10 @@
       <div class="mb-2"><strong>Phone:</strong> {{ company.phone }}</div>
       <div class="mb-2"><strong>E-mail:</strong> {{ company.email }}</div>
       <div class="mb-2" v-if="company.type === 'dealer'">
-        <strong>Site:</strong> {{ company.site }}
+        <strong>Site:</strong>
+        <a :href="`http://${company.site}`" target="_blank">
+          {{ company.site }}
+        </a>
       </div>
     </div>
     <v-row v-if="company.type === 'dealer'">
