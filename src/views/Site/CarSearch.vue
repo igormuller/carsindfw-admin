@@ -1,21 +1,6 @@
 <template>
   <div>
     <BannerTop :slides="slides"></BannerTop>
-    <!-- <v-card class="mt-3">
-      <v-sheet>
-        <v-slide-group show-arrows>
-          <v-slide-item v-for="n in 18" :key="n">
-            <v-img
-              contain
-              class="mx-2"
-              height="100"
-              width="100"
-              src="@/assets/site/dealer-logo-default.png"
-            ></v-img>
-          </v-slide-item>
-        </v-slide-group>
-      </v-sheet>
-    </v-card> -->
     <v-row>
       <v-col cols="12" md="3">
         <SearchCars

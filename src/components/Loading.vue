@@ -14,9 +14,6 @@
       </div>
     </div>
   </v-overlay>
-  <!-- <div class="text-center" v-if="loading">
-    <v-progress-circular indeterminate :color="color"></v-progress-circular>
-  </div> -->
 </template>
 
 <script>
