@@ -12,7 +12,7 @@
       <v-col cols="12" md="6" v-if="!loading_advertisement">
         <Galery
           v-if="advertisement.gallery"
-          :images="advertisement.gallery"
+          :images="advertisement.gallery_data"
         ></Galery>
         <AboutCar
           v-if="!loading_advertisement"

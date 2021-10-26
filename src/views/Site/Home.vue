@@ -124,7 +124,7 @@
           <v-card-text>
             <v-divider class="mb-2"></v-divider>
             <p>{{ car.make_name }}, {{ car.model_name }}, {{ car.trim }}</p>
-            <strong>FROM {{ car.company_data.name }}</strong>
+            <strong>FROM {{ car.company_name }}</strong>
           </v-card-text>
         </v-card>
       </v-col>

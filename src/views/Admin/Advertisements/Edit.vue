@@ -12,7 +12,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Trim</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-row>
+              <v-row class="mt-3">
                 <v-col cols="12" sm="5">
                   <v-col>
                     <v-autocomplete
@@ -116,7 +116,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Detail</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-row>
+              <v-row class="mt-3">
                 <v-col cols="12" sm="2">
                   <v-select
                     v-model="advertisement.type"
@@ -220,7 +220,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header>Gallery</v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-row>
+              <v-row class="mt-3">
                 <v-col
                   v-for="(image, key) in gallery"
                   :key="image.id"
@@ -239,10 +239,18 @@
                           <v-overlay v-if="hover" absolute color="#036358">
                             <v-btn
                               rounded
-                              color="primary"
+                              color="red"
                               @click="removeImage(key)"
                             >
                               Remove
+                            </v-btn>
+                            <v-btn
+                              rounded
+                              outlined
+                              @click="defineDefault(image)"
+                              v-if="!image.default"
+                            >
+                              Default
                             </v-btn>
                           </v-overlay>
                         </v-fade-transition>
@@ -254,6 +262,7 @@
               <v-btn
                 color="primary"
                 small
+                class="mt-3"
                 @click="uploadImages"
                 :disabled="loadingImages"
                 :loading="loadingImages"
@@ -396,6 +405,19 @@ export default {
     },
     removeImage(item) {
       this.gallery.splice(item, 1);
+    },
+    async defineDefault(item) {
+      console.log(item);
+      await this.$http
+        .put(`/gallery-advertisement/${item.id}/default`)
+        .then(() =>
+          this.$toasted.global.defaultSuccess({
+            msg: "Picture default Saved!!!"
+          })
+        );
+      await this.$http
+        .get(`gallery-advertisement/${item.advertisement_id}`)
+        .then(res => (this.gallery = res.data));
     },
     removeFeature(item) {
       this.advertisement.features.splice(

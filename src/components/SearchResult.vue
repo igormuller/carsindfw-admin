@@ -39,13 +39,12 @@
           <v-row align="center" justify="center">
             <v-col cols="12" sm="6">
               <v-carousel
-                cycle
                 height="300"
                 hide-delimiters
                 show-arrows-on-hover
               >
                 <v-carousel-item
-                  v-for="image in advertisement.gallery"
+                  v-for="image in advertisement.gallery_data"
                   :key="image.id"
                   class="mx-2"
                 >
