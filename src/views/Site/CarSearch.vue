@@ -24,6 +24,7 @@
         ></SearchCars>
       </v-col>
       <v-col cols="12" md="9">
+        <loading :loading="loading" text="Loading search..."></loading>
         <SearchResult
           :advertisements="advertisements"
           @clickPage="(page = $event), searchNow(search)"
@@ -39,9 +40,10 @@
 import BannerTop from "@/components/BannerTop";
 import SearchResult from "@/components/SearchResult";
 import SearchCars from "@/components/SearchCars";
+import Loading from "../../components/Loading.vue";
 
 export default {
-  components: { BannerTop, SearchResult, SearchCars },
+  components: { BannerTop, SearchResult, SearchCars, Loading },
   data: () => ({
     slides: [
       {
@@ -70,6 +72,7 @@ export default {
       year_end: ""
     },
     advertisements: {},
+    loading: false,
     order_by: "last_created_at",
     page: 1,
     paginate: 15
@@ -83,6 +86,7 @@ export default {
   },
   methods: {
     searchNow(dataSearch) {
+      this.loading = true;
       this.$http
         .get(`/search`, {
           params: {
@@ -92,7 +96,11 @@ export default {
             page: this.page
           }
         })
-        .then(res => (this.advertisements = res.data));
+        .then(res => {
+          this.advertisements = res.data;
+          this.loading = false;
+        })
+        .catch(() => (this.loading = false));
     }
   }
 };
