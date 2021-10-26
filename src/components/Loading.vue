@@ -10,7 +10,7 @@
         ></v-progress-circular>
       </div>
       <div class="mt-5 font-weight-bold" style="color:#00205b">
-        {{text}}
+        {{ text }}
       </div>
     </div>
   </v-overlay>
