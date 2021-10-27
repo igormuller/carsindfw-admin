@@ -12,7 +12,7 @@
                 :items="plans"
                 item-text="description"
                 item-value="id"
-                :hint="`$ ${hintPlan ? hintPlan.value : null}`"
+                :hint="`$ ${hintPlan ? hintPlan.hint : ''}`"
                 persistent-hint
                 v-model="planSelect"
                 label="Plan"
@@ -75,7 +75,7 @@ export default {
       let url =
         user.company_type.type === "person"
           ? "contract-new-plan"
-          : "change-subscription";
+          : "new-subscription";
       this.$http
         .post(`/${url}`, { plan: this.planSelect })
         .then(() => {
@@ -97,14 +97,22 @@ export default {
     }
   },
   created() {
-    this.$http.get("/list-plan-types").then(res => {
-      this.plans = res.data;
-      let user = this.$store.state.user;
-      this.planSelect = user.company.plan_type_id;
-      this.plans = this.plans.filter(
-        item => item.company_type === user.company_type.type
-      );
-    });
+    let user = this.$store.state.user;
+    if (user.company_type.type === "person") {
+      this.plans = [{ id: 3, description: "60 days", hint: "19" }];
+    } else {
+      this.plans = [
+        { id: 7, description: "0 to 200 advertisements", hint: "399" }
+      ];
+    }
+    // this.$http.get("/list-plan-types").then(res => {
+    //   this.plans = res.data;
+    //   let user = this.$store.state.user;
+    //   this.planSelect = user.company.plan_type_id;
+    //   this.plans = this.plans.filter(
+    //     item => item.company_type === user.company_type.type
+    //   );
+    // });
   }
 };
 </script>

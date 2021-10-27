@@ -10,7 +10,7 @@
         Plan
         <v-spacer></v-spacer>
         <div v-if="!loadingPlan">
-          <v-btn
+          <!-- <v-btn
             outlined
             x-small
             color="indigo"
@@ -18,7 +18,7 @@
             @click="dialog = true"
           >
             Change
-          </v-btn>
+          </v-btn> -->
           <v-btn
             outlined
             x-small
@@ -33,7 +33,7 @@
             x-small
             color="success"
             v-if="checkNewSubscription"
-            @click="newSubscription()"
+            @click="dialog = true"
           >
             New Subscription
           </v-btn>
