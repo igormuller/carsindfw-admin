@@ -51,8 +51,8 @@
               <v-autocomplete
                 v-model="category"
                 :items="categories"
-                item-text="body_type_front"
-                item-value="body_type"
+                item-text="name"
+                item-value="id"
                 label="Category"
                 clearable
               >

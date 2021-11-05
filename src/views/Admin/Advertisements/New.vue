@@ -81,12 +81,12 @@
                   <v-simple-table height="300">
                     <template v-slot:default>
                       <tbody>
-                        <tr>
+                        <!-- <tr>
                           <td>Body Type</td>
                           <td>
                             {{ textByVariables(body_types, trim.body_type) }}
                           </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                           <td>Seats</td>
                           <td>{{ trim.seats }}</td>
