@@ -118,7 +118,7 @@
     </v-row>
     <v-row justify="center" class="mb-2">
       <v-pagination
-        @input="$emit('clickPage', page)"
+        @input="nextPage(page)"
         v-model="page"
         :length="advertisements.last_page"
         next-icon="mdi-menu-right"
@@ -148,6 +148,10 @@ export default {
         return advertisement.photo;
       }
       return require("@/assets/site/default_car.jpg");
+    },
+    nextPage(page) {
+      window.scrollTo(0, 200);
+      this.$emit("clickPage", page);
     }
   }
 };
