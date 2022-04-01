@@ -63,9 +63,5 @@
 </template>
 
 <script>
-export default {
-    mounted() {
-        this.fbq.push('track', 'teste');
-    }
-};
+export default {};
 </script>
