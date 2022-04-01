@@ -46,7 +46,9 @@ import NewsFifth from "../views/Site/News/FifthPost";
 import NewsSixth from "../views/Site/News/SixthPost";
 
 import Login from "../views/Site/Login/Login";
-import NewToken from "../views/Site/NewToken";
+import NewToken from "../views/Site/Login/NewToken";
+import NewPassword from "../views/Site/Login/NewPassword";
+import ForgotPassword from "../views/Site/Login/ForgotPassword";
 import ValidateToken from "../views/Site/ValidateToken";
 import Register from "../views/Site/Register/Register";
 
@@ -109,6 +111,8 @@ const routes = [
   },
   { path: "/login", component: Login },
   { path: "/new-token", component: NewToken },
+  { path: "/new-password", component: NewPassword, props: true },
+  { path: "/forgot-password", component: ForgotPassword },
   { path: "/validate-token", component: ValidateToken },
   { path: "*", component: PageNotFound }
 ];

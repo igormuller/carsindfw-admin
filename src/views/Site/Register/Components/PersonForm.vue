@@ -146,7 +146,7 @@ export default {
         .then(() => this.$emit("changeStep", 3))
         .catch(error => {
           this.registering = false;
-          if (error.response.status === 402) {
+          if (error.response.status !== 201) {
             this.$toasted.global.defaultError({
               msg: error.response.data.message
             });

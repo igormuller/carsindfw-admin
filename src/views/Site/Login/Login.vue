@@ -29,13 +29,10 @@
                 </form>
               </v-card-text>
               <v-card-actions>
-                <span class="caption pl-4">
-                  If you don't have login then
-                  <router-link to="/register">
-                    Register
-                  </router-link>
-                </span>
                 <v-spacer />
+                <router-link to="/register" class="mr-5 mb-5">
+                  Register
+                </router-link>
                 <v-btn color="primary" @click="sendLogin()" class="mb-3 mr-3">
                   Login
                 </v-btn>
@@ -43,13 +40,13 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row class="d-flew justify-center">
-          <span class="caption pl-4">
-            If you haven't verified your email and forgot your token
-            <router-link to="/new-token">
-              Click Here
-            </router-link>
-          </span>
+        <v-row align="center" justify="center">
+          <router-link to="/new-token">
+            New Token
+          </router-link>
+          <router-link to="/forgot-password" class="ml-5">
+            Forgot Password
+          </router-link>
         </v-row>
       </v-container>
     </v-main>
