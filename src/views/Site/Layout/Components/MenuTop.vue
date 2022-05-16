@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app absolute height="80" color="#00205b">
+  <v-app-bar app absolute height="80">
     <v-app-bar-nav-icon
       color="white"
       class="hidden-lg-and-up"
@@ -29,7 +29,7 @@
             v-for="(link, n) in links"
             :key="n"
             text
-            color="white"
+            color="#747474"
             :to="link.link"
           >
             {{ link.text }}
@@ -43,7 +43,7 @@
             Admin
           </v-btn>
           <span v-else>
-            <v-btn class="white--text ml-2 mr-2" color="#BF0D3E" to="/register">
+            <v-btn class="white--text ml-2 mr-2" color="#00205b" to="/register">
               Sell Your Car
             </v-btn>
             <v-btn class="white--text" color="#BF0D3E" to="/login">
@@ -62,10 +62,10 @@ export default {
     drawer: false,
     logged: localStorage.getItem("carsindfw_admin_logged"),
     links: [
-      { text: "Car for Sale", link: "/search" },
-      { text: "Benefits", link: "/benefits" },
-      { text: "Dealership", link: "/dealers" },
-      { text: "Contact us", link: "/contact" }
+      { text: "Search", link: "/search" },
+      // { text: "Benefits", link: "/benefits" },
+      { text: "Find a dealership", link: "/dealers" },
+      { text: "Contact", link: "/contact" }
       // { text: "News", link: "/news" }
     ]
   }),
