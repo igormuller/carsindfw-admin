@@ -47,11 +47,11 @@
         />
       </v-col>
     </v-row>
-    <v-subheader class="mb-n3">
+    <!-- <v-subheader class="mb-n3">
       <strong> Enter below those of credit card data. </strong>
     </v-subheader>
-    <v-divider></v-divider>
-    <v-row class="mt-n3">
+    <v-divider></v-divider> -->
+    <!-- <v-row class="mt-n3">
       <v-col cols="12" md="4">
         <v-text-field
           label="Card Number"
@@ -88,7 +88,7 @@
           :error-messages="errors.card_cvv"
         />
       </v-col>
-    </v-row>
+    </v-row> -->
     <div class="d-flex justify-end">
       <v-btn text @click="$emit('changeStep', 2)" :disabled="registering">
         Change Plan
@@ -118,11 +118,11 @@ export default {
         password: "",
         re_password: "",
         plan_type_id: "",
-        type: "person",
-        card_number: "",
-        card_name: "",
-        card_expiration_date: "",
-        card_cvv: ""
+        type: "person"
+        // card_number: "",
+        // card_name: "",
+        // card_expiration_date: "",
+        // card_cvv: ""
       },
       showCreditCardFlag: false,
       creditCardFlag: null,

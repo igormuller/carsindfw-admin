@@ -148,18 +148,18 @@
                     </div>
                     <v-avatar size="100" color="#00205b" class="my-2">
                       <div class="d-flex flex-column white--text">
-                        <h3 class="text-decoration-line-through">69</h3>
-                        <h1>$19</h1>
+                        <h3 class="text-decoration-line-through">19</h3>
+                        <h1>Free</h1>
                       </div>
                     </v-avatar>
-                    <div class="my-6">
-                      <p>For you to sell your car, during 60 days</p>
+                    <div class="my-8">
+                      <p>For you to sell your car.</p>
                     </div>
                     <v-btn
                       rounded
                       color="#BF0D3E"
                       dark
-                      @click="selectPlan('person', 2)"
+                      @click="selectPlan('person', 8)"
                     >
                       Registering
                     </v-btn>
