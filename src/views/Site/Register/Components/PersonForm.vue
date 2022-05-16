@@ -143,7 +143,7 @@ export default {
       this.person.plan_type_id = this.planType;
       this.$http
         .post("/new-company", this.person)
-        .then(() => this.$emit("changeStep", 3))
+        .then(() => this.$emit("changeStep", 4))
         .catch(error => {
           this.registering = false;
           if (error.response.status === 402) {

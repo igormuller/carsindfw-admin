@@ -33,6 +33,6 @@ export const MENU = [
     link: "plan",
     name: "My Plan",
     icon: "far fa-money-bill-alt",
-    access: "all"
+    access: "dealer"
   }
 ];
