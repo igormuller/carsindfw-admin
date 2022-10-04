@@ -16,7 +16,7 @@ Vue.use(VueSweetalert2, {
 });
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyAimraeRdmEH0NntawJL22wBNSUgnhoPiA"
+    key: process.env.VUE_APP_GOOGLE_API_KEY
   }
 });
 
